@@ -2303,26 +2303,65 @@
         // ==========================================================================
         
         function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+            }
         }
 
+        // Status message system
         function showStatusMessage(message, type = 'info') {
-            // Create and show a temporary status message
-            const alertDiv = document.createElement('div');
-            alertDiv.className = `alert alert-${type === 'success' ? 'success' : type === 'error' ? 'error' : 'info'}`;
-            alertDiv.textContent = message;
-            alertDiv.style.position = 'fixed';
-            alertDiv.style.top = '80px';
-            alertDiv.style.right = '20px';
-            alertDiv.style.zIndex = '9999';
-            alertDiv.style.minWidth = '300px';
+            // Remove any existing status messages
+            const existingMessages = document.querySelectorAll('.status-message');
+            existingMessages.forEach(msg => msg.remove());
             
-            document.body.appendChild(alertDiv);
+            // Create status message element
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status-message alert alert-${type}`;
+            statusDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                padding: 12px 20px;
+                border-radius: 4px;
+                font-weight: 500;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                animation: slideIn 0.3s ease-out;
+            `;
             
+            // Set colors based on type
+            if (type === 'success') {
+                statusDiv.style.backgroundColor = '#d4edda';
+                statusDiv.style.color = '#155724';
+                statusDiv.style.border = '1px solid #c3e6cb';
+            } else if (type === 'error') {
+                statusDiv.style.backgroundColor = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+                statusDiv.style.border = '1px solid #f5c6cb';
+            } else {
+                statusDiv.style.backgroundColor = '#d1ecf1';
+                statusDiv.style.color = '#0c5460';
+                statusDiv.style.border = '1px solid #bee5eb';
+            }
+            
+            statusDiv.textContent = message;
+            document.body.appendChild(statusDiv);
+            
+            // Auto-remove after 4 seconds
             setTimeout(() => {
-                alertDiv.remove();
-            }, 3000);
+                if (statusDiv.parentNode) {
+                    statusDiv.style.animation = 'slideOut 0.3s ease-in';
+                    setTimeout(() => statusDiv.remove(), 300);
+                }
+            }, 4000);
         }
+
+        // Clear all forms in the modal
+        function clearForm() {
+            document.querySelectorAll('form').forEach(form => form.reset());
+            editingRegistrationId = null;
+            editingCourseId = null;
 
         function convertToCSV(data) {
             if (!data || data.length === 0) return '';
