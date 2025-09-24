@@ -1688,36 +1688,12 @@
             loadRegistrationsData();
         }
 
-        function exportRegistrations() {
-            showStatusMessage('Export functionality not implemented yet', 'info');
-        }
-            
-            // Get all registrations first, then filter to students only
-            let allRegistrations = dataManager.getRegistrations();
-            let studentRegistrations = allRegistrations.filter(reg => reg.role === 'Student');
-            
-            // Apply search filter on student registrations
-            if (searchTerm) {
-                studentRegistrations = studentRegistrations.filter(reg => 
-                    reg.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    reg.lastName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    reg.email.toLowerCase().includes(searchTerm.toLowerCase())
-                );
-            }
-            
-            renderRegistrationsTable(studentRegistrations);
-        }
-
         function refreshRegistrations() {
             loadRegistrationsData();
-            showStatusMessage('Registration data refreshed', 'success');
         }
 
         function exportRegistrations() {
-            const registrations = dataManager.getRegistrations();
-            const csvContent = convertToCSV(registrations);
-            downloadFile(csvContent, 'registrations.csv', 'text/csv');
-            showStatusMessage('Registration data exported successfully', 'success');
+            showStatusMessage('Export functionality not implemented yet', 'info');
         }
 
         // ==========================================================================
