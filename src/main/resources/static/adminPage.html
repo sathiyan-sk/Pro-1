@@ -2148,6 +2148,149 @@
         
 
         // ==========================================================================
+        // USER MANAGEMENT
+        // ==========================================================================
+        
+        async function loadUsersData() {
+            try {
+                showStatusMessage('Loading users...', 'info');
+                const response = await dataManager.getAllUsers();
+                
+                if (response.success && response.data) {
+                    const users = response.data.map(user => dataManager.formatUserForDisplay(user));
+                    renderUsersTable(users);
+                    showStatusMessage(`Loaded ${users.length} users`, 'success');
+                } else {
+                    console.error('Failed to load users:', response.message);
+                    renderUsersTable([]);
+                    showStatusMessage('Failed to load users', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading users:', error);
+                renderUsersTable([]);
+                showStatusMessage('Error loading users', 'error');
+            }
+        }
+
+        function renderUsersTable(users) {
+            const tbody = document.querySelector('#usersTable tbody');
+            
+            tbody.innerHTML = users.length > 0 ? users.map(user => `
+                <tr>
+                    <td>${user.firstName} ${user.lastName || ''}</td>
+                    <td>${user.email}</td>
+                    <td><span class="badge badge-primary">${user.role}</span></td>
+                    <td><span class="badge badge-success">${user.status}</span></td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-outline" onclick="viewUserDetails('${user.id}')">View</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('') : `
+                <tr>
+                    <td colspan="5" style="text-align: center; color: #666; padding: 2rem;">
+                        No users found
+                    </td>
+                </tr>
+            `;
+        }
+
+        function viewUserDetails(userId) {
+            showStatusMessage(`Viewing details for user ID: ${userId}`, 'info');
+        }
+
+        function openAddUserModal() {
+            document.getElementById('userModalTitle').textContent = 'Add New User';
+            clearUserForm();
+            document.getElementById('userModal').classList.add('active');
+        }
+
+        function clearUserForm() {
+            document.getElementById('userForm').reset();
+        }
+
+        async function saveUser() {
+            const userData = {
+                firstName: document.getElementById('userFirstName').value,
+                lastName: document.getElementById('userLastName').value,
+                email: document.getElementById('userEmail').value,
+                role: document.getElementById('userRole').value,
+                gender: document.getElementById('userGender').value,
+                mobileNo: document.getElementById('userMobile').value,
+                city: document.getElementById('userCity').value,
+                dateOfBirth: document.getElementById('userDOB').value,
+                password: 'defaultPassword123' // Default password for new users
+            };
+
+            try {
+                showStatusMessage('Creating user...', 'info');
+                const response = await dataManager.createUser(userData);
+                
+                if (response.success) {
+                    showStatusMessage('User created successfully', 'success');
+                    closeModal('userModal');
+                    loadUsersData();
+                } else {
+                    showStatusMessage('Failed to create user: ' + response.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error creating user:', error);
+                showStatusMessage('Error creating user', 'error');
+            }
+        }
+
+        function filterUsers(type) {
+            // Update active filter button
+            document.querySelectorAll('#user-management .btn-outline').forEach(btn => {
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-outline');
+            });
+            
+            const activeBtn = document.getElementById(`filter${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('btn-outline');
+                activeBtn.classList.add('btn-primary');
+            }
+
+            // For now, just reload all users - can be enhanced to filter by role
+            loadUsersData();
+        }
+
+        // ==========================================================================
+        // COURSE MANAGEMENT FUNCTIONS
+        // ==========================================================================
+        
+        function loadCoursesData() {
+            showStatusMessage('Course management with database integration coming soon', 'info');
+        }
+
+        function toggleCourseForm() {
+            const modal = document.getElementById('courseFormSheet');
+            modal.classList.toggle('active');
+        }
+
+        function saveCourse() {
+            showStatusMessage('Course creation with database integration coming soon', 'info');
+        }
+
+        // ==========================================================================
+        // COMPLAINTS MANAGEMENT
+        // ==========================================================================
+        
+        function loadComplaintsData() {
+            showStatusMessage('Complaints management with database integration coming soon', 'info');
+        }
+
+        function loadSettingsData() {
+            showStatusMessage('Settings loaded', 'info');
+        }
+
+        function loadAnalyticsData() {
+            showStatusMessage('Analytics dashboard coming soon', 'info');
+        }
+
+        // ==========================================================================
         // UTILITY FUNCTIONS
         // ==========================================================================
         
