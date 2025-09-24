@@ -1465,76 +1465,103 @@
         // DASHBOARD FUNCTIONALITY
         // ==========================================================================
         
-        function updateDashboardStats() {
-            const registrations = dataManager.getRegistrations();
-            const courses = dataManager.getCourses();
-            const complaints = dataManager.getComplaints();
-
-            // Filter only students for dashboard stats
-            const students = registrations.filter(r => r.role === 'Student');
-            const faculty = registrations.filter(r => r.role === 'Faculty');
-            const hr = registrations.filter(r => r.role === 'HR');
-            
-            const totalStudents = students.length;
-            const totalFacultyHR = faculty.length + hr.length;
-            const publishedCourses = courses.filter(c => c.status === 'Published').length;
-            const newStudents = students.filter(r => {
-                const regDate = new Date(r.registeredOn);
-                const weekAgo = new Date();
-                weekAgo.setDate(weekAgo.getDate() - 7);
-                return regDate >= weekAgo;
-            }).length;
-
-            document.getElementById('totalRegistrations').textContent = totalStudents;
-            document.getElementById('totalUsers').textContent = totalFacultyHR;
-            document.getElementById('totalStudents').textContent = publishedCourses;
-            document.getElementById('newUsers').textContent = newStudents;
-            document.getElementById('registrationCount').textContent = totalStudents;
-            document.getElementById('complaintsCount').textContent = complaints.filter(c => c.status === 'Open').length;
+        async function updateDashboardStats() {
+            try {
+                showStatusMessage('Loading dashboard statistics...', 'info');
+                const response = await dataManager.getDashboardStats();
+                
+                if (response.success) {
+                    const stats = response.data;
+                    document.getElementById('totalRegistrations').textContent = stats.totalStudents || 0;
+                    document.getElementById('totalUsers').textContent = (stats.totalFaculty || 0) + (stats.totalHR || 0);
+                    document.getElementById('totalStudents').textContent = stats.totalStudents || 0;
+                    document.getElementById('newUsers').textContent = stats.newStudentsThisWeek || 0;
+                    document.getElementById('registrationCount').textContent = stats.totalStudents || 0;
+                    
+                    showStatusMessage('Dashboard statistics loaded successfully', 'success');
+                } else {
+                    console.error('Failed to load dashboard stats:', response.message);
+                    showStatusMessage('Failed to load dashboard statistics', 'error');
+                    // Use fallback data
+                    setFallbackStats();
+                }
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+                showStatusMessage('Error loading dashboard statistics', 'error');
+                setFallbackStats();
+            }
         }
 
-        function loadDashboardData() {
-            const registrations = dataManager.getRegistrations();
-            // Show only STUDENT registrations in dashboard
-            const recentStudentRegistrations = registrations
-                .filter(reg => reg.role === 'Student')
-                .slice(-5)
-                .reverse();
-            
-            const tableHTML = `
-                <div style="overflow-x: auto;">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Registered On</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${recentStudentRegistrations.length > 0 ? recentStudentRegistrations.map(reg => `
-                                <tr>
-                                    <td>${reg.firstName} ${reg.lastName}</td>
-                                    <td>${reg.email}</td>
-                                    <td><span class="badge badge-primary">${reg.role}</span></td>
-                                    <td>${reg.registeredOn}</td>
-                                    <td><span class="badge badge-success">${reg.status}</span></td>
-                                </tr>
-                            `).join('') : `
-                                <tr>
-                                    <td colspan="5" style="text-align: center; color: #666; padding: 2rem;">
-                                        No student registrations found
-                                    </td>
-                                </tr>
-                            `}
-                        </tbody>
-                    </table>
-                </div>
-            `;
-            
-            document.getElementById('recentRegistrationsTable').innerHTML = tableHTML;
+        function setFallbackStats() {
+            document.getElementById('totalRegistrations').textContent = '0';
+            document.getElementById('totalUsers').textContent = '0';
+            document.getElementById('totalStudents').textContent = '0';
+            document.getElementById('newUsers').textContent = '0';
+            document.getElementById('registrationCount').textContent = '0';
+            document.getElementById('complaintsCount').textContent = '0';
+        }
+
+        async function loadDashboardData() {
+            try {
+                showStatusMessage('Loading recent registrations...', 'info');
+                const response = await dataManager.getRecentRegistrations();
+                
+                if (response.success && response.data) {
+                    const recentStudents = response.data.map(student => dataManager.formatStudentForDisplay(student));
+                    
+                    const tableHTML = `
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Location</th>
+                                        <th>Registered On</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${recentStudents.length > 0 ? recentStudents.map(student => `
+                                        <tr>
+                                            <td>${student.firstName} ${student.lastName}</td>
+                                            <td>${student.email}</td>
+                                            <td>${student.location || '-'}</td>
+                                            <td>${student.registeredAt}</td>
+                                            <td><span class="badge badge-success">${student.status}</span></td>
+                                        </tr>
+                                    `).join('') : `
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; color: #666; padding: 2rem;">
+                                                No recent student registrations found
+                                            </td>
+                                        </tr>
+                                    `}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                    
+                    document.getElementById('recentRegistrationsTable').innerHTML = tableHTML;
+                    showStatusMessage('Recent registrations loaded successfully', 'success');
+                } else {
+                    console.error('Failed to load recent registrations:', response.message);
+                    document.getElementById('recentRegistrationsTable').innerHTML = `
+                        <div style="text-align: center; color: #666; padding: 2rem;">
+                            <p>No recent registrations available</p>
+                        </div>
+                    `;
+                    showStatusMessage('No recent registrations found', 'info');
+                }
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                document.getElementById('recentRegistrationsTable').innerHTML = `
+                    <div style="text-align: center; color: #e74c3c; padding: 2rem;">
+                        <p>Error loading recent registrations</p>
+                    </div>
+                `;
+                showStatusMessage('Error loading recent registrations', 'error');
+            }
         }
 
         // ==========================================================================
