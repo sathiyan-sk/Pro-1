@@ -1,10 +1,7 @@
 package com.trackerpro.config;
 
 import com.trackerpro.entity.*;
-import com.trackerpro.repository.CourseRepository;
-import com.trackerpro.repository.StudentRepository;
-import com.trackerpro.repository.UserRepository;
-import com.trackerpro.repository.ComplaintRepository;
+import com.trackerpro.repository.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +13,9 @@ import org.springframework.stereotype.Component;
 public class DataInitializer implements CommandLineRunner {
     
     private static final Logger logger = LoggerFactory.getLogger(DataInitializer.class);
+    
+    @Autowired
+    private AdminRepository adminRepository;
     
     @Autowired
     private UserRepository userRepository;
@@ -36,12 +36,31 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         logger.info("Initializing application data...");
         
+        initializeAdmins();
         initializeUsers();
         initializeStudents();
         initializeCourses();
         initializeComplaints();
         
         logger.info("Application data initialization completed");
+    }
+    
+    private void initializeAdmins() {
+        if (adminRepository.count() == 0) {
+            logger.info("Creating default admin...");
+            
+            // Create default admin user
+            Admin admin = new Admin();
+            admin.setUsername("admin");
+            admin.setEmail("admin@tracker.com");
+            admin.setPassword(passwordEncoder.encode("admin123"));
+            admin.setFirstName("Admin");
+            admin.setLastName("User");
+            admin.setStatus(AdminStatus.ACTIVE);
+            adminRepository.save(admin);
+            
+            logger.info("Default admin created successfully with email: admin@tracker.com");
+        }
     }
     
     private void initializeUsers() {

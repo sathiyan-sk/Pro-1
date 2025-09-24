@@ -44,9 +44,6 @@ logging:
     
 # Custom Application Properties
 app:
-  admin:
-    email: admin@tracker.com
-    password: admin123
   jwt:
     secret: trackerProSecretKey2024
     expiration: 86400000 # 24 hours in milliseconds

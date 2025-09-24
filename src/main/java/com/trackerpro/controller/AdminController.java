@@ -4,6 +4,7 @@ import com.trackerpro.dto.ApiResponse;
 import com.trackerpro.entity.Admin;
 import com.trackerpro.entity.Student;
 import com.trackerpro.entity.User;
+import com.trackerpro.service.AdminService;
 import com.trackerpro.service.StudentService;
 import com.trackerpro.service.UserService;
 import org.slf4j.Logger;
@@ -24,28 +25,13 @@ public class AdminController {
     private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
     
     @Autowired
+    private AdminService adminService;
+    
+    @Autowired
     private StudentService studentService;
     
     @Autowired
     private UserService userService;
-
-    //admin login
-    @PostMapping("/login")
-    public ResponseEntity<ApiResponse<String>> login(@RequestBody Admin admin) {
-        logger.info("Admin login attempt with email: {}", admin.getEmail());
-
-        try {
-            boolean isValid = adminService.validateAdmin(admin.getEmail(), admin.getPassword());
-            if (isValid) {
-                return ResponseEntity.ok(ApiResponse.success("Login successful", "admin"));
-            } else {
-                return ResponseEntity.status(401).body(ApiResponse.failure("Invalid admin credentials"));
-            }
-        } catch (Exception e) {
-            logger.error("Error during admin login", e);
-            return ResponseEntity.status(500).body(ApiResponse.failure("Login failed: " + e.getMessage()));
-        }
-    }
 
     /**
      * Get dashboard statistics
@@ -57,6 +43,7 @@ public class AdminController {
         try {
             StudentService.StudentStatistics studentStats = studentService.getStudentStatistics();
             UserService.UserStatistics userStats = userService.getUserStatistics();
+            AdminService.AdminStatistics adminStats = adminService.getAdminStatistics();
             
             Map<String, Object> stats = new HashMap<>();
             stats.put("totalStudents", studentStats.getTotalStudents());
@@ -64,6 +51,7 @@ public class AdminController {
             stats.put("totalFaculty", userStats.getFacultyCount());
             stats.put("totalHR", userStats.getHrCount());
             stats.put("totalUsers", userStats.getActiveUsers());
+            stats.put("totalAdmins", adminStats.getActiveAdmins());
             
             return ResponseEntity.ok(ApiResponse.success("Dashboard statistics fetched", stats));
             
@@ -155,6 +143,40 @@ public class AdminController {
         } catch (Exception e) {
             logger.error("Error creating user", e);
             return ResponseEntity.ok(ApiResponse.failure("Failed to create user: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * Get all admins
+     */
+    @GetMapping("/admins")
+    public ResponseEntity<ApiResponse<List<Admin>>> getAllAdmins() {
+        logger.info("Fetching all admins");
+        
+        try {
+            List<Admin> admins = adminService.getAllAdmins();
+            return ResponseEntity.ok(ApiResponse.success("Admins fetched successfully", admins));
+            
+        } catch (Exception e) {
+            logger.error("Error fetching admins", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to fetch admins"));
+        }
+    }
+    
+    /**
+     * Create new admin
+     */
+    @PostMapping("/admins")
+    public ResponseEntity<ApiResponse<Admin>> createAdmin(@RequestBody Admin admin) {
+        logger.info("Creating new admin with email: {}", admin.getEmail());
+        
+        try {
+            Admin createdAdmin = adminService.createAdmin(admin);
+            return ResponseEntity.ok(ApiResponse.success("Admin created successfully", createdAdmin));
+            
+        } catch (Exception e) {
+            logger.error("Error creating admin", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to create admin: " + e.getMessage()));
         }
     }
 }

@@ -10,7 +10,6 @@ import com.trackerpro.dto.LoginResponse;
 import com.trackerpro.exception.UserNotFoundException;
 import com.trackerpro.exception.DuplicateEmailException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,27 +28,12 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     
-    @Value("${app.admin.email}")
-    private String adminEmail;
-    
-    @Value("${app.admin.password}")
-    private String adminPassword;
-    
     /**
-     * Authenticate user login
+     * Authenticate user login (Faculty/HR only)
      */
     public LoginResponse authenticateUser(LoginRequest loginRequest) {
         try {
-            // Check if it's admin login
-            if (adminEmail.equals(loginRequest.getEmail()) && 
-                adminPassword.equals(loginRequest.getPassword())) {
-                
-                LoginResponse.UserInfo adminUser = new LoginResponse.UserInfo(
-                    "admin", "Admin", "User", adminEmail, "ADMIN");
-                return LoginResponse.success("ADMIN", adminUser);
-            }
-            
-            // Check for regular users (Faculty/HR)
+            // Check for regular users (Faculty/HR only)
             Optional<User> userOpt = userRepository.findByEmailIgnoreCase(loginRequest.getEmail());
             if (userOpt.isPresent()) {
                 User user = userOpt.get();
