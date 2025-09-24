@@ -56,9 +56,8 @@ public interface ComplaintRepository extends JpaRepository<Complaint, UUID> {
     // Count complaints by priority
     long countByPriority(ComplaintPriority priority);
     
-    // Count complaints created today
-    @Query("SELECT COUNT(c) FROM Complaint c WHERE DATE(c.createdAt) = CURRENT_DATE")
-    long countComplaintsCreatedToday();
+    // Count complaints by priority
+    long countByPriority(ComplaintPriority priority);
     
     // Find all distinct categories
     @Query("SELECT DISTINCT c.category FROM Complaint c ORDER BY c.category")
