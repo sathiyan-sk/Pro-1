@@ -1299,187 +1299,44 @@
                             status: "REGISTERED"
                         }
                     ],
-                        courses: [
-                            {
-                                id: 1,
-                                code: "WD-001",
-                                title: "Full Stack Web Development",
-                                duration: 6,
-                                category: "Web Development",
-                                prerequisites: "Basic Programming Knowledge",
-                                description: "Complete full-stack web development course covering frontend and backend technologies.",
-                                status: "Published",
-                                batches: 3
-                            },
-                            {
-                                id: 2,
-                                code: "DS-001", 
-                                title: "Data Science Fundamentals",
-                                duration: 4,
-                                category: "Data Science",
-                                prerequisites: "Mathematics, Statistics",
-                                description: "Introduction to data science concepts and tools including Python, SQL, and basic machine learning.",
-                                status: "Draft",
-                                batches: 0
-                            }
-                        ],
-                        complaints: [
-                            {
-                                id: 1,
-                                category: "Course Quality",
-                                priority: "High",
-                                date: "2024-01-15",
-                                status: "Open",
-                                description: "Issue with course content quality",
-                                studentName: "John Smith",
-                                studentEmail: "john.s@example.com"
-                            },
-                            {
-                                id: 2,
-                                category: "Faculty Behavior",
-                                priority: "Medium",
-                                date: "2024-01-14",
-                                status: "Resolved",
-                                description: "Complaint about faculty behavior",
-                                studentName: "Sarah Johnson",
-                                studentEmail: "sarah.j@example.com"
-                            }
-                        ],
-                        settings: {
-                            systemName: "TrackerPro SPTS",
-                            supportEmail: "support@trackerpro.com",
-                            organizationName: "Educational Institute",
-                            maxAdminLogin: 5,
-                            registrationStatus: "open",
-                            studentAgeReq: "20-25 years"
-                        }
-                    };
-                    localStorage.setItem('trackerProData', JSON.stringify(initialData));
-                }
+                    courses: [],
+                    complaints: [],
+                    settings: {
+                        systemName: "TrackerPro SPTS",
+                        supportEmail: "support@trackerpro.com",
+                        organizationName: "Educational Institute"
+                    }
+                };
+            }
+            
+            // Format student data for display
+            formatStudentForDisplay(student) {
+                return {
+                    id: student.studentId,
+                    firstName: student.firstName,
+                    lastName: student.lastName || '',
+                    email: student.email,
+                    gender: student.gender,
+                    dateOfBirth: student.dateOfBirth,
+                    location: student.location || '',
+                    mobileNo: student.mobileNo,
+                    registeredAt: student.registeredAt ? new Date(student.registeredAt).toLocaleDateString() : '',
+                    status: student.status
+                };
             }
 
-            getData() {
-                return JSON.parse(localStorage.getItem('trackerProData'));
-            }
-
-            saveData(data) {
-                localStorage.setItem('trackerProData', JSON.stringify(data));
-            }
-
-            // Registration methods
-            getRegistrations(filter = '', role = '') {
-                const data = this.getData();
-                let registrations = data.registrations;
-                
-                if (filter) {
-                    registrations = registrations.filter(reg => 
-                        reg.firstName.toLowerCase().includes(filter.toLowerCase()) ||
-                        reg.lastName.toLowerCase().includes(filter.toLowerCase()) ||
-                        reg.email.toLowerCase().includes(filter.toLowerCase())
-                    );
-                }
-                
-                if (role) {
-                    registrations = registrations.filter(reg => reg.role === role);
-                }
-                
-                return registrations;
-            }
-
-            addRegistration(registration) {
-                const data = this.getData();
-                registration.id = data.registrations.length + 1;
-                registration.registeredOn = new Date().toISOString().split('T')[0];
-                registration.status = "Active";
-                data.registrations.push(registration);
-                this.saveData(data);
-                return registration;
-            }
-
-            updateRegistration(id, updatedData) {
-                const data = this.getData();
-                const index = data.registrations.findIndex(reg => reg.id == id);
-                if (index !== -1) {
-                    data.registrations[index] = { ...data.registrations[index], ...updatedData };
-                    this.saveData(data);
-                    return data.registrations[index];
-                }
-                return null;
-            }
-
-            deleteRegistration(id) {
-                const data = this.getData();
-                data.registrations = data.registrations.filter(reg => reg.id != id);
-                this.saveData(data);
-            }
-
-            // Course methods
-            getCourses() {
-                return this.getData().courses;
-            }
-
-            addCourse(course) {
-                const data = this.getData();
-                course.id = data.courses.length + 1;
-                course.status = "Draft"; // New courses start as Draft
-                course.batches = 0;
-                data.courses.push(course);
-                this.saveData(data);
-                return course;
-            }
-
-            updateCourse(id, updatedData) {
-                const data = this.getData();
-                const index = data.courses.findIndex(course => course.id == id);
-                if (index !== -1) {
-                    data.courses[index] = { ...data.courses[index], ...updatedData };
-                    this.saveData(data);
-                    return data.courses[index];
-                }
-                return null;
-            }
-
-            deleteCourse(id) {
-                const data = this.getData();
-                data.courses = data.courses.filter(course => course.id != id);
-                this.saveData(data);
-            }
-
-            publishCourse(id) {
-                const data = this.getData();
-                const index = data.courses.findIndex(course => course.id == id);
-                if (index !== -1) {
-                    data.courses[index].status = "Published";
-                    this.saveData(data);
-                    return data.courses[index];
-                }
-                return null;
-            }
-
-            // Complaint methods
-            getComplaints() {
-                return this.getData().complaints;
-            }
-
-            addComplaint(complaint) {
-                const data = this.getData();
-                complaint.id = data.complaints.length + 1;
-                complaint.date = new Date().toISOString().split('T')[0];
-                complaint.status = "Open";
-                data.complaints.push(complaint);
-                this.saveData(data);
-                return complaint;
-            }
-
-            updateComplaintStatus(id, status) {
-                const data = this.getData();
-                const index = data.complaints.findIndex(comp => comp.id == id);
-                if (index !== -1) {
-                    data.complaints[index].status = status;
-                    this.saveData(data);
-                    return data.complaints[index];
-                }
-                return null;
+            // Format user data for display  
+            formatUserForDisplay(user) {
+                return {
+                    id: user.userId,
+                    firstName: user.firstName,
+                    lastName: user.lastName || '',
+                    email: user.email,
+                    role: user.role,
+                    status: user.status,
+                    city: user.city || '',
+                    mobileNo: user.mobileNo || ''
+                };
             }
         }
 
