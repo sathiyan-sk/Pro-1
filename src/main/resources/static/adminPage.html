@@ -1387,6 +1387,14 @@
                 }
             });
 
+            // Registration search functionality
+            const registrationSearch = document.getElementById('registrationSearch');
+            if (registrationSearch) {
+                registrationSearch.addEventListener('input', function() {
+                    filterRegistrations();
+                });
+            }
+
             // Modal close on outside click
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.addEventListener('click', function(e) {
