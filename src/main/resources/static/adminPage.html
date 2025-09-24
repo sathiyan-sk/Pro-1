@@ -1226,53 +1226,79 @@
         
         class DataManager {
             constructor() {
-                this.initializeData();
+                this.baseURL = 'http://localhost:8080/api';
             }
 
-            initializeData() {
-                if (!localStorage.getItem('trackerProData')) {
-                    const initialData = {
-                        registrations: [
-                            {
-                                id: 1,
-                                firstName: "John",
-                                lastName: "Smith",
-                                email: "john.s@example.com",
-                                gender: "Male",
-                                dob: "17/10/2003",
-                                city: "Pune",
-                                mobile: "8940967403",
-                                role: "Student",
-                                registeredOn: "2023-10-26",
-                                status: "Active"
-                            },
-                            {
-                                id: 2,
-                                firstName: "Sarah",
-                                lastName: "Johnson",
-                                email: "sarah.j@example.com",
-                                gender: "Female",
-                                dob: "22/05/1995",
-                                city: "Mumbai",
-                                mobile: "9876543210",
-                                role: "Faculty",
-                                registeredOn: "2023-10-25",
-                                status: "Active"
-                            },
-                            {
-                                id: 3,
-                                firstName: "Mike",
-                                lastName: "Wilson",
-                                email: "mike.w@example.com",
-                                gender: "Male",
-                                dob: "15/08/1990",
-                                city: "Delhi",
-                                mobile: "7654321098",
-                                role: "HR",
-                                registeredOn: "2023-10-24",
-                                status: "Active"
-                            }
-                        ],
+            // API Helper method
+            async makeAPICall(endpoint, options = {}) {
+                try {
+                    const response = await fetch(`${this.baseURL}${endpoint}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...options.headers
+                        },
+                        ...options
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error(`API call failed for ${endpoint}:`, error);
+                    throw error;
+                }
+            }
+
+            // Dashboard Statistics
+            async getDashboardStats() {
+                return await this.makeAPICall('/admin/dashboard/stats');
+            }
+
+            // Student Registration methods
+            async getRegistrations(searchQuery = '') {
+                if (searchQuery) {
+                    return await this.makeAPICall(`/admin/registrations/search?query=${encodeURIComponent(searchQuery)}`);
+                } else {
+                    return await this.makeAPICall('/admin/registrations');
+                }
+            }
+
+            async getRecentRegistrations() {
+                return await this.makeAPICall('/admin/registrations/recent');
+            }
+
+            // User Management methods
+            async getAllUsers() {
+                return await this.makeAPICall('/admin/users');
+            }
+
+            async createUser(userData) {
+                return await this.makeAPICall('/admin/users', {
+                    method: 'POST',
+                    body: JSON.stringify(userData)
+                });
+            }
+
+            // Fallback data for UI testing
+            getFallbackData() {
+                return {
+                    registrations: [
+                        {
+                            studentId: 1,
+                            firstName: "John",
+                            lastName: "Smith",
+                            email: "john.smith@example.com",
+                            gender: "MALE",
+                            dateOfBirth: "17/10/2003",
+                            location: "Pune",
+                            mobileNo: "8940967403",
+                            registeredAt: "2023-10-26",
+                            status: "REGISTERED"
+                        }
+                    ],
                         courses: [
                             {
                                 id: 1,
