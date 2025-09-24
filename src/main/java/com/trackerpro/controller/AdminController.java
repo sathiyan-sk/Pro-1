@@ -1,6 +1,7 @@
 package com.trackerpro.controller;
 
 import com.trackerpro.dto.ApiResponse;
+import com.trackerpro.entity.Admin;
 import com.trackerpro.entity.Student;
 import com.trackerpro.entity.User;
 import com.trackerpro.service.StudentService;
@@ -27,7 +28,25 @@ public class AdminController {
     
     @Autowired
     private UserService userService;
-    
+
+    //admin login
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<String>> login(@RequestBody Admin admin) {
+        logger.info("Admin login attempt with email: {}", admin.getEmail());
+
+        try {
+            boolean isValid = adminService.validateAdmin(admin.getEmail(), admin.getPassword());
+            if (isValid) {
+                return ResponseEntity.ok(ApiResponse.success("Login successful", "admin"));
+            } else {
+                return ResponseEntity.status(401).body(ApiResponse.failure("Invalid admin credentials"));
+            }
+        } catch (Exception e) {
+            logger.error("Error during admin login", e);
+            return ResponseEntity.status(500).body(ApiResponse.failure("Login failed: " + e.getMessage()));
+        }
+    }
+
     /**
      * Get dashboard statistics
      */
