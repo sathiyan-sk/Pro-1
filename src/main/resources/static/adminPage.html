@@ -1568,45 +1568,98 @@
         // REGISTRATIONS MANAGEMENT
         // ==========================================================================
         
-        function loadRegistrationsData() {
-            // Show ONLY student registrations in this section
-            const allRegistrations = dataManager.getRegistrations();
-            const studentRegistrations = allRegistrations.filter(reg => reg.role === 'Student');
-            renderRegistrationsTable(studentRegistrations);
+        async function loadRegistrationsData() {
+            try {
+                showStatusMessage('Loading student registrations...', 'info');
+                const response = await dataManager.getRegistrations();
+                
+                if (response.success && response.data) {
+                    const studentRegistrations = response.data.map(student => dataManager.formatStudentForDisplay(student));
+                    renderRegistrationsTable(studentRegistrations);
+                    showStatusMessage(`Loaded ${studentRegistrations.length} student registrations`, 'success');
+                } else {
+                    console.error('Failed to load registrations:', response.message);
+                    renderRegistrationsTable([]);
+                    showStatusMessage('Failed to load student registrations', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading registrations:', error);
+                renderRegistrationsTable([]);
+                showStatusMessage('Error loading student registrations', 'error');
+            }
         }
 
         function renderRegistrationsTable(registrations) {
             const tbody = document.querySelector('#registrationsTable tbody');
             
-            tbody.innerHTML = registrations.map(reg => `
+            tbody.innerHTML = registrations.length > 0 ? registrations.map(reg => `
                 <tr>
                     <td>${reg.firstName}</td>
                     <td>${reg.lastName || '-'}</td>
                     <td>${reg.email}</td>
                     <td>${reg.gender || '-'}</td>
-                    <td>${reg.dob || '-'}</td>
-                    <td>${reg.city || '-'}</td>
-                    <td>${reg.mobile || '-'}</td>
-                    <td><span class="badge badge-primary">${reg.role}</span></td>
-                    <td>${reg.registeredOn}</td>
+                    <td>${reg.dateOfBirth || '-'}</td>
+                    <td>${reg.location || '-'}</td>
+                    <td>${reg.mobileNo || '-'}</td>
+                    <td><span class="badge badge-primary">Student</span></td>
+                    <td>${reg.registeredAt}</td>
                     <td>
                         <div class="actions">
-                            <button class="btn btn-sm btn-outline" onclick="viewUser(${reg.id})">View Details</button>
-                            <button class="btn btn-sm btn-primary" onclick="editUser(${reg.id})">Edit</button>
-                            <button class="btn btn-sm btn-danger" onclick="deleteUser(${reg.id})">Delete</button>
+                            <button class="btn btn-sm btn-outline" onclick="viewStudentDetails('${reg.id}')">View Details</button>
+                            <span class="badge badge-success">${reg.status}</span>
                         </div>
                     </td>
                 </tr>
-            `).join('');
+            `).join('') : `
+                <tr>
+                    <td colspan="10" style="text-align: center; color: #666; padding: 2rem;">
+                        No student registrations found
+                    </td>
+                </tr>
+            `;
 
             // Update counts
             document.getElementById('registrationShowingCount').textContent = registrations.length;
-            document.getElementById('registrationTotalCount').textContent = dataManager.getRegistrations().filter(r => r.role === 'Student').length;
+            document.getElementById('registrationTotalCount').textContent = registrations.length;
         }
 
-        function filterRegistrations() {
+        async function filterRegistrations() {
             const searchTerm = document.getElementById('registrationSearch')?.value || '';
-            const roleFilter = document.getElementById('registrationFilter')?.value || '';
+            
+            if (searchTerm.trim()) {
+                try {
+                    showStatusMessage('Searching registrations...', 'info');
+                    const response = await dataManager.getRegistrations(searchTerm);
+                    
+                    if (response.success && response.data) {
+                        const filteredRegistrations = response.data.map(student => dataManager.formatStudentForDisplay(student));
+                        renderRegistrationsTable(filteredRegistrations);
+                        showStatusMessage(`Found ${filteredRegistrations.length} matching registrations`, 'success');
+                    } else {
+                        renderRegistrationsTable([]);
+                        showStatusMessage('No matching registrations found', 'info');
+                    }
+                } catch (error) {
+                    console.error('Error searching registrations:', error);
+                    showStatusMessage('Error searching registrations', 'error');
+                }
+            } else {
+                loadRegistrationsData();
+            }
+        }
+
+        function viewStudentDetails(studentId) {
+            showStatusMessage(`Viewing details for student ID: ${studentId}`, 'info');
+            // This could open a modal with detailed student information
+        }
+
+        function refreshRegistrations() {
+            loadRegistrationsData();
+        }
+
+        function exportRegistrations() {
+            showStatusMessage('Export functionality not implemented yet', 'info');
+        }
             
             // Get all registrations first, then filter to students only
             let allRegistrations = dataManager.getRegistrations();
