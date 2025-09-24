@@ -53,7 +53,7 @@ public interface StudentRepository extends JpaRepository<Student, UUID> {
     long countByGender(Gender gender);
     
     // Count students registered today
-    @Query("SELECT COUNT(s) FROM Student s WHERE DATE(s.registeredAt) = CURRENT_DATE")
+    @Query("SELECT COUNT(s) FROM Student s WHERE s.registeredAt >= CURRENT_DATE AND s.registeredAt < CURRENT_DATE + 1")
     long countStudentsRegisteredToday();
     
     // Count students registered this week
