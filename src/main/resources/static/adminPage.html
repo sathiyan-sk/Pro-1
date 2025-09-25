@@ -2124,6 +2124,72 @@
             }
         }
 
+        // Additional course management functions
+        async function editCourse(courseId) {
+            try {
+                const response = await dataManager.getCourseById(courseId);
+                if (response.success && response.data) {
+                    const course = response.data;
+                    
+                    // Populate form with course data
+                    document.getElementById('courseCode').value = course.courseCode;
+                    document.getElementById('courseTitle').value = course.courseTitle;
+                    document.getElementById('courseDuration').value = course.durationMonths;
+                    document.getElementById('courseCategory').value = course.category;
+                    document.getElementById('coursePrerequisites').value = course.prerequisites || '';
+                    document.getElementById('courseDescription').value = course.description || '';
+                    
+                    // Set editing mode
+                    editingCourseId = courseId;
+                    document.getElementById('courseModalTitle').textContent = 'Edit Course';
+                    toggleCourseForm();
+                } else {
+                    showStatusMessage('Failed to load course data', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading course:', error);
+                showStatusMessage('Error loading course data', 'error');
+            }
+        }
+
+        async function deleteCourse(courseId) {
+            if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
+                try {
+                    showStatusMessage('Deleting course...', 'info');
+                    const response = await dataManager.deleteCourse(courseId);
+                    
+                    if (response.success) {
+                        showStatusMessage('Course deleted successfully', 'success');
+                        await loadCoursesData();
+                    } else {
+                        throw new Error(response.message || 'Failed to delete course');
+                    }
+                } catch (error) {
+                    console.error('Error deleting course:', error);
+                    showStatusMessage('Error deleting course: ' + error.message, 'error');
+                }
+            }
+        }
+
+        async function publishCourse(courseId) {
+            try {
+                showStatusMessage('Publishing course...', 'info');
+                const response = await dataManager.publishCourse(courseId);
+                
+                if (response.success) {
+                    showStatusMessage('Course published successfully', 'success');
+                    await loadCoursesData();
+                } else {
+                    throw new Error(response.message || 'Failed to publish course');
+                }
+            } catch (error) {
+                console.error('Error publishing course:', error);
+                showStatusMessage('Error publishing course: ' + error.message, 'error');
+            }
+        }
+
+        let editingCourseId = null;
+
         function toggleCourseForm() {
             const formSheet = document.getElementById('courseFormSheet');
             const toggleText = document.getElementById('courseFormToggleText');
