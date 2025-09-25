@@ -70,6 +70,9 @@ public class SecurityConfig {
                     "/api/auth/status"
                 ).permitAll()
                 
+                // Temporarily allow admin endpoints for development
+                .requestMatchers("/api/admin/**").permitAll()
+                
                 // Allow H2 console in development
                 .requestMatchers("/h2-console/**").permitAll()
                 
