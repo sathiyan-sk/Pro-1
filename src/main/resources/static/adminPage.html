@@ -1892,9 +1892,24 @@
         // COURSE MANAGEMENT
         // ==========================================================================
         
-        function loadCoursesData() {
-            const courses = dataManager.getCourses();
-            renderCoursesGrid(courses);
+        async function loadCoursesData() {
+            try {
+                showStatusMessage('Loading courses...', 'info');
+                const response = await dataManager.getAllCourses();
+                
+                if (response.success && response.data) {
+                    renderCoursesGrid(response.data);
+                    showStatusMessage(`Loaded ${response.data.length} courses successfully`, 'success');
+                } else {
+                    console.error('Failed to load courses:', response.message);
+                    renderCoursesGrid([]);
+                    showStatusMessage('Failed to load courses', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                renderCoursesGrid([]);
+                showStatusMessage('Error loading courses', 'error');
+            }
         }
 
         function renderCoursesGrid(courses) {
