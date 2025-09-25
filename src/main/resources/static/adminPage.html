@@ -1417,10 +1417,36 @@
         });
 
         function initializeApp() {
+            // Check authentication status
+            checkAuthenticationStatus();
+            
             setupEventListeners();
             updateDashboardStats();
             loadDashboardData();
             showStatusMessage('Dashboard loaded successfully', 'success');
+            
+            // Prevent back navigation after logout
+            window.addEventListener('popstate', function(event) {
+                history.pushState(null, null, location.href);
+            });
+        }
+        
+        function checkAuthenticationStatus() {
+            // Check if user should be authenticated (this is a basic implementation)
+            // In a real application, you would verify JWT tokens or session cookies
+            const isFromLogin = document.referrer.includes('loginPage.html');
+            const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
+            
+            if (!isFromLogin && !hasValidSession) {
+                // If user didn't come from login and has no session, redirect to login
+                window.location.replace('loginPage.html');
+                return;
+            }
+            
+            // Set session as active if coming from login
+            if (isFromLogin) {
+                sessionStorage.setItem('adminSession', 'active');
+            }
         }
 
         function setupEventListeners() {
