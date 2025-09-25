@@ -1941,35 +1941,47 @@
             `;
         }
 
-        function saveCourse() {
+        async function saveCourse() {
             const formData = {
-                code: document.getElementById('courseCode').value,
-                title: document.getElementById('courseTitle').value,
-                duration: parseInt(document.getElementById('courseDuration').value),
+                courseCode: document.getElementById('courseCode').value,
+                courseTitle: document.getElementById('courseTitle').value,
+                durationMonths: parseInt(document.getElementById('courseDuration').value),
                 category: document.getElementById('courseCategory').value,
                 prerequisites: document.getElementById('coursePrerequisites').value,
                 description: document.getElementById('courseDescription').value
             };
 
             // Basic validation
-            if (!formData.code || !formData.title || !formData.duration || !formData.category) {
+            if (!formData.courseCode || !formData.courseTitle || !formData.durationMonths || !formData.category) {
                 showStatusMessage('Please fill in all required fields', 'error');
                 return;
             }
 
             try {
+                showStatusMessage('Saving course...', 'info');
+                
                 if (editingCourseId) {
-                    dataManager.updateCourse(editingCourseId, formData);
-                    showStatusMessage('Course updated successfully', 'success');
-                    editingCourseId = null;
+                    const response = await dataManager.updateCourse(editingCourseId, formData);
+                    if (response.success) {
+                        showStatusMessage('Course updated successfully', 'success');
+                        editingCourseId = null;
+                    } else {
+                        throw new Error(response.message || 'Failed to update course');
+                    }
                 } else {
-                    dataManager.addCourse(formData);
-                    showStatusMessage('Course created successfully', 'success');
+                    const response = await dataManager.addCourse(formData);
+                    if (response.success) {
+                        showStatusMessage('Course created successfully', 'success');
+                    } else {
+                        throw new Error(response.message || 'Failed to create course');
+                    }
                 }
+                
                 document.getElementById('courseForm').reset();
                 toggleCourseForm(); // Close the sheet after saving
-                loadCoursesData();
+                await loadCoursesData(); // Reload courses data
             } catch (error) {
+                console.error('Error saving course:', error);
                 showStatusMessage('Error saving course: ' + error.message, 'error');
             }
         }
