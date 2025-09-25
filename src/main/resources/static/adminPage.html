@@ -1437,7 +1437,15 @@
             // Logout functionality
             document.getElementById('logoutBtn').addEventListener('click', function() {
                 if (confirm('Are you sure you want to logout?')) {
-                    window.location.href = 'loginPage.html';
+                    // Clear any stored authentication data
+                    localStorage.removeItem('adminToken');
+                    sessionStorage.removeItem('adminSession');
+                    
+                    // Add a flag to prevent back navigation
+                    history.pushState(null, null, location.href);
+                    
+                    // Redirect to login page
+                    window.location.replace('loginPage.html');
                 }
             });
 
