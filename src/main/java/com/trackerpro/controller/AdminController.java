@@ -2,9 +2,11 @@ package com.trackerpro.controller;
 
 import com.trackerpro.dto.ApiResponse;
 import com.trackerpro.entity.Admin;
+import com.trackerpro.entity.Course;
 import com.trackerpro.entity.Student;
 import com.trackerpro.entity.User;
 import com.trackerpro.service.AdminService;
+import com.trackerpro.service.CourseService;
 import com.trackerpro.service.StudentService;
 import com.trackerpro.service.UserService;
 import org.slf4j.Logger;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -32,6 +35,9 @@ public class AdminController {
     
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private CourseService courseService;
 
     /**
      * Get dashboard statistics
@@ -44,6 +50,7 @@ public class AdminController {
             StudentService.StudentStatistics studentStats = studentService.getStudentStatistics();
             UserService.UserStatistics userStats = userService.getUserStatistics();
             AdminService.AdminStatistics adminStats = adminService.getAdminStatistics();
+            CourseService.CourseStatistics courseStats = courseService.getCourseStatistics();
             
             Map<String, Object> stats = new HashMap<>();
             stats.put("totalStudents", studentStats.getTotalStudents());
@@ -52,6 +59,8 @@ public class AdminController {
             stats.put("totalHR", userStats.getHrCount());
             stats.put("totalUsers", userStats.getActiveUsers());
             stats.put("totalAdmins", adminStats.getActiveAdmins());
+            stats.put("totalCourses", courseStats.getTotalCourses());
+            stats.put("publishedCourses", courseStats.getPublishedCourses());
             
             return ResponseEntity.ok(ApiResponse.success("Dashboard statistics fetched", stats));
             
@@ -177,6 +186,128 @@ public class AdminController {
         } catch (Exception e) {
             logger.error("Error creating admin", e);
             return ResponseEntity.ok(ApiResponse.failure("Failed to create admin: " + e.getMessage()));
+        }
+    }
+    
+    // =================== COURSE MANAGEMENT ENDPOINTS ===================
+    
+    /**
+     * Get all courses
+     */
+    @GetMapping("/courses")
+    public ResponseEntity<ApiResponse<List<Course>>> getAllCourses() {
+        logger.info("Fetching all courses");
+        
+        try {
+            List<Course> courses = courseService.getAllCourses();
+            return ResponseEntity.ok(ApiResponse.success("Courses fetched successfully", courses));
+            
+        } catch (Exception e) {
+            logger.error("Error fetching courses", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to fetch courses"));
+        }
+    }
+    
+    /**
+     * Get course by ID
+     */
+    @GetMapping("/courses/{courseId}")
+    public ResponseEntity<ApiResponse<Course>> getCourseById(@PathVariable UUID courseId) {
+        logger.info("Fetching course by ID: {}", courseId);
+        
+        try {
+            Course course = courseService.getCourseById(courseId)
+                .orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseId));
+            return ResponseEntity.ok(ApiResponse.success("Course fetched successfully", course));
+            
+        } catch (Exception e) {
+            logger.error("Error fetching course", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to fetch course: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * Create new course
+     */
+    @PostMapping("/courses")
+    public ResponseEntity<ApiResponse<Course>> createCourse(@RequestBody Course course) {
+        logger.info("Creating new course with code: {}", course.getCourseCode());
+        
+        try {
+            Course createdCourse = courseService.createCourse(course);
+            return ResponseEntity.ok(ApiResponse.success("Course created successfully", createdCourse));
+            
+        } catch (Exception e) {
+            logger.error("Error creating course", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to create course: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * Update existing course
+     */
+    @PutMapping("/courses/{courseId}")
+    public ResponseEntity<ApiResponse<Course>> updateCourse(@PathVariable UUID courseId, @RequestBody Course course) {
+        logger.info("Updating course with ID: {}", courseId);
+        
+        try {
+            Course updatedCourse = courseService.updateCourse(courseId, course);
+            return ResponseEntity.ok(ApiResponse.success("Course updated successfully", updatedCourse));
+            
+        } catch (Exception e) {
+            logger.error("Error updating course", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to update course: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * Delete course
+     */
+    @DeleteMapping("/courses/{courseId}")
+    public ResponseEntity<ApiResponse<Void>> deleteCourse(@PathVariable UUID courseId) {
+        logger.info("Deleting course with ID: {}", courseId);
+        
+        try {
+            courseService.deleteCourse(courseId);
+            return ResponseEntity.ok(ApiResponse.success("Course deleted successfully", null));
+            
+        } catch (Exception e) {
+            logger.error("Error deleting course", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to delete course: " + e.getMessage()));
+        }
+    }
+    
+    /**
+     * Search courses
+     */
+    @GetMapping("/courses/search")
+    public ResponseEntity<ApiResponse<List<Course>>> searchCourses(@RequestParam String query) {
+        logger.info("Searching courses with query: {}", query);
+        
+        try {
+            List<Course> courses = courseService.searchCourses(query);
+            return ResponseEntity.ok(ApiResponse.success("Search completed", courses));
+            
+        } catch (Exception e) {
+            logger.error("Error searching courses", e);
+            return ResponseEntity.ok(ApiResponse.failure("Search failed"));
+        }
+    }
+    
+    /**
+     * Publish course
+     */
+    @PutMapping("/courses/{courseId}/publish")
+    public ResponseEntity<ApiResponse<Course>> publishCourse(@PathVariable UUID courseId) {
+        logger.info("Publishing course with ID: {}", courseId);
+        
+        try {
+            Course publishedCourse = courseService.publishCourse(courseId);
+            return ResponseEntity.ok(ApiResponse.success("Course published successfully", publishedCourse));
+            
+        } catch (Exception e) {
+            logger.error("Error publishing course", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to publish course: " + e.getMessage()));
         }
     }
 }
