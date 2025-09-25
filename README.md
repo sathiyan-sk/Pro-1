@@ -112,7 +112,7 @@ The application comes with pre-configured accounts for immediate testing:
 
 ### **👔 HR Account**  
 - **Email**: `mike.hr@tracker.com`
-- **Password**: `hr123`
+- **Password**: `hr123456`
 - **Access**: Human resources functions
 
 ### **🎓 Sample Students**
