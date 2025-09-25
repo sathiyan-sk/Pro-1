@@ -1932,22 +1932,22 @@
                         <div class="course-card">
                             <div class="course-header">
                                 <div>
-                                    <div class="course-title">${course.title}</div>
-                                    <div class="course-code">${course.code}</div>
+                                    <div class="course-title">${course.courseTitle}</div>
+                                    <div class="course-code">${course.courseCode}</div>
                                 </div>
-                                <span class="badge badge-${course.status === 'Published' ? 'success' : course.status === 'Draft' ? 'warning' : 'primary'}">${course.status}</span>
+                                <span class="badge badge-${course.status === 'PUBLISHED' ? 'success' : course.status === 'DRAFT' ? 'warning' : 'primary'}">${course.status}</span>
                             </div>
                             <div class="course-meta">
                                 <span><strong>${course.category}</strong></span>
-                                <span>${course.duration} months</span>
+                                <span>${course.durationMonths} months</span>
                             </div>
-                            <div class="course-description">${course.description}</div>
+                            <div class="course-description">${course.description || 'No description available'}</div>
                             <div class="course-stats">
-                                <div class="batch-count">${course.batches || 0} Active Batches</div>
+                                <div class="batch-count">${course.batchesCount || 0} Active Batches</div>
                                 <div class="course-actions">
-                                    <button class="btn btn-sm btn-primary" onclick="editCourse(${course.id})">Edit</button>
-                                    ${course.status === 'Draft' ? `<button class="btn btn-sm btn-success" onclick="publishCourse(${course.id})">Post Course</button>` : `<button class="btn btn-sm btn-outline" onclick="unpublishCourse(${course.id})">Unpublish</button>`}
-                                    <button class="btn btn-sm btn-danger" onclick="deleteCourse(${course.id})">Delete</button>
+                                    <button class="btn btn-sm btn-primary" onclick="editCourse('${course.courseId}')">Edit</button>
+                                    ${course.status === 'DRAFT' ? `<button class="btn btn-sm btn-success" onclick="publishCourse('${course.courseId}')">Publish</button>` : `<button class="btn btn-sm btn-outline" onclick="unpublishCourse('${course.courseId}')">Unpublish</button>`}
+                                    <button class="btn btn-sm btn-danger" onclick="deleteCourse('${course.courseId}')">Delete</button>
                                 </div>
                             </div>
                         </div>
