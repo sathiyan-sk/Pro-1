@@ -1665,11 +1665,19 @@
                 
                 if (response.success) {
                     const stats = response.data;
+                    // Total Students card
                     document.getElementById('totalRegistrations').textContent = stats.totalStudents || 0;
+                    // Faculty & HR card  
                     document.getElementById('totalUsers').textContent = (stats.totalFaculty || 0) + (stats.totalHR || 0);
-                    document.getElementById('totalStudents').textContent = stats.totalStudents || 0;
+                    // Published Courses card (this was incorrectly mapped to totalStudents)
+                    document.getElementById('totalStudents').textContent = stats.publishedCourses || 0;
+                    // New Students card
                     document.getElementById('newUsers').textContent = stats.newStudentsThisWeek || 0;
-                    document.getElementById('registrationCount').textContent = stats.totalStudents || 0;
+                    // For other elements that might need total registrations
+                    const registrationCountElement = document.getElementById('registrationCount');
+                    if (registrationCountElement) {
+                        registrationCountElement.textContent = stats.totalStudents || 0;
+                    }
                     
                     showStatusMessage('Dashboard statistics loaded successfully', 'success');
                 } else {
