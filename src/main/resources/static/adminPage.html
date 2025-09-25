@@ -1696,10 +1696,16 @@
         function setFallbackStats() {
             document.getElementById('totalRegistrations').textContent = '0';
             document.getElementById('totalUsers').textContent = '0';
-            document.getElementById('totalStudents').textContent = '0';
+            document.getElementById('totalStudents').textContent = '0'; // This is for Published Courses
             document.getElementById('newUsers').textContent = '0';
-            document.getElementById('registrationCount').textContent = '0';
-            document.getElementById('complaintsCount').textContent = '0';
+            const registrationCountElement = document.getElementById('registrationCount');
+            if (registrationCountElement) {
+                registrationCountElement.textContent = '0';
+            }
+            const complaintsCountElement = document.getElementById('complaintsCount');
+            if (complaintsCountElement) {
+                complaintsCountElement.textContent = '0';
+            }
         }
 
         async function loadDashboardData() {
