@@ -86,7 +86,7 @@ public class DataInitializer implements CommandLineRunner {
             hr.setFirstName("Mike");
             hr.setLastName("Wilson");
             hr.setEmail("mike.hr@tracker.com");
-            hr.setPassword(passwordEncoder.encode("hr123"));
+            hr.setPassword(passwordEncoder.encode("hr123456"));
             hr.setRole(UserRole.HR);
             hr.setGender(Gender.MALE);
             hr.setCity("Delhi");
