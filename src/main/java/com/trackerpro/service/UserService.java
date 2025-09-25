@@ -52,7 +52,7 @@ public class UserService {
                         user.getEmail(),
                         user.getRole().name()
                     );
-                    return LoginResponse.success("USER", userInfo);
+                    return LoginResponse.success(user.getRole().name(), userInfo);
                 } else {
                     return LoginResponse.failure("Invalid email or password");
                 }
