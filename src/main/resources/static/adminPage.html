@@ -2211,17 +2211,21 @@
             const toggleText = document.getElementById('courseFormToggleText');
             
             if (formSheet.classList.contains('active')) {
+                // Closing the form
                 formSheet.classList.remove('active');
                 toggleText.textContent = '+ Create New Course';
                 editingCourseId = null;
                 document.getElementById('courseForm').reset();
                 document.getElementById('courseModalTitle').textContent = 'Create New Course';
             } else {
+                // Opening the form for new course creation
                 formSheet.classList.add('active');
                 toggleText.textContent = 'Close Form';
-                editingCourseId = null;
-                document.getElementById('courseForm').reset();
-                document.getElementById('courseModalTitle').textContent = 'Create New Course';
+                // Only reset if not editing
+                if (!editingCourseId) {
+                    document.getElementById('courseForm').reset();
+                    document.getElementById('courseModalTitle').textContent = 'Create New Course';
+                }
             }
         }
 
