@@ -2187,50 +2187,6 @@
             }
         }
 
-        function editCourse(id) {
-            const course = dataManager.getCourses().find(c => c.id == id);
-            if (course) {
-                editingCourseId = id;
-                
-                // Populate form with course data
-                document.getElementById('courseCode').value = course.code;
-                document.getElementById('courseTitle').value = course.title;
-                document.getElementById('courseDuration').value = course.duration;
-                document.getElementById('courseCategory').value = course.category;
-                document.getElementById('coursePrerequisites').value = course.prerequisites;
-                document.getElementById('courseDescription').value = course.description;
-                
-                // Show form sheet
-                document.getElementById('courseFormSheet').classList.add('active');
-                document.getElementById('courseFormToggleText').textContent = 'Close Form';
-                document.getElementById('courseModalTitle').textContent = 'Edit Course';
-            }
-        }
-
-        function deleteCourse(id) {
-            if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
-                dataManager.deleteCourse(id);
-                loadCoursesData();
-                showStatusMessage('Course deleted successfully', 'success');
-            }
-        }
-
-        function publishCourse(id) {
-            if (confirm('This will make the course available to students for application. Continue?')) {
-                dataManager.publishCourse(id);
-                loadCoursesData();
-                showStatusMessage('Course published successfully! Students can now apply.', 'success');
-            }
-        }
-
-        function unpublishCourse(id) {
-            if (confirm('This will make the course unavailable to new applicants. Continue?')) {
-                dataManager.updateCourse(id, { status: 'Draft' });
-                loadCoursesData();
-                showStatusMessage('Course unpublished successfully', 'success');
-            }
-        }
-
         // ==========================================================================
         // COMPLAINTS MANAGEMENT
         // ==========================================================================
