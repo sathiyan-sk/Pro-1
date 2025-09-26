@@ -151,6 +151,22 @@ public class CourseService {
     }
     
     /**
+     * Unpublish course
+     */
+    public Course unpublishCourse(UUID courseId) {
+        logger.info("Unpublishing course with ID: {}", courseId);
+        
+        Course course = courseRepository.findById(courseId)
+            .orElseThrow(() -> new RuntimeException("Course not found with ID: " + courseId));
+        
+        course.setStatus(CourseStatus.DRAFT);
+        Course savedCourse = courseRepository.save(course);
+        
+        logger.info("Course unpublished successfully: {}", savedCourse.getCourseId());
+        return savedCourse;
+    }
+    
+    /**
      * Get course statistics
      */
     public CourseStatistics getCourseStatistics() {
