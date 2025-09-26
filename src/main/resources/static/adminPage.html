@@ -1511,9 +1511,9 @@
             initializeApp();
         });
 
-        function initializeApp() {
-            // Check authentication status
-            checkAuthenticationStatus();
+        async function initializeApp() {
+            // Check authentication status first (critical security check)
+            await checkAuthenticationStatus();
             
             setupEventListeners();
             updateDashboardStats();
