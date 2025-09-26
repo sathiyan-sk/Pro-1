@@ -2429,16 +2429,33 @@
         }
 
         async function saveUser() {
+            // Validate required fields
+            const firstName = document.getElementById('userFirstName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const role = document.getElementById('userRole').value;
+            
+            if (!firstName || !email || !role) {
+                showStatusMessage('Please fill in all required fields (First Name, Email, Role)', 'error');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showStatusMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
             const userData = {
-                firstName: document.getElementById('userFirstName').value,
-                lastName: document.getElementById('userLastName').value,
-                email: document.getElementById('userEmail').value,
-                role: document.getElementById('userRole').value,
-                gender: document.getElementById('userGender').value,
-                mobileNo: document.getElementById('userMobile').value,
-                city: document.getElementById('userCity').value,
-                dateOfBirth: document.getElementById('userDOB').value,
-                password: 'defaultPassword123' // Default password for new users
+                firstName: firstName,
+                lastName: document.getElementById('userLastName').value.trim() || '',
+                email: email,
+                role: role,
+                gender: document.getElementById('userGender').value || null,
+                mobileNo: document.getElementById('userMobile').value.trim() || null,
+                city: document.getElementById('userCity').value.trim() || null,
+                dateOfBirth: document.getElementById('userDOB').value || null,
+                password: 'DefaultPass123!' // Default password for new users
             };
 
             try {
@@ -2450,11 +2467,11 @@
                     closeModal('userModal');
                     loadUsersData();
                 } else {
-                    showStatusMessage('Failed to create user: ' + response.message, 'error');
+                    showStatusMessage('Failed to create user: ' + (response.message || 'Unknown error'), 'error');
                 }
             } catch (error) {
                 console.error('Error creating user:', error);
-                showStatusMessage('Error creating user', 'error');
+                showStatusMessage('Error creating user: ' + error.message, 'error');
             }
         }
 
