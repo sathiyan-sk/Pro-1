@@ -2113,38 +2113,65 @@
         async function editCourse(courseId) {
             try {
                 showStatusMessage('Loading course data...', 'info');
-                const response = await dataManager.getCourseById(courseId);
-                console.log('Course data response:', response); // Debug log
+                console.log('Attempting to edit course with ID:', courseId);
                 
-                if (response.success && response.data) {
+                const response = await dataManager.getCourseById(courseId);
+                console.log('Course data response:', response);
+                
+                if (response && response.success && response.data) {
                     const course = response.data;
-                    console.log('Course data:', course); // Debug log
+                    console.log('Course data:', course);
                     
                     // Set editing mode first
                     editingCourseId = courseId;
+                    console.log('Set editingCourseId to:', editingCourseId);
                     
                     // Open form sheet first
                     const formSheet = document.getElementById('courseFormSheet');
                     const toggleText = document.getElementById('courseFormToggleText');
+                    
+                    if (!formSheet) {
+                        console.error('courseFormSheet element not found!');
+                        showStatusMessage('Error: Course form not found', 'error');
+                        return;
+                    }
+                    
                     formSheet.classList.add('active');
-                    toggleText.textContent = 'Close Form';
+                    if (toggleText) toggleText.textContent = 'Close Form';
                     
                     // Set modal title
-                    document.getElementById('courseModalTitle').textContent = 'Edit Course';
+                    const modalTitle = document.getElementById('courseModalTitle');
+                    if (modalTitle) modalTitle.textContent = 'Edit Course';
                     
                     // Populate form with course data - add small delay to ensure form is visible
                     setTimeout(() => {
-                        document.getElementById('courseCode').value = course.courseCode || '';
-                        document.getElementById('courseTitle').value = course.courseTitle || '';
-                        document.getElementById('courseDuration').value = course.durationMonths || '';
-                        document.getElementById('courseCategory').value = course.category || '';
-                        document.getElementById('coursePrerequisites').value = course.prerequisites || '';
-                        document.getElementById('courseDescription').value = course.description || '';
+                        console.log('Populating form fields...');
+                        
+                        const fields = {
+                            'courseCode': course.courseCode || '',
+                            'courseTitle': course.courseTitle || '',
+                            'courseDuration': course.durationMonths || '',
+                            'courseCategory': course.category || '',
+                            'coursePrerequisites': course.prerequisites || '',
+                            'courseDescription': course.description || ''
+                        };
+                        
+                        for (const [fieldId, value] of Object.entries(fields)) {
+                            const field = document.getElementById(fieldId);
+                            if (field) {
+                                field.value = value;
+                                console.log(`Set ${fieldId} to:`, value);
+                            } else {
+                                console.error(`Field ${fieldId} not found!`);
+                            }
+                        }
+                        
+                        showStatusMessage('Course data loaded successfully', 'success');
                     }, 100);
                     
-                    showStatusMessage('Course data loaded successfully', 'success');
                 } else {
-                    showStatusMessage('Failed to load course data: ' + (response.message || 'Unknown error'), 'error');
+                    const errorMsg = response?.message || 'Unknown error';
+                    showStatusMessage('Failed to load course data: ' + errorMsg, 'error');
                     console.error('Course loading failed:', response);
                 }
             } catch (error) {
