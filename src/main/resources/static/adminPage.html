@@ -1627,18 +1627,22 @@
             document.getElementById('logoutBtn').addEventListener('click', function() {
                 if (confirm('Are you sure you want to logout?')) {
                     // Clear all authentication data
-                    localStorage.removeItem('adminToken');
-                    localStorage.removeItem('loginTimestamp');
-                    sessionStorage.removeItem('adminSession');
-                    sessionStorage.clear();  // Clear all session storage
+                    clearAuthenticationData();
                     
-                    // Prevent back navigation by clearing history
+                    // Prevent back navigation by manipulating history
                     if (history.pushState) {
-                        history.pushState(null, null, location.href);
-                        window.addEventListener('popstate', function() {
-                            // User tried to use back button, redirect to login
+                        // Replace current history entry
+                        history.replaceState(null, null, 'loginPage.html');
+                        
+                        // Add multiple entries to make back button ineffective
+                        for (let i = 0; i < 10; i++) {
+                            history.pushState(null, null, 'loginPage.html');
+                        }
+                        
+                        // Set up listener to redirect on back navigation
+                        window.addEventListener('popstate', function(e) {
                             window.location.replace('loginPage.html');
-                        });
+                        }, { once: true });
                     }
                     
                     // Clear browser cache for this session
@@ -1648,7 +1652,7 @@
                         });
                     }
                     
-                    // Redirect to login page
+                    // Force immediate redirect
                     window.location.replace('loginPage.html');
                 }
             });
