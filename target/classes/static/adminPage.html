@@ -1288,9 +1288,9 @@
                         <label for="userGender">Gender</label>
                         <select id="userGender" class="form-control">
                             <option value="">Select Gender</option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                            <option value="Other">Other</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -1527,23 +1527,38 @@
         }
         
         function checkAuthenticationStatus() {
-            // Check if user should be authenticated (this is a basic implementation)
-            // In a real application, you would verify JWT tokens or session cookies
+            // Check if user should be authenticated
             const isFromLogin = document.referrer.includes('loginPage.html');
             const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
+            const hasLoginTimestamp = localStorage.getItem('loginTimestamp');
             
-            // Temporarily disable authentication check for development/testing
-            // TODO: Re-enable for production
-            /*
-            if (!isFromLogin && !hasValidSession) {
-                // If user didn't come from login and has no session, redirect to login
+            // Check if user is coming from login or has a valid session
+            if (isFromLogin) {
+                // Set session as active if coming from login
+                sessionStorage.setItem('adminSession', 'active');
+                localStorage.setItem('loginTimestamp', Date.now().toString());
+                return;
+            }
+            
+            // If no session and not from login, check for recent login timestamp
+            if (!hasValidSession) {
+                // Allow access if logged in within the last hour
+                if (hasLoginTimestamp) {
+                    const loginTime = parseInt(hasLoginTimestamp);
+                    const currentTime = Date.now();
+                    const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+                    
+                    if ((currentTime - loginTime) < oneHour) {
+                        sessionStorage.setItem('adminSession', 'active');
+                        return;
+                    }
+                }
+                
+                // No valid session found, redirect to login
+                console.log('No valid authentication found, redirecting to login');
                 window.location.replace('loginPage.html');
                 return;
             }
-            */
-            
-            // Set session as active if coming from login or for development
-            sessionStorage.setItem('adminSession', 'active');
         }
 
         function setupEventListeners() {
@@ -1560,12 +1575,27 @@
             // Logout functionality
             document.getElementById('logoutBtn').addEventListener('click', function() {
                 if (confirm('Are you sure you want to logout?')) {
-                    // Clear any stored authentication data
+                    // Clear all authentication data
                     localStorage.removeItem('adminToken');
+                    localStorage.removeItem('loginTimestamp');
                     sessionStorage.removeItem('adminSession');
+                    sessionStorage.clear();  // Clear all session storage
                     
-                    // Add a flag to prevent back navigation
-                    history.pushState(null, null, location.href);
+                    // Prevent back navigation by clearing history
+                    if (history.pushState) {
+                        history.pushState(null, null, location.href);
+                        window.addEventListener('popstate', function() {
+                            // User tried to use back button, redirect to login
+                            window.location.replace('loginPage.html');
+                        });
+                    }
+                    
+                    // Clear browser cache for this session
+                    if ('caches' in window) {
+                        caches.keys().then(function(names) {
+                            for (let name of names) caches.delete(name);
+                        });
+                    }
                     
                     // Redirect to login page
                     window.location.replace('loginPage.html');
@@ -2113,28 +2143,71 @@
         // Additional course management functions
         async function editCourse(courseId) {
             try {
+                showStatusMessage('Loading course data...', 'info');
+                console.log('Attempting to edit course with ID:', courseId);
+                
                 const response = await dataManager.getCourseById(courseId);
-                if (response.success && response.data) {
+                console.log('Course data response:', response);
+                
+                if (response && response.success && response.data) {
                     const course = response.data;
+                    console.log('Course data:', course);
                     
-                    // Populate form with course data
-                    document.getElementById('courseCode').value = course.courseCode;
-                    document.getElementById('courseTitle').value = course.courseTitle;
-                    document.getElementById('courseDuration').value = course.durationMonths;
-                    document.getElementById('courseCategory').value = course.category;
-                    document.getElementById('coursePrerequisites').value = course.prerequisites || '';
-                    document.getElementById('courseDescription').value = course.description || '';
-                    
-                    // Set editing mode
+                    // Set editing mode first
                     editingCourseId = courseId;
-                    document.getElementById('courseModalTitle').textContent = 'Edit Course';
-                    toggleCourseForm();
+                    console.log('Set editingCourseId to:', editingCourseId);
+                    
+                    // Open form sheet first
+                    const formSheet = document.getElementById('courseFormSheet');
+                    const toggleText = document.getElementById('courseFormToggleText');
+                    
+                    if (!formSheet) {
+                        console.error('courseFormSheet element not found!');
+                        showStatusMessage('Error: Course form not found', 'error');
+                        return;
+                    }
+                    
+                    formSheet.classList.add('active');
+                    if (toggleText) toggleText.textContent = 'Close Form';
+                    
+                    // Set modal title
+                    const modalTitle = document.getElementById('courseModalTitle');
+                    if (modalTitle) modalTitle.textContent = 'Edit Course';
+                    
+                    // Populate form with course data - add small delay to ensure form is visible
+                    setTimeout(() => {
+                        console.log('Populating form fields...');
+                        
+                        const fields = {
+                            'courseCode': course.courseCode || '',
+                            'courseTitle': course.courseTitle || '',
+                            'courseDuration': course.durationMonths || '',
+                            'courseCategory': course.category || '',
+                            'coursePrerequisites': course.prerequisites || '',
+                            'courseDescription': course.description || ''
+                        };
+                        
+                        for (const [fieldId, value] of Object.entries(fields)) {
+                            const field = document.getElementById(fieldId);
+                            if (field) {
+                                field.value = value;
+                                console.log(`Set ${fieldId} to:`, value);
+                            } else {
+                                console.error(`Field ${fieldId} not found!`);
+                            }
+                        }
+                        
+                        showStatusMessage('Course data loaded successfully', 'success');
+                    }, 100);
+                    
                 } else {
-                    showStatusMessage('Failed to load course data', 'error');
+                    const errorMsg = response?.message || 'Unknown error';
+                    showStatusMessage('Failed to load course data: ' + errorMsg, 'error');
+                    console.error('Course loading failed:', response);
                 }
             } catch (error) {
                 console.error('Error loading course:', error);
-                showStatusMessage('Error loading course data', 'error');
+                showStatusMessage('Error loading course data: ' + error.message, 'error');
             }
         }
 
@@ -2196,17 +2269,21 @@
             const toggleText = document.getElementById('courseFormToggleText');
             
             if (formSheet.classList.contains('active')) {
+                // Closing the form
                 formSheet.classList.remove('active');
                 toggleText.textContent = '+ Create New Course';
                 editingCourseId = null;
                 document.getElementById('courseForm').reset();
                 document.getElementById('courseModalTitle').textContent = 'Create New Course';
             } else {
+                // Opening the form for new course creation
                 formSheet.classList.add('active');
                 toggleText.textContent = 'Close Form';
-                editingCourseId = null;
-                document.getElementById('courseForm').reset();
-                document.getElementById('courseModalTitle').textContent = 'Create New Course';
+                // Only reset if not editing
+                if (!editingCourseId) {
+                    document.getElementById('courseForm').reset();
+                    document.getElementById('courseModalTitle').textContent = 'Create New Course';
+                }
             }
         }
 
@@ -2430,16 +2507,33 @@
         }
 
         async function saveUser() {
+            // Validate required fields
+            const firstName = document.getElementById('userFirstName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const role = document.getElementById('userRole').value;
+            
+            if (!firstName || !email || !role) {
+                showStatusMessage('Please fill in all required fields (First Name, Email, Role)', 'error');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showStatusMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
             const userData = {
-                firstName: document.getElementById('userFirstName').value,
-                lastName: document.getElementById('userLastName').value,
-                email: document.getElementById('userEmail').value,
-                role: document.getElementById('userRole').value,
-                gender: document.getElementById('userGender').value,
-                mobileNo: document.getElementById('userMobile').value,
-                city: document.getElementById('userCity').value,
-                dateOfBirth: document.getElementById('userDOB').value,
-                password: 'defaultPassword123' // Default password for new users
+                firstName: firstName,
+                lastName: document.getElementById('userLastName').value.trim() || '',
+                email: email,
+                role: role,
+                gender: document.getElementById('userGender').value || null,
+                mobileNo: document.getElementById('userMobile').value.trim() || null,
+                city: document.getElementById('userCity').value.trim() || null,
+                dateOfBirth: document.getElementById('userDOB').value || null,
+                password: 'DefaultPass123!' // Default password for new users
             };
 
             try {
@@ -2451,11 +2545,11 @@
                     closeModal('userModal');
                     loadUsersData();
                 } else {
-                    showStatusMessage('Failed to create user: ' + response.message, 'error');
+                    showStatusMessage('Failed to create user: ' + (response.message || 'Unknown error'), 'error');
                 }
             } catch (error) {
                 console.error('Error creating user:', error);
-                showStatusMessage('Error creating user', 'error');
+                showStatusMessage('Error creating user: ' + error.message, 'error');
             }
         }
 

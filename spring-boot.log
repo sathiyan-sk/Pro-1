@@ -1,33 +1,3 @@
-[[1;34mINFO[m] Scanning for projects...
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m------------------< [0;36mcom.trackerpro:tracker-pro-spts[0;1m >-------------------[m
-[[1;34mINFO[m] [1mBuilding tracker-pro-spts 0.0.1-SNAPSHOT[m
-[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36mtracker-pro-spts[0;1m >>>[m
-[[1;33mWARNING[m] The artifact mysql:mysql-connector-java:jar:8.0.33 has been relocated to com.mysql:mysql-connector-j:jar:8.0.33: MySQL Connector/J artifacts moved to reverse-DNS compliant Maven 2+ coordinates.
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mtracker-pro-spts[0;1m ---[m
-[[1;34mINFO[m] Copying 2 resources from src/main/resources to target/classes
-[[1;34mINFO[m] Copying 9 resources from src/main/resources to target/classes
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:compile[m [1m(default-compile)[m @ [36mtracker-pro-spts[0;1m ---[m
-[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
-[[1;34mINFO[m] Compiling 39 source files with javac [debug parameters release 17] to target/classes
-[[1;33mWARNING[m] /app/src/main/java/com/trackerpro/config/SecurityConfig.java:[87,40] frameOptions() in org.springframework.security.config.annotation.web.configurers.HeadersConfigurer has been deprecated and marked for removal
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mtracker-pro-spts[0;1m ---[m
-[[1;34mINFO[m] Copying 1 resource from src/test/resources to target/test-classes
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:testCompile[m [1m(default-testCompile)[m @ [36mtracker-pro-spts[0;1m ---[m
-[[1;34mINFO[m] Recompiling the module because of [1mchanged dependency[m.
-[[1;34mINFO[m] Compiling 2 source files with javac [debug parameters release 17] to target/test-classes
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mtracker-pro-spts[0;1m <<<[m
-[[1;34mINFO[m] 
-[[1;34mINFO[m] 
-[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[m @ [36mtracker-pro-spts[0;1m ---[m
-[[1;34mINFO[m] Attaching agents: []
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -38,47 +8,47 @@
 
  :: Spring Boot ::                (v3.3.5)
 
-2025-09-26T08:07:41.180Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Starting TrackerProApplication using Java 17.0.16 with PID 2774 (/app/target/classes started by root in /app)
-2025-09-26T08:07:41.181Z DEBUG 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Running with Spring Boot v3.3.5, Spring v6.1.14
-2025-09-26T08:07:41.182Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-09-26T08:07:41.661Z  INFO 2774 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-09-26T08:07:41.703Z  INFO 2774 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 5 JPA repository interfaces.
-2025-09-26T08:07:42.089Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-26T08:07:42.116Z  INFO 2774 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-26T08:07:42.116Z  INFO 2774 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2025-09-26T08:07:42.190Z  INFO 2774 --- [tracker-pro-spts] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-26T08:07:42.190Z  INFO 2774 --- [tracker-pro-spts] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 988 ms
-2025-09-26T08:07:42.211Z  INFO 2774 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-26T08:07:42.318Z  INFO 2774 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:trackerprodb user=SA
-2025-09-26T08:07:42.319Z  INFO 2774 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-26T08:07:42.325Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:trackerprodb'
-2025-09-26T08:07:42.494Z  INFO 2774 --- [tracker-pro-spts] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-09-26T08:07:42.517Z  INFO 2774 --- [tracker-pro-spts] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2025-09-26T08:07:42.537Z  INFO 2774 --- [tracker-pro-spts] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-09-26T08:07:42.708Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-09-26T08:07:42.729Z  WARN 2774 --- [tracker-pro-spts] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-09-26T08:07:43.397Z  INFO 2774 --- [tracker-pro-spts] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-09-26T08:07:43.405Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:03.634Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Starting TrackerProApplication v0.0.1-SNAPSHOT using Java 17.0.16 with PID 1872 (/app/target/tracker-pro-spts-0.0.1-SNAPSHOT.jar started by root in /app)
+2025-09-26T12:03:03.635Z DEBUG 1872 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-09-26T12:03:03.636Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-09-26T12:03:04.665Z  INFO 1872 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-26T12:03:04.770Z  INFO 1872 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 5 JPA repository interfaces.
+2025-09-26T12:03:05.676Z  INFO 1872 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-26T12:03:05.740Z  INFO 1872 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-26T12:03:05.740Z  INFO 1872 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-09-26T12:03:05.856Z  INFO 1872 --- [tracker-pro-spts] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-26T12:03:05.857Z  INFO 1872 --- [tracker-pro-spts] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2193 ms
+2025-09-26T12:03:05.939Z  INFO 1872 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-26T12:03:06.260Z  INFO 1872 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:trackerprodb user=SA
+2025-09-26T12:03:06.262Z  INFO 1872 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-26T12:03:06.270Z  INFO 1872 --- [tracker-pro-spts] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:trackerprodb'
+2025-09-26T12:03:06.661Z  INFO 1872 --- [tracker-pro-spts] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-26T12:03:06.764Z  INFO 1872 --- [tracker-pro-spts] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-26T12:03:06.836Z  INFO 1872 --- [tracker-pro-spts] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-26T12:03:07.169Z  INFO 1872 --- [tracker-pro-spts] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-26T12:03:07.258Z  WARN 1872 --- [tracker-pro-spts] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-26T12:03:08.676Z  INFO 1872 --- [tracker-pro-spts] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-26T12:03:08.687Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists admins cascade 
 Hibernate: 
     drop table if exists admins cascade 
-2025-09-26T08:07:43.407Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.690Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists complaints cascade 
 Hibernate: 
     drop table if exists complaints cascade 
-2025-09-26T08:07:43.407Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.690Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists courses cascade 
 Hibernate: 
     drop table if exists courses cascade 
-2025-09-26T08:07:43.407Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.690Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists students cascade 
 Hibernate: 
     drop table if exists students cascade 
-2025-09-26T08:07:43.408Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.690Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists users cascade 
 Hibernate: 
     drop table if exists users cascade 
-2025-09-26T08:07:43.410Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.694Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table admins (
         created_at timestamp(6) not null,
         last_login timestamp(6),
@@ -106,7 +76,7 @@ Hibernate:
         status enum ('ACTIVE','INACTIVE','SUSPENDED') not null,
         primary key (admin_id)
     )
-2025-09-26T08:07:43.415Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.732Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table complaints (
         created_at timestamp(6) not null,
         resolved_at timestamp(6),
@@ -136,7 +106,7 @@ Hibernate:
         status enum ('CLOSED','IN_PROGRESS','OPEN','RESOLVED') not null,
         primary key (complaint_id)
     )
-2025-09-26T08:07:43.416Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.733Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table courses (
         batches_count integer not null,
         duration_months integer not null check ((duration_months<=60) and (duration_months>=1)),
@@ -166,7 +136,7 @@ Hibernate:
         status enum ('ARCHIVED','DRAFT','PUBLISHED','SUSPENDED') not null,
         primary key (course_id)
     )
-2025-09-26T08:07:43.419Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.738Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table students (
         age integer not null check ((age<=25) and (age>=20)),
         registered_at timestamp(6) not null,
@@ -200,7 +170,7 @@ Hibernate:
         status enum ('COMPLETED','DROPPED','ENROLLED','REGISTERED','SUSPENDED') not null,
         primary key (student_id)
     )
-2025-09-26T08:07:43.420Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:08.739Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table users (
         created_at timestamp(6) not null,
         updated_at timestamp(6),
@@ -234,22 +204,22 @@ Hibernate:
         status enum ('ACTIVE','INACTIVE','PENDING','SUSPENDED') not null,
         primary key (user_id)
     )
-2025-09-26T08:07:43.423Z  INFO 2774 --- [tracker-pro-spts] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-09-26T08:07:43.605Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-09-26T08:07:44.121Z  WARN 2774 --- [tracker-pro-spts] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-09-26T08:07:44.154Z  WARN 2774 --- [tracker-pro-spts] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+2025-09-26T12:03:08.743Z  INFO 1872 --- [tracker-pro-spts] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-26T12:03:09.237Z  INFO 1872 --- [tracker-pro-spts] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-26T12:03:10.544Z  WARN 1872 --- [tracker-pro-spts] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-26T12:03:10.556Z  WARN 1872 --- [tracker-pro-spts] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: c88a90fb-ca71-4c40-95e8-2d9d55c4a6b1
+Using generated security password: f9c240d1-a0b8-489c-a5f7-40a5d344962c
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2025-09-26T08:07:44.158Z  INFO 2774 --- [tracker-pro-spts] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2025-09-26T08:07:44.202Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-26T08:07:44.327Z DEBUG 2774 --- [tracker-pro-spts] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-09-26T08:07:44.498Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-26T08:07:44.503Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Started TrackerProApplication in 3.646 seconds (process running for 4.021)
-2025-09-26T08:07:44.505Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Initializing application data...
-2025-09-26T08:07:44.540Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:10.562Z  INFO 1872 --- [tracker-pro-spts] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-09-26T12:03:10.667Z  INFO 1872 --- [tracker-pro-spts] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-09-26T12:03:10.957Z DEBUG 1872 --- [tracker-pro-spts] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-09-26T12:03:11.270Z  INFO 1872 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-26T12:03:11.335Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Started TrackerProApplication in 8.33 seconds (process running for 9.018)
+2025-09-26T12:03:11.342Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Initializing application data...
+2025-09-26T12:03:11.436Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -259,8 +229,8 @@ Hibernate:
         count(*) 
     from
         admins a1_0
-2025-09-26T08:07:44.563Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default admin...
-2025-09-26T08:07:44.671Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:11.455Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default admin...
+2025-09-26T12:03:11.667Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         a1_0.admin_id,
         a1_0.created_at,
@@ -292,7 +262,7 @@ Hibernate:
         admins a1_0 
     where
         a1_0.admin_id=?
-2025-09-26T08:07:44.698Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:11.743Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         admins
@@ -306,8 +276,8 @@ Hibernate:
         (created_at, email, first_name, last_login, last_name, password, status, updated_at, username, admin_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:44.702Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default admin created successfully with email: admin@tracker.com
-2025-09-26T08:07:44.703Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:11.747Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default admin created successfully with email: admin@tracker.com
+2025-09-26T12:03:11.748Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -317,8 +287,8 @@ Hibernate:
         count(*) 
     from
         users u1_0
-2025-09-26T08:07:44.704Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default users...
-2025-09-26T08:07:44.812Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:11.749Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default users...
+2025-09-26T12:03:11.941Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         users
@@ -332,7 +302,7 @@ Hibernate:
         (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:44.914Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.072Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         users
@@ -346,8 +316,8 @@ Hibernate:
         (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:44.915Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default users created successfully
-2025-09-26T08:07:44.916Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.073Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default users created successfully
+2025-09-26T12:03:12.074Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -357,8 +327,8 @@ Hibernate:
         count(*) 
     from
         students s1_0
-2025-09-26T08:07:44.916Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample students...
-2025-09-26T08:07:45.012Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.075Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample students...
+2025-09-26T12:03:12.194Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         students
@@ -372,7 +342,7 @@ Hibernate:
         (age, date_of_birth, email, first_name, gender, last_name, location, mobile_no, password, registered_at, status, updated_at, student_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:45.109Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.278Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         students
@@ -386,8 +356,8 @@ Hibernate:
         (age, date_of_birth, email, first_name, gender, last_name, location, mobile_no, password, registered_at, status, updated_at, student_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:45.110Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample students created successfully
-2025-09-26T08:07:45.111Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.279Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample students created successfully
+2025-09-26T12:03:12.280Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -397,8 +367,8 @@ Hibernate:
         count(*) 
     from
         courses c1_0
-2025-09-26T08:07:45.111Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample courses...
-2025-09-26T08:07:45.112Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.281Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample courses...
+2025-09-26T12:03:12.282Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         courses
@@ -412,7 +382,7 @@ Hibernate:
         (batches_count, category, course_code, course_title, created_at, description, duration_months, prerequisites, status, updated_at, course_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:45.114Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.284Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         courses
@@ -426,8 +396,8 @@ Hibernate:
         (batches_count, category, course_code, course_title, created_at, description, duration_months, prerequisites, status, updated_at, course_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:45.114Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample courses created successfully
-2025-09-26T08:07:45.115Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.284Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample courses created successfully
+2025-09-26T12:03:12.286Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -437,8 +407,8 @@ Hibernate:
         count(*) 
     from
         complaints c1_0
-2025-09-26T08:07:45.115Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample complaints...
-2025-09-26T08:07:45.116Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.286Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample complaints...
+2025-09-26T12:03:12.287Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         complaints
@@ -452,7 +422,7 @@ Hibernate:
         (category, created_at, description, priority, resolution_notes, resolved_at, status, student_email, student_name, updated_at, complaint_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:45.117Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.288Z DEBUG 1872 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         complaints
@@ -466,29 +436,16 @@ Hibernate:
         (category, created_at, description, priority, resolution_notes, resolved_at, status, student_email, student_name, updated_at, complaint_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:07:45.117Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample complaints created successfully
-2025-09-26T08:07:45.117Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Application data initialization completed
-2025-09-26T08:07:57.022Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-26T08:07:57.022Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-26T08:07:57.023Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-26T08:07:57.031Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing HEAD /adminPage.html
-2025-09-26T08:07:57.035Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:07:57.036Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured HEAD /adminPage.html
-2025-09-26T08:08:08.909Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
-2025-09-26T08:08:08.910Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:08:08.910Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
-2025-09-26T08:08:08.949Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /LOGO.png
-2025-09-26T08:08:08.949Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:08:08.950Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /LOGO.png
-2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
-2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
-2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:08:09.038Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
-2025-09-26T08:08:09.038Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
-2025-09-26T08:08:09.080Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching recent registrations
-2025-09-26T08:08:09.080Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
-2025-09-26T08:08:09.081Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:12.289Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample complaints created successfully
+2025-09-26T12:03:12.289Z  INFO 1872 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Application data initialization completed
+2025-09-26T12:03:24.488Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-26T12:03:24.488Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-26T12:03:24.489Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-26T12:03:24.500Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-09-26T12:03:24.505Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:03:24.507Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-09-26T12:03:24.541Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-09-26T12:03:24.542Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -498,7 +455,7 @@ Hibernate:
         count(*) 
     from
         students s1_0
-2025-09-26T08:08:09.092Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.558Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -512,49 +469,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.status=?
-2025-09-26T08:08:09.092Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=? 
-    order by
-        s1_0.registered_at desc
-Hibernate: 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=? 
-    order by
-        s1_0.registered_at desc
-2025-09-26T08:08:09.095Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.561Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -568,7 +483,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.status=?
-2025-09-26T08:08:09.148Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.562Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -582,7 +497,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.status=?
-2025-09-26T08:08:09.150Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.564Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -596,7 +511,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.registered_at>=?
-2025-09-26T08:08:09.151Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.565Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -606,7 +521,7 @@ Hibernate:
         count(*) 
     from
         users u1_0
-2025-09-26T08:08:09.152Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.566Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(u1_0.user_id) 
     from
@@ -620,7 +535,7 @@ Hibernate:
         users u1_0 
     where
         u1_0.status=?
-2025-09-26T08:08:09.153Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.567Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(u1_0.user_id) 
     from
@@ -634,7 +549,7 @@ Hibernate:
         users u1_0 
     where
         u1_0.role=?
-2025-09-26T08:08:09.154Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.568Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(u1_0.user_id) 
     from
@@ -648,7 +563,7 @@ Hibernate:
         users u1_0 
     where
         u1_0.role=?
-2025-09-26T08:08:09.154Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.569Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -658,7 +573,7 @@ Hibernate:
         count(*) 
     from
         admins a1_0
-2025-09-26T08:08:09.179Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.569Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(a1_0.admin_id) 
     from
@@ -672,7 +587,7 @@ Hibernate:
         admins a1_0 
     where
         a1_0.status=?
-2025-09-26T08:08:09.181Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.570Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(a1_0.admin_id) 
     from
@@ -686,7 +601,7 @@ Hibernate:
         admins a1_0 
     where
         a1_0.status=?
-2025-09-26T08:08:09.181Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.571Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(a1_0.admin_id) 
     from
@@ -700,8 +615,8 @@ Hibernate:
         admins a1_0 
     where
         a1_0.status=?
-2025-09-26T08:08:09.182Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Calculating course statistics
-2025-09-26T08:08:09.182Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.571Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-09-26T12:03:24.571Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -711,7 +626,7 @@ Hibernate:
         count(*) 
     from
         courses c1_0
-2025-09-26T08:08:09.183Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.572Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(c1_0.course_id) 
     from
@@ -725,7 +640,7 @@ Hibernate:
         courses c1_0 
     where
         c1_0.status=?
-2025-09-26T08:08:09.184Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.573Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         count(c1_0.course_id) 
     from
@@ -739,7 +654,7 @@ Hibernate:
         courses c1_0 
     where
         c1_0.status=?
-2025-09-26T08:08:09.185Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:03:24.575Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         distinct c1_0.category 
     from
@@ -753,11 +668,310 @@ Hibernate:
         courses c1_0 
     order by
         c1_0.category
-2025-09-26T08:08:51.093Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/users
-2025-09-26T08:08:51.093Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:08:51.093Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/users
-2025-09-26T08:08:51.094Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AdminController  : Fetching all users
-2025-09-26T08:08:51.095Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+2025-09-26T12:04:14.522Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-09-26T12:04:14.522Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:14.522Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /
+2025-09-26T12:04:14.533Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /index.html
+2025-09-26T12:04:14.533Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /index.html
+2025-09-26T12:04:20.195Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-09-26T12:04:20.195Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.196Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-09-26T12:04:20.246Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AuthController   : Login attempt for email: admin@tracker.com
+2025-09-26T12:04:20.249Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        a1_0.admin_id,
+        a1_0.created_at,
+        a1_0.email,
+        a1_0.first_name,
+        a1_0.last_login,
+        a1_0.last_name,
+        a1_0.password,
+        a1_0.status,
+        a1_0.updated_at,
+        a1_0.username 
+    from
+        admins a1_0 
+    where
+        upper(a1_0.email)=upper(?)
+Hibernate: 
+    select
+        a1_0.admin_id,
+        a1_0.created_at,
+        a1_0.email,
+        a1_0.first_name,
+        a1_0.last_login,
+        a1_0.last_name,
+        a1_0.password,
+        a1_0.status,
+        a1_0.updated_at,
+        a1_0.username 
+    from
+        admins a1_0 
+    where
+        upper(a1_0.email)=upper(?)
+2025-09-26T12:04:20.361Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
+    update
+        admins 
+    set
+        created_at=?,
+        email=?,
+        first_name=?,
+        last_login=?,
+        last_name=?,
+        password=?,
+        status=?,
+        updated_at=?,
+        username=? 
+    where
+        admin_id=?
+Hibernate: 
+    update
+        admins 
+    set
+        created_at=?,
+        email=?,
+        first_name=?,
+        last_login=?,
+        last_name=?,
+        password=?,
+        status=?,
+        updated_at=?,
+        username=? 
+    where
+        admin_id=?
+2025-09-26T12:04:20.364Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AuthController   : Login successful for email: admin@tracker.com, userType: ADMIN
+2025-09-26T12:04:20.368Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-09-26T12:04:20.369Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.369Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-09-26T12:04:20.369Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-09-26T12:04:20.370Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        students s1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        students s1_0
+2025-09-26T12:04:20.371Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T12:04:20.372Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T12:04:20.373Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T12:04:20.373Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.registered_at>=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.registered_at>=?
+2025-09-26T12:04:20.374Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        users u1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        users u1_0
+2025-09-26T12:04:20.375Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.status=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.status=?
+2025-09-26T12:04:20.376Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2025-09-26T12:04:20.377Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2025-09-26T12:04:20.378Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        admins a1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        admins a1_0
+2025-09-26T12:04:20.378Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T12:04:20.379Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T12:04:20.380Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T12:04:20.380Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-09-26T12:04:20.380Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        courses c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        courses c1_0
+2025-09-26T12:04:20.381Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+Hibernate: 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+2025-09-26T12:04:20.382Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+Hibernate: 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+2025-09-26T12:04:20.382Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        distinct c1_0.category 
+    from
+        courses c1_0 
+    order by
+        c1_0.category
+Hibernate: 
+    select
+        distinct c1_0.category 
+    from
+        courses c1_0 
+    order by
+        c1_0.category
+2025-09-26T12:04:20.385Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/users
+2025-09-26T12:04:20.385Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.386Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/users
+2025-09-26T12:04:20.386Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching all users
+2025-09-26T12:04:20.388Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
     select
         u1_0.user_id,
         u1_0.city,
@@ -791,11 +1005,11 @@ Hibernate:
         u1_0.updated_at 
     from
         users u1_0
-2025-09-26T08:08:58.919Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/users
-2025-09-26T08:08:58.919Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:08:58.920Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/users
-2025-09-26T08:08:58.947Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AdminController  : Creating new user with email: test.faculty@tracker.com
-2025-09-26T08:08:58.951Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.438Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/users
+2025-09-26T12:04:20.438Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.439Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/users
+2025-09-26T12:04:20.446Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-6] c.trackerpro.controller.AdminController  : Creating new user with email: test.faculty.1758888260@tracker.com
+2025-09-26T12:04:20.456Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : 
     select
         count(u1_0.user_id)>0 
     from
@@ -809,7 +1023,7 @@ Hibernate:
         users u1_0 
     where
         lower(u1_0.email)=lower(?)
-2025-09-26T08:08:59.045Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.552Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : 
     insert 
     into
         users
@@ -823,12 +1037,215 @@ Hibernate:
         (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:09:07.162Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/courses
-2025-09-26T08:09:07.162Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:07.163Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/courses
-2025-09-26T08:09:07.165Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AdminController  : Creating new course with code: TEST101
-2025-09-26T08:09:07.165Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Creating new course: TEST101
-2025-09-26T08:09:07.167Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.557Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/users
+2025-09-26T12:04:20.557Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.557Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/users
+2025-09-26T12:04:20.558Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-7] c.trackerpro.controller.AdminController  : Creating new user with email: test.hr.1758888260@tracker.com
+2025-09-26T12:04:20.559Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id)>0 
+    from
+        users u1_0 
+    where
+        lower(u1_0.email)=lower(?)
+Hibernate: 
+    select
+        count(u1_0.user_id)>0 
+    from
+        users u1_0 
+    where
+        lower(u1_0.email)=lower(?)
+2025-09-26T12:04:20.650Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-09-26T12:04:20.653Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/users
+2025-09-26T12:04:20.653Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.654Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/users
+2025-09-26T12:04:20.655Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AdminController  : Creating new user with email: test.faculty.1758888260@tracker.com
+2025-09-26T12:04:20.656Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id)>0 
+    from
+        users u1_0 
+    where
+        lower(u1_0.email)=lower(?)
+Hibernate: 
+    select
+        count(u1_0.user_id)>0 
+    from
+        users u1_0 
+    where
+        lower(u1_0.email)=lower(?)
+2025-09-26T12:04:20.658Z ERROR 1872 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AdminController  : Error creating user
+
+com.trackerpro.exception.DuplicateEmailException: Email already exists: test.faculty.1758888260@tracker.com
+	at com.trackerpro.service.UserService.createUser(UserService.java:74) ~[!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:355) ~[spring-aop-6.1.14.jar!/:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196) ~[spring-aop-6.1.14.jar!/:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-6.1.14.jar!/:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar!/:6.1.14]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:379) ~[spring-tx-6.1.14.jar!/:6.1.14]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.14.jar!/:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar!/:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar!/:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.14.jar!/:6.1.14]
+	at com.trackerpro.service.UserService$$SpringCGLIB$$0.createUser(<generated>) ~[!/:0.0.1-SNAPSHOT]
+	at com.trackerpro.controller.AdminController.createUser(AdminController.java:149) ~[!/:0.0.1-SNAPSHOT]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.valves.RemoteIpValve.invoke(RemoteIpValve.java:731) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
+2025-09-26T12:04:20.663Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/courses
+2025-09-26T12:04:20.664Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.664Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/courses
+2025-09-26T12:04:20.664Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AdminController  : Fetching all courses
+2025-09-26T12:04:20.664Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-9] com.trackerpro.service.CourseService     : Fetching all courses
+2025-09-26T12:04:20.666Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0
+Hibernate: 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0
+2025-09-26T12:04:20.671Z DEBUG 1872 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/courses
+2025-09-26T12:04:20.671Z DEBUG 1872 --- [tracker-pro-spts] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.671Z DEBUG 1872 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/courses
+2025-09-26T12:04:20.674Z  INFO 1872 --- [tracker-pro-spts] [io-8080-exec-10] c.trackerpro.controller.AdminController  : Creating new course with code: TEST1758888260
+2025-09-26T12:04:20.674Z  INFO 1872 --- [tracker-pro-spts] [io-8080-exec-10] com.trackerpro.service.CourseService     : Creating new course: TEST1758888260
+2025-09-26T12:04:20.676Z DEBUG 1872 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
     select
         count(c1_0.course_id)>0 
     from
@@ -842,8 +1259,8 @@ Hibernate:
         courses c1_0 
     where
         lower(c1_0.course_code)=lower(?)
-2025-09-26T08:09:07.168Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Course created successfully with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:07.168Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.677Z  INFO 1872 --- [tracker-pro-spts] [io-8080-exec-10] com.trackerpro.service.CourseService     : Course created successfully with ID: e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.677Z DEBUG 1872 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
     insert 
     into
         courses
@@ -857,12 +1274,12 @@ Hibernate:
         (batches_count, category, course_code, course_title, created_at, description, duration_months, prerequisites, status, updated_at, course_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-26T08:09:13.363Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/publish
-2025-09-26T08:09:13.363Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:13.363Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/publish
-2025-09-26T08:09:13.365Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AdminController  : Publishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:13.365Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Publishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:13.366Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.681Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/courses/e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.681Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.681Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/courses/e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.682Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AdminController  : Fetching course by ID: e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.682Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Fetching course by ID: e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.684Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
     select
         c1_0.course_id,
         c1_0.batches_count,
@@ -896,45 +1313,12 @@ Hibernate:
         courses c1_0 
     where
         c1_0.course_id=?
-2025-09-26T08:09:13.367Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Course published successfully: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:13.371Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    update
-        courses 
-    set
-        batches_count=?,
-        category=?,
-        course_code=?,
-        course_title=?,
-        created_at=?,
-        description=?,
-        duration_months=?,
-        prerequisites=?,
-        status=?,
-        updated_at=? 
-    where
-        course_id=?
-Hibernate: 
-    update
-        courses 
-    set
-        batches_count=?,
-        category=?,
-        course_code=?,
-        course_title=?,
-        created_at=?,
-        description=?,
-        duration_months=?,
-        prerequisites=?,
-        status=?,
-        updated_at=? 
-    where
-        course_id=?
-2025-09-26T08:09:21.278Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/unpublish
-2025-09-26T08:09:21.278Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:21.279Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/unpublish
-2025-09-26T08:09:21.279Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AdminController  : Unpublishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:21.280Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] com.trackerpro.service.CourseService     : Unpublishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:21.280Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.688Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing PUT /api/admin/courses/e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.688Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.688Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured PUT /api/admin/courses/e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.691Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AdminController  : Updating course with ID: e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.691Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Updating course with ID: e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.692Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
     select
         c1_0.course_id,
         c1_0.batches_count,
@@ -968,8 +1352,8 @@ Hibernate:
         courses c1_0 
     where
         c1_0.course_id=?
-2025-09-26T08:09:21.281Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] com.trackerpro.service.CourseService     : Course unpublished successfully: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:21.281Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.732Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Course updated successfully: e6d08da8-ada6-455b-a365-0ede21a98ef8
+2025-09-26T12:04:20.733Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
     update
         courses 
     set
@@ -1001,117 +1385,49 @@ Hibernate:
         updated_at=? 
     where
         course_id=?
-2025-09-26T08:09:28.177Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:28.178Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:28.178Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:28.179Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Updating course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:28.179Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Updating course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:28.179Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.737Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations
+2025-09-26T12:04:20.737Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.737Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations
+2025-09-26T12:04:20.738Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AdminController  : Fetching all student registrations
+2025-09-26T12:04:20.739Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
     select
-        c1_0.course_id,
-        c1_0.batches_count,
-        c1_0.category,
-        c1_0.course_code,
-        c1_0.course_title,
-        c1_0.created_at,
-        c1_0.description,
-        c1_0.duration_months,
-        c1_0.prerequisites,
-        c1_0.status,
-        c1_0.updated_at 
-    from
-        courses c1_0 
-    where
-        c1_0.course_id=?
-Hibernate: 
-    select
-        c1_0.course_id,
-        c1_0.batches_count,
-        c1_0.category,
-        c1_0.course_code,
-        c1_0.course_title,
-        c1_0.created_at,
-        c1_0.description,
-        c1_0.duration_months,
-        c1_0.prerequisites,
-        c1_0.status,
-        c1_0.updated_at 
-    from
-        courses c1_0 
-    where
-        c1_0.course_id=?
-2025-09-26T08:09:28.181Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id)>0 
-    from
-        courses c1_0 
-    where
-        lower(c1_0.course_code)=lower(?)
-Hibernate: 
-    select
-        count(c1_0.course_id)>0 
-    from
-        courses c1_0 
-    where
-        lower(c1_0.course_code)=lower(?)
-2025-09-26T08:09:28.182Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Course updated successfully: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
-2025-09-26T08:09:28.182Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
-    update
-        courses 
-    set
-        batches_count=?,
-        category=?,
-        course_code=?,
-        course_title=?,
-        created_at=?,
-        description=?,
-        duration_months=?,
-        prerequisites=?,
-        status=?,
-        updated_at=? 
-    where
-        course_id=?
-Hibernate: 
-    update
-        courses 
-    set
-        batches_count=?,
-        category=?,
-        course_code=?,
-        course_title=?,
-        created_at=?,
-        description=?,
-        duration_months=?,
-        prerequisites=?,
-        status=?,
-        updated_at=? 
-    where
-        course_id=?
-2025-09-26T08:09:38.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
-2025-09-26T08:09:38.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:38.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
-2025-09-26T08:09:38.661Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /LOGO.png
-2025-09-26T08:09:38.661Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:38.679Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /LOGO.png
-2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
-2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
-2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:38.752Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
-2025-09-26T08:09:38.752Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
-2025-09-26T08:09:38.752Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
-2025-09-26T08:09:38.752Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AdminController  : Fetching recent registrations
-2025-09-26T08:09:38.752Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(*) 
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.date_of_birth,
+        s1_0.email,
+        s1_0.first_name,
+        s1_0.gender,
+        s1_0.last_name,
+        s1_0.location,
+        s1_0.mobile_no,
+        s1_0.password,
+        s1_0.registered_at,
+        s1_0.status,
+        s1_0.updated_at 
     from
         students s1_0
 Hibernate: 
     select
-        count(*) 
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.date_of_birth,
+        s1_0.email,
+        s1_0.first_name,
+        s1_0.gender,
+        s1_0.last_name,
+        s1_0.location,
+        s1_0.mobile_no,
+        s1_0.password,
+        s1_0.registered_at,
+        s1_0.status,
+        s1_0.updated_at 
     from
         students s1_0
-2025-09-26T08:09:38.753Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.744Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
+2025-09-26T12:04:20.744Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.745Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
+2025-09-26T12:04:20.745Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching recent registrations
+2025-09-26T12:04:20.747Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         s1_0.student_id,
         s1_0.age,
@@ -1153,551 +1469,282 @@ Hibernate:
         s1_0.registered_at>=? 
     order by
         s1_0.registered_at desc
-2025-09-26T08:09:38.754Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+2025-09-26T12:04:20.750Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/search?query=test
+2025-09-26T12:04:20.750Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.750Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/search?query=test
+2025-09-26T12:04:20.754Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Searching registrations with query: test
+2025-09-26T12:04:20.760Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
     select
-        count(s1_0.student_id) 
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.date_of_birth,
+        s1_0.email,
+        s1_0.first_name,
+        s1_0.gender,
+        s1_0.last_name,
+        s1_0.location,
+        s1_0.mobile_no,
+        s1_0.password,
+        s1_0.registered_at,
+        s1_0.status,
+        s1_0.updated_at 
     from
         students s1_0 
     where
-        s1_0.status=?
+        lower(s1_0.first_name) like lower(('%'||?||'%')) escape '' 
+        or lower(s1_0.last_name) like lower(('%'||?||'%')) escape '' 
+        or lower(s1_0.email) like lower(('%'||?||'%')) escape ''
 Hibernate: 
     select
-        count(s1_0.student_id) 
+        s1_0.student_id,
+        s1_0.age,
+        s1_0.date_of_birth,
+        s1_0.email,
+        s1_0.first_name,
+        s1_0.gender,
+        s1_0.last_name,
+        s1_0.location,
+        s1_0.mobile_no,
+        s1_0.password,
+        s1_0.registered_at,
+        s1_0.status,
+        s1_0.updated_at 
     from
         students s1_0 
     where
-        s1_0.status=?
-2025-09-26T08:09:38.755Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-26T08:09:38.755Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-26T08:09:38.756Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-2025-09-26T08:09:38.756Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        users u1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        users u1_0
-2025-09-26T08:09:38.757Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-2025-09-26T08:09:38.758Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-26T08:09:38.758Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-26T08:09:38.759Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        admins a1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        admins a1_0
-2025-09-26T08:09:38.760Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-26T08:09:38.780Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-26T08:09:38.781Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-26T08:09:38.781Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-8] com.trackerpro.service.CourseService     : Calculating course statistics
-2025-09-26T08:09:38.781Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        courses c1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        courses c1_0
-2025-09-26T08:09:38.782Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-26T08:09:38.783Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-26T08:09:38.784Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-Hibernate: 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-2025-09-26T08:09:54.647Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
-2025-09-26T08:09:54.648Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:54.648Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
-2025-09-26T08:09:54.648Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
-2025-09-26T08:09:54.649Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        students s1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        students s1_0
-2025-09-26T08:09:54.650Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-26T08:09:54.651Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-26T08:09:54.651Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-26T08:09:54.652Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-2025-09-26T08:09:54.652Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        users u1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        users u1_0
-2025-09-26T08:09:54.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-2025-09-26T08:09:54.654Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-26T08:09:54.654Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-26T08:09:54.655Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        admins a1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        admins a1_0
-2025-09-26T08:09:54.656Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-26T08:09:54.656Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-26T08:09:54.657Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-26T08:09:54.657Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Calculating course statistics
-2025-09-26T08:09:54.657Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        courses c1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        courses c1_0
-2025-09-26T08:09:54.658Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-26T08:09:54.658Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-26T08:09:54.659Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-Hibernate: 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-2025-09-26T08:09:54.670Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/users
-2025-09-26T08:09:54.670Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:54.670Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/users
-2025-09-26T08:09:54.671Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AdminController  : Fetching all users
-2025-09-26T08:09:54.672Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
-    select
-        u1_0.user_id,
-        u1_0.city,
-        u1_0.created_at,
-        u1_0.date_of_birth,
-        u1_0.email,
-        u1_0.first_name,
-        u1_0.gender,
-        u1_0.last_name,
-        u1_0.mobile_no,
-        u1_0.password,
-        u1_0.role,
-        u1_0.status,
-        u1_0.updated_at 
-    from
-        users u1_0
-Hibernate: 
-    select
-        u1_0.user_id,
-        u1_0.city,
-        u1_0.created_at,
-        u1_0.date_of_birth,
-        u1_0.email,
-        u1_0.first_name,
-        u1_0.gender,
-        u1_0.last_name,
-        u1_0.mobile_no,
-        u1_0.password,
-        u1_0.role,
-        u1_0.status,
-        u1_0.updated_at 
-    from
-        users u1_0
-2025-09-26T08:09:54.693Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/courses
-2025-09-26T08:09:54.693Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:54.693Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/courses
-2025-09-26T08:09:54.694Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching all courses
-2025-09-26T08:09:54.694Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Fetching all courses
-2025-09-26T08:09:54.695Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
-    select
-        c1_0.course_id,
-        c1_0.batches_count,
-        c1_0.category,
-        c1_0.course_code,
-        c1_0.course_title,
-        c1_0.created_at,
-        c1_0.description,
-        c1_0.duration_months,
-        c1_0.prerequisites,
-        c1_0.status,
-        c1_0.updated_at 
-    from
-        courses c1_0
-Hibernate: 
-    select
-        c1_0.course_id,
-        c1_0.batches_count,
-        c1_0.category,
-        c1_0.course_code,
-        c1_0.course_title,
-        c1_0.created_at,
-        c1_0.description,
-        c1_0.duration_months,
-        c1_0.prerequisites,
-        c1_0.status,
-        c1_0.updated_at 
-    from
-        courses c1_0
-2025-09-26T08:09:54.760Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/courses
-2025-09-26T08:09:54.760Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-26T08:09:54.761Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/courses
-2025-09-26T08:09:54.761Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching all courses
-2025-09-26T08:09:54.761Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-5] com.trackerpro.service.CourseService     : Fetching all courses
-2025-09-26T08:09:54.762Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        c1_0.course_id,
-        c1_0.batches_count,
-        c1_0.category,
-        c1_0.course_code,
-        c1_0.course_title,
-        c1_0.created_at,
-        c1_0.description,
-        c1_0.duration_months,
-        c1_0.prerequisites,
-        c1_0.status,
-        c1_0.updated_at 
-    from
-        courses c1_0
-Hibernate: 
-    select
-        c1_0.course_id,
-        c1_0.batches_count,
-        c1_0.category,
-        c1_0.course_code,
-        c1_0.course_title,
-        c1_0.created_at,
-        c1_0.description,
-        c1_0.duration_months,
-        c1_0.prerequisites,
-        c1_0.status,
-        c1_0.updated_at 
-    from
-        courses c1_0
+        lower(s1_0.first_name) like lower(('%'||?||'%')) escape '' 
+        or lower(s1_0.last_name) like lower(('%'||?||'%')) escape '' 
+        or lower(s1_0.email) like lower(('%'||?||'%')) escape ''
+2025-09-26T12:04:20.764Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/logout
+2025-09-26T12:04:20.832Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:04:20.832Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/logout
+2025-09-26T12:04:20.833Z  INFO 1872 --- [tracker-pro-spts] [nio-8080-exec-6] c.trackerpro.controller.AuthController   : User logout
+2025-09-26T12:05:05.052Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
+2025-09-26T12:05:05.052Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T12:05:05.052Z DEBUG 1872 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
+2025-09-26T12:05:05.055Z ERROR 1872 --- [tracker-pro-spts] [nio-8080-exec-8] c.t.exception.GlobalExceptionHandler     : Unexpected error occurred: 
+
+org.apache.catalina.connector.ClientAbortException: java.io.IOException: Broken pipe
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:341) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.OutputBuffer.flushByteBuffer(OutputBuffer.java:776) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.OutputBuffer.append(OutputBuffer.java:673) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:376) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:354) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:103) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.security.web.util.OnCommittedResponseWrapper$SaveContextServletOutputStream.write(OnCommittedResponseWrapper.java:639) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at java.base/java.io.InputStream.transferTo(InputStream.java:783) ~[na:na]
+	at org.springframework.http.converter.ResourceHttpMessageConverter.writeContent(ResourceHttpMessageConverter.java:160) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.http.converter.ResourceHttpMessageConverter.writeInternal(ResourceHttpMessageConverter.java:115) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.http.converter.ResourceHttpMessageConverter.writeInternal(ResourceHttpMessageConverter.java:46) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.http.converter.AbstractHttpMessageConverter.write(AbstractHttpMessageConverter.java:235) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:621) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.valves.RemoteIpValve.invoke(RemoteIpValve.java:731) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+Caused by: java.io.IOException: Broken pipe
+	at java.base/sun.nio.ch.FileDispatcherImpl.write0(Native Method) ~[na:na]
+	at java.base/sun.nio.ch.SocketDispatcher.write(SocketDispatcher.java:62) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.writeFromNativeBuffer(IOUtil.java:132) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:97) ~[na:na]
+	at java.base/sun.nio.ch.IOUtil.write(IOUtil.java:53) ~[na:na]
+	at java.base/sun.nio.ch.SocketChannelImpl.write(SocketChannelImpl.java:532) ~[na:na]
+	at org.apache.tomcat.util.net.NioChannel.write(NioChannel.java:122) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.NioEndpoint$NioSocketWrapper.doWrite(NioEndpoint.java:1378) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.SocketWrapperBase.doWrite(SocketWrapperBase.java:764) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.SocketWrapperBase.writeBlocking(SocketWrapperBase.java:589) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.SocketWrapperBase.write(SocketWrapperBase.java:533) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.http11.Http11OutputBuffer$SocketOutputBuffer.doWrite(Http11OutputBuffer.java:548) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.http11.filters.IdentityOutputFilter.doWrite(IdentityOutputFilter.java:73) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.http11.Http11OutputBuffer.doWrite(Http11OutputBuffer.java:193) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.Response.doWrite(Response.java:633) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:329) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	... 101 common frames omitted
+
+2025-09-26T12:05:05.056Z  WARN 1872 --- [tracker-pro-spts] [nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Failure in @ExceptionHandler com.trackerpro.exception.GlobalExceptionHandler#handleGenericException(Exception)
+
+org.springframework.http.converter.HttpMessageNotWritableException: No converter for [class com.trackerpro.dto.ApiResponse] with preset Content-Type 'text/html'
+	at org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor.writeWithMessageConverters(AbstractMessageConverterMethodProcessor.java:319) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor.handleReturnValue(HttpEntityMethodProcessor.java:245) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.method.support.HandlerMethodReturnValueHandlerComposite.handleReturnValue(HandlerMethodReturnValueHandlerComposite.java:78) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:136) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver.doResolveHandlerMethodException(ExceptionHandlerExceptionResolver.java:432) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.doResolveException(AbstractHandlerMethodExceptionResolver.java:74) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.resolveException(AbstractHandlerExceptionResolver.java:175) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.handler.HandlerExceptionResolverComposite.resolveException(HandlerExceptionResolverComposite.java:80) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.processHandlerException(DispatcherServlet.java:1358) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1161) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.4.jar!/:6.3.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar!/:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.valves.RemoteIpValve.invoke(RemoteIpValve.java:731) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar!/:na]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+
