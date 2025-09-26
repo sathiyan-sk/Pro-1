@@ -1563,8 +1563,8 @@
                     localStorage.removeItem('adminToken');
                     sessionStorage.removeItem('adminSession');
                     
-                    // Add a flag to prevent back navigation
-                    history.pushState(null, null, location.href);
+                    // Clear browser history to prevent back navigation
+                    history.replaceState(null, null, 'loginPage.html');
                     
                     // Redirect to login page
                     window.location.replace('loginPage.html');
