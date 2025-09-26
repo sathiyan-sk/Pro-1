@@ -1507,9 +1507,42 @@
         let editingUserId = null;
 
         // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
+        document.addEventListener('DOMContentLoaded', async function() {
+            await initializeApp();
+            
+            // Set up periodic session validation (every 5 minutes)
+            setInterval(async function() {
+                await validateActiveSession();
+            }, 5 * 60 * 1000); // 5 minutes
+            
+            // Set up activity-based session validation
+            document.addEventListener('click', validateActiveSession);
+            document.addEventListener('keypress', validateActiveSession);
         });
+        
+        async function validateActiveSession() {
+            const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
+            const hasLoginTimestamp = localStorage.getItem('loginTimestamp');
+            
+            if (!hasValidSession || !hasLoginTimestamp) {
+                console.log('Session lost, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+            
+            // Check timestamp validity
+            const loginTime = parseInt(hasLoginTimestamp);
+            const currentTime = Date.now();
+            const oneHour = 60 * 60 * 1000;
+            
+            if ((currentTime - loginTime) >= oneHour) {
+                console.log('Session expired during activity, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+        }
 
         async function initializeApp() {
             // Check authentication status first (critical security check)
