@@ -2168,6 +2168,23 @@
             }
         }
 
+        async function unpublishCourse(courseId) {
+            try {
+                showStatusMessage('Unpublishing course...', 'info');
+                const response = await dataManager.unpublishCourse(courseId);
+                
+                if (response.success) {
+                    showStatusMessage('Course unpublished successfully', 'success');
+                    await loadCoursesData();
+                } else {
+                    throw new Error(response.message || 'Failed to unpublish course');
+                }
+            } catch (error) {
+                console.error('Error unpublishing course:', error);
+                showStatusMessage('Error unpublishing course: ' + error.message, 'error');
+            }
+        }
+
         function toggleCourseForm() {
             const formSheet = document.getElementById('courseFormSheet');
             const toggleText = document.getElementById('courseFormToggleText');
