@@ -1976,42 +1976,6 @@
             }
         }
 
-        function saveUser() {
-            const formData = {
-                firstName: document.getElementById('userFirstName').value,
-                lastName: document.getElementById('userLastName').value,
-                email: document.getElementById('userEmail').value,
-                role: document.getElementById('userRole').value,
-                gender: document.getElementById('userGender').value,
-                mobile: document.getElementById('userMobile').value,
-                city: document.getElementById('userCity').value,
-                dob: document.getElementById('userDOB').value
-            };
-
-            // Basic validation
-            if (!formData.firstName || !formData.email || !formData.role) {
-                showStatusMessage('Please fill in all required fields', 'error');
-                return;
-            }
-
-            try {
-                if (editingUserId) {
-                    dataManager.updateRegistration(editingUserId, formData);
-                    showStatusMessage('User updated successfully', 'success');
-                } else {
-                    dataManager.addRegistration(formData);
-                    showStatusMessage('User added successfully', 'success');
-                }
-
-                closeModal('userModal');
-                loadRegistrationsData();
-                loadUsersData();
-                updateDashboardStats();
-            } catch (error) {
-                showStatusMessage('Error saving user: ' + error.message, 'error');
-            }
-        }
-
         function populateUserForm(user) {
             document.getElementById('userFirstName').value = user.firstName || '';
             document.getElementById('userLastName').value = user.lastName || '';
