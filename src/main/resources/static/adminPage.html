@@ -1489,6 +1489,12 @@
                     method: 'PUT'
                 });
             }
+
+            async unpublishCourse(courseId) {
+                return await this.makeAPICall(`/admin/courses/${courseId}/unpublish`, {
+                    method: 'PUT'
+                });
+            }
         }
 
         // ==========================================================================
