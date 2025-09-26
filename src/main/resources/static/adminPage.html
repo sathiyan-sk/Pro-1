@@ -1527,21 +1527,37 @@
         }
         
         function checkAuthenticationStatus() {
-            // Check if user should be authenticated (this is a basic implementation)
-            // In a real application, you would verify JWT tokens or session cookies
+            // Check if user should be authenticated
             const isFromLogin = document.referrer.includes('loginPage.html');
             const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
+            const hasLoginTimestamp = localStorage.getItem('loginTimestamp');
             
-            // Check authentication - enabled for proper logout handling
-            if (!isFromLogin && !hasValidSession) {
-                // If user didn't come from login and has no session, redirect to login
-                window.location.replace('loginPage.html');
+            // Check if user is coming from login or has a valid session
+            if (isFromLogin) {
+                // Set session as active if coming from login
+                sessionStorage.setItem('adminSession', 'active');
+                localStorage.setItem('loginTimestamp', Date.now().toString());
                 return;
             }
             
-            // Set session as active if coming from login
-            if (isFromLogin) {
-                sessionStorage.setItem('adminSession', 'active');
+            // If no session and not from login, check for recent login timestamp
+            if (!hasValidSession) {
+                // Allow access if logged in within the last hour
+                if (hasLoginTimestamp) {
+                    const loginTime = parseInt(hasLoginTimestamp);
+                    const currentTime = Date.now();
+                    const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+                    
+                    if ((currentTime - loginTime) < oneHour) {
+                        sessionStorage.setItem('adminSession', 'active');
+                        return;
+                    }
+                }
+                
+                // No valid session found, redirect to login
+                console.log('No valid authentication found, redirecting to login');
+                window.location.replace('loginPage.html');
+                return;
             }
         }
 
