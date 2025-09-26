@@ -310,4 +310,21 @@ public class AdminController {
             return ResponseEntity.ok(ApiResponse.failure("Failed to publish course: " + e.getMessage()));
         }
     }
+    
+    /**
+     * Unpublish course
+     */
+    @PutMapping("/courses/{courseId}/unpublish")
+    public ResponseEntity<ApiResponse<Course>> unpublishCourse(@PathVariable UUID courseId) {
+        logger.info("Unpublishing course with ID: {}", courseId);
+        
+        try {
+            Course unpublishedCourse = courseService.unpublishCourse(courseId);
+            return ResponseEntity.ok(ApiResponse.success("Course unpublished successfully", unpublishedCourse));
+            
+        } catch (Exception e) {
+            logger.error("Error unpublishing course", e);
+            return ResponseEntity.ok(ApiResponse.failure("Failed to unpublish course: " + e.getMessage()));
+        }
+    }
 }
