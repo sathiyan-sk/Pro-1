@@ -1532,18 +1532,17 @@
             const isFromLogin = document.referrer.includes('loginPage.html');
             const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
             
-            // Temporarily disable authentication check for development/testing
-            // TODO: Re-enable for production
-            /*
+            // Check authentication - enabled for proper logout handling
             if (!isFromLogin && !hasValidSession) {
                 // If user didn't come from login and has no session, redirect to login
                 window.location.replace('loginPage.html');
                 return;
             }
-            */
             
-            // Set session as active if coming from login or for development
-            sessionStorage.setItem('adminSession', 'active');
+            // Set session as active if coming from login
+            if (isFromLogin) {
+                sessionStorage.setItem('adminSession', 'active');
+            }
         }
 
         function setupEventListeners() {
