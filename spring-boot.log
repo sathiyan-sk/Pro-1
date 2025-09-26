@@ -12,13 +12,16 @@
 [[1;34mINFO[m] Copying 9 resources from src/main/resources to target/classes
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:compile[m [1m(default-compile)[m @ [36mtracker-pro-spts[0;1m ---[m
-[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] Recompiling the module because of [1mchanged source code[m.
+[[1;34mINFO[m] Compiling 39 source files with javac [debug parameters release 17] to target/classes
+[[1;33mWARNING[m] /app/src/main/java/com/trackerpro/config/SecurityConfig.java:[87,40] frameOptions() in org.springframework.security.config.annotation.web.configurers.HeadersConfigurer has been deprecated and marked for removal
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mtracker-pro-spts[0;1m ---[m
 [[1;34mINFO[m] Copying 1 resource from src/test/resources to target/test-classes
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:testCompile[m [1m(default-testCompile)[m @ [36mtracker-pro-spts[0;1m ---[m
-[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] Recompiling the module because of [1mchanged dependency[m.
+[[1;34mINFO[m] Compiling 2 source files with javac [debug parameters release 17] to target/test-classes
 [[1;34mINFO[m] 
 [[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mtracker-pro-spts[0;1m <<<[m
 [[1;34mINFO[m] 
@@ -35,47 +38,47 @@
 
  :: Spring Boot ::                (v3.3.5)
 
-2025-09-25T09:47:18.477Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Starting TrackerProApplication using Java 17.0.16 with PID 4572 (/app/target/classes started by root in /app)
-2025-09-25T09:47:18.478Z DEBUG 4572 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Running with Spring Boot v3.3.5, Spring v6.1.14
-2025-09-25T09:47:18.478Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : No active profile set, falling back to 1 default profile: "default"
-2025-09-25T09:47:18.974Z  INFO 4572 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-09-25T09:47:19.012Z  INFO 4572 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 34 ms. Found 5 JPA repository interfaces.
-2025-09-25T09:47:19.405Z  INFO 4572 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-09-25T09:47:19.444Z  INFO 4572 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-09-25T09:47:19.444Z  INFO 4572 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2025-09-25T09:47:19.502Z  INFO 4572 --- [tracker-pro-spts] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-09-25T09:47:19.502Z  INFO 4572 --- [tracker-pro-spts] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1002 ms
-2025-09-25T09:47:19.546Z  INFO 4572 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-09-25T09:47:19.656Z  INFO 4572 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:trackerprodb user=SA
-2025-09-25T09:47:19.657Z  INFO 4572 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-09-25T09:47:19.664Z  INFO 4572 --- [tracker-pro-spts] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:trackerprodb'
-2025-09-25T09:47:19.846Z  INFO 4572 --- [tracker-pro-spts] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-09-25T09:47:19.870Z  INFO 4572 --- [tracker-pro-spts] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
-2025-09-25T09:47:19.891Z  INFO 4572 --- [tracker-pro-spts] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-09-25T09:47:20.075Z  INFO 4572 --- [tracker-pro-spts] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-09-25T09:47:20.100Z  WARN 4572 --- [tracker-pro-spts] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-09-25T09:47:20.825Z  INFO 4572 --- [tracker-pro-spts] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-09-25T09:47:20.844Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:41.180Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Starting TrackerProApplication using Java 17.0.16 with PID 2774 (/app/target/classes started by root in /app)
+2025-09-26T08:07:41.181Z DEBUG 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-09-26T08:07:41.182Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : No active profile set, falling back to 1 default profile: "default"
+2025-09-26T08:07:41.661Z  INFO 2774 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-09-26T08:07:41.703Z  INFO 2774 --- [tracker-pro-spts] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 5 JPA repository interfaces.
+2025-09-26T08:07:42.089Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-09-26T08:07:42.116Z  INFO 2774 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-09-26T08:07:42.116Z  INFO 2774 --- [tracker-pro-spts] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2025-09-26T08:07:42.190Z  INFO 2774 --- [tracker-pro-spts] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-09-26T08:07:42.190Z  INFO 2774 --- [tracker-pro-spts] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 988 ms
+2025-09-26T08:07:42.211Z  INFO 2774 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-09-26T08:07:42.318Z  INFO 2774 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:trackerprodb user=SA
+2025-09-26T08:07:42.319Z  INFO 2774 --- [tracker-pro-spts] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-09-26T08:07:42.325Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:trackerprodb'
+2025-09-26T08:07:42.494Z  INFO 2774 --- [tracker-pro-spts] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-09-26T08:07:42.517Z  INFO 2774 --- [tracker-pro-spts] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.3.Final
+2025-09-26T08:07:42.537Z  INFO 2774 --- [tracker-pro-spts] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-09-26T08:07:42.708Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-09-26T08:07:42.729Z  WARN 2774 --- [tracker-pro-spts] [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-09-26T08:07:43.397Z  INFO 2774 --- [tracker-pro-spts] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-09-26T08:07:43.405Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists admins cascade 
 Hibernate: 
     drop table if exists admins cascade 
-2025-09-25T09:47:20.847Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.407Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists complaints cascade 
 Hibernate: 
     drop table if exists complaints cascade 
-2025-09-25T09:47:20.847Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.407Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists courses cascade 
 Hibernate: 
     drop table if exists courses cascade 
-2025-09-25T09:47:20.847Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.407Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists students cascade 
 Hibernate: 
     drop table if exists students cascade 
-2025-09-25T09:47:20.847Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.408Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     drop table if exists users cascade 
 Hibernate: 
     drop table if exists users cascade 
-2025-09-25T09:47:20.851Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.410Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table admins (
         created_at timestamp(6) not null,
         last_login timestamp(6),
@@ -103,7 +106,7 @@ Hibernate:
         status enum ('ACTIVE','INACTIVE','SUSPENDED') not null,
         primary key (admin_id)
     )
-2025-09-25T09:47:20.856Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.415Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table complaints (
         created_at timestamp(6) not null,
         resolved_at timestamp(6),
@@ -133,7 +136,7 @@ Hibernate:
         status enum ('CLOSED','IN_PROGRESS','OPEN','RESOLVED') not null,
         primary key (complaint_id)
     )
-2025-09-25T09:47:20.857Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.416Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table courses (
         batches_count integer not null,
         duration_months integer not null check ((duration_months<=60) and (duration_months>=1)),
@@ -163,7 +166,7 @@ Hibernate:
         status enum ('ARCHIVED','DRAFT','PUBLISHED','SUSPENDED') not null,
         primary key (course_id)
     )
-2025-09-25T09:47:20.861Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.419Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table students (
         age integer not null check ((age<=25) and (age>=20)),
         registered_at timestamp(6) not null,
@@ -197,7 +200,7 @@ Hibernate:
         status enum ('COMPLETED','DROPPED','ENROLLED','REGISTERED','SUSPENDED') not null,
         primary key (student_id)
     )
-2025-09-25T09:47:20.862Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:43.420Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     create table users (
         created_at timestamp(6) not null,
         updated_at timestamp(6),
@@ -231,22 +234,22 @@ Hibernate:
         status enum ('ACTIVE','INACTIVE','PENDING','SUSPENDED') not null,
         primary key (user_id)
     )
-2025-09-25T09:47:20.865Z  INFO 4572 --- [tracker-pro-spts] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-09-25T09:47:21.066Z  INFO 4572 --- [tracker-pro-spts] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-09-25T09:47:21.603Z  WARN 4572 --- [tracker-pro-spts] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-09-25T09:47:21.642Z  WARN 4572 --- [tracker-pro-spts] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+2025-09-26T08:07:43.423Z  INFO 2774 --- [tracker-pro-spts] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-09-26T08:07:43.605Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-09-26T08:07:44.121Z  WARN 2774 --- [tracker-pro-spts] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-09-26T08:07:44.154Z  WARN 2774 --- [tracker-pro-spts] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
 
-Using generated security password: 96387540-cc79-4605-a4bd-c2492b0fbc4b
+Using generated security password: c88a90fb-ca71-4c40-95e8-2d9d55c4a6b1
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
-2025-09-25T09:47:21.646Z  INFO 4572 --- [tracker-pro-spts] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
-2025-09-25T09:47:21.687Z  INFO 4572 --- [tracker-pro-spts] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
-2025-09-25T09:47:21.815Z DEBUG 4572 --- [tracker-pro-spts] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
-2025-09-25T09:47:21.996Z  INFO 4572 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-09-25T09:47:22.002Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Started TrackerProApplication in 3.822 seconds (process running for 4.049)
-2025-09-25T09:47:22.004Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Initializing application data...
-2025-09-25T09:47:22.053Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.158Z  INFO 2774 --- [tracker-pro-spts] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-09-26T08:07:44.202Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-09-26T08:07:44.327Z DEBUG 2774 --- [tracker-pro-spts] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-09-26T08:07:44.498Z  INFO 2774 --- [tracker-pro-spts] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-09-26T08:07:44.503Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Started TrackerProApplication in 3.646 seconds (process running for 4.021)
+2025-09-26T08:07:44.505Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Initializing application data...
+2025-09-26T08:07:44.540Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -256,8 +259,8 @@ Hibernate:
         count(*) 
     from
         admins a1_0
-2025-09-25T09:47:22.071Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default admin...
-2025-09-25T09:47:22.181Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.563Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default admin...
+2025-09-26T08:07:44.671Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         a1_0.admin_id,
         a1_0.created_at,
@@ -289,7 +292,7 @@ Hibernate:
         admins a1_0 
     where
         a1_0.admin_id=?
-2025-09-25T09:47:22.206Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.698Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         admins
@@ -303,8 +306,8 @@ Hibernate:
         (created_at, email, first_name, last_login, last_name, password, status, updated_at, username, admin_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.210Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default admin created successfully with email: admin@tracker.com
-2025-09-25T09:47:22.212Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.702Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default admin created successfully with email: admin@tracker.com
+2025-09-26T08:07:44.703Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -314,8 +317,8 @@ Hibernate:
         count(*) 
     from
         users u1_0
-2025-09-25T09:47:22.212Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default users...
-2025-09-25T09:47:22.321Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.704Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default users...
+2025-09-26T08:07:44.812Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         users
@@ -329,7 +332,7 @@ Hibernate:
         (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.420Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.914Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         users
@@ -343,8 +346,8 @@ Hibernate:
         (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.421Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default users created successfully
-2025-09-25T09:47:22.422Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.915Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default users created successfully
+2025-09-26T08:07:44.916Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -354,8 +357,8 @@ Hibernate:
         count(*) 
     from
         students s1_0
-2025-09-25T09:47:22.423Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample students...
-2025-09-25T09:47:22.520Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:44.916Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample students...
+2025-09-26T08:07:45.012Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         students
@@ -369,7 +372,7 @@ Hibernate:
         (age, date_of_birth, email, first_name, gender, last_name, location, mobile_no, password, registered_at, status, updated_at, student_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.615Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.109Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         students
@@ -383,8 +386,8 @@ Hibernate:
         (age, date_of_birth, email, first_name, gender, last_name, location, mobile_no, password, registered_at, status, updated_at, student_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.616Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample students created successfully
-2025-09-25T09:47:22.617Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.110Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample students created successfully
+2025-09-26T08:07:45.111Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -394,8 +397,8 @@ Hibernate:
         count(*) 
     from
         courses c1_0
-2025-09-25T09:47:22.617Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample courses...
-2025-09-25T09:47:22.618Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.111Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample courses...
+2025-09-26T08:07:45.112Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         courses
@@ -409,7 +412,7 @@ Hibernate:
         (batches_count, category, course_code, course_title, created_at, description, duration_months, prerequisites, status, updated_at, course_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.619Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.114Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         courses
@@ -423,8 +426,8 @@ Hibernate:
         (batches_count, category, course_code, course_title, created_at, description, duration_months, prerequisites, status, updated_at, course_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.620Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample courses created successfully
-2025-09-25T09:47:22.621Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.114Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample courses created successfully
+2025-09-26T08:07:45.115Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -434,8 +437,8 @@ Hibernate:
         count(*) 
     from
         complaints c1_0
-2025-09-25T09:47:22.621Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample complaints...
-2025-09-25T09:47:22.622Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.115Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating sample complaints...
+2025-09-26T08:07:45.116Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         complaints
@@ -449,7 +452,7 @@ Hibernate:
         (category, created_at, description, priority, resolution_notes, resolved_at, status, student_email, student_name, updated_at, complaint_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.623Z DEBUG 4572 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.117Z DEBUG 2774 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : 
     insert 
     into
         complaints
@@ -463,29 +466,29 @@ Hibernate:
         (category, created_at, description, priority, resolution_notes, resolved_at, status, student_email, student_name, updated_at, complaint_id) 
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-2025-09-25T09:47:22.623Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample complaints created successfully
-2025-09-25T09:47:22.623Z  INFO 4572 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Application data initialization completed
-2025-09-25T09:47:35.818Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-09-25T09:47:35.818Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-09-25T09:47:35.819Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2025-09-25T09:47:35.828Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing HEAD /adminPage.html
-2025-09-25T09:47:35.832Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:47:35.834Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured HEAD /adminPage.html
-2025-09-25T09:47:46.845Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
-2025-09-25T09:47:46.846Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:47:46.846Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
-2025-09-25T09:47:46.854Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /LOGO.png
-2025-09-25T09:47:46.855Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:47:46.855Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /LOGO.png
-2025-09-25T09:47:46.943Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
-2025-09-25T09:47:46.943Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
-2025-09-25T09:47:46.944Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:47:46.944Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:47:46.944Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
-2025-09-25T09:47:46.944Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
-2025-09-25T09:47:46.951Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching recent registrations
-2025-09-25T09:47:46.951Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
-2025-09-25T09:47:46.953Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:07:45.117Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Sample complaints created successfully
+2025-09-26T08:07:45.117Z  INFO 2774 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Application data initialization completed
+2025-09-26T08:07:57.022Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-09-26T08:07:57.022Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-09-26T08:07:57.023Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-09-26T08:07:57.031Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing HEAD /adminPage.html
+2025-09-26T08:07:57.035Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:07:57.036Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured HEAD /adminPage.html
+2025-09-26T08:08:08.909Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
+2025-09-26T08:08:08.910Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:08:08.910Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
+2025-09-26T08:08:08.949Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /LOGO.png
+2025-09-26T08:08:08.949Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:08:08.950Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /LOGO.png
+2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
+2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:08:09.037Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:08:09.038Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-09-26T08:08:09.038Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
+2025-09-26T08:08:09.080Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching recent registrations
+2025-09-26T08:08:09.080Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-09-26T08:08:09.081Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -495,7 +498,7 @@ Hibernate:
         count(*) 
     from
         students s1_0
-2025-09-25T09:47:46.962Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.092Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -509,7 +512,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.status=?
-2025-09-25T09:47:46.962Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.092Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
     select
         s1_0.student_id,
         s1_0.age,
@@ -551,7 +554,7 @@ Hibernate:
         s1_0.registered_at>=? 
     order by
         s1_0.registered_at desc
-2025-09-25T09:47:46.965Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.095Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -565,7 +568,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.status=?
-2025-09-25T09:47:46.966Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.148Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -579,7 +582,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.status=?
-2025-09-25T09:47:46.967Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.150Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(s1_0.student_id) 
     from
@@ -593,7 +596,7 @@ Hibernate:
         students s1_0 
     where
         s1_0.registered_at>=?
-2025-09-25T09:47:46.968Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.151Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -603,7 +606,7 @@ Hibernate:
         count(*) 
     from
         users u1_0
-2025-09-25T09:47:46.969Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.152Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(u1_0.user_id) 
     from
@@ -617,7 +620,7 @@ Hibernate:
         users u1_0 
     where
         u1_0.status=?
-2025-09-25T09:47:46.970Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.153Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(u1_0.user_id) 
     from
@@ -631,7 +634,7 @@ Hibernate:
         users u1_0 
     where
         u1_0.role=?
-2025-09-25T09:47:47.039Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.154Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(u1_0.user_id) 
     from
@@ -645,7 +648,7 @@ Hibernate:
         users u1_0 
     where
         u1_0.role=?
-2025-09-25T09:47:47.040Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.154Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -655,7 +658,7 @@ Hibernate:
         count(*) 
     from
         admins a1_0
-2025-09-25T09:47:47.041Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.179Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(a1_0.admin_id) 
     from
@@ -669,7 +672,7 @@ Hibernate:
         admins a1_0 
     where
         a1_0.status=?
-2025-09-25T09:47:47.042Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.181Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(a1_0.admin_id) 
     from
@@ -683,7 +686,7 @@ Hibernate:
         admins a1_0 
     where
         a1_0.status=?
-2025-09-25T09:47:47.043Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.181Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(a1_0.admin_id) 
     from
@@ -697,8 +700,8 @@ Hibernate:
         admins a1_0 
     where
         a1_0.status=?
-2025-09-25T09:47:47.043Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Calculating course statistics
-2025-09-25T09:47:47.044Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.182Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-09-26T08:08:09.182Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(*) 
     from
@@ -708,7 +711,7 @@ Hibernate:
         count(*) 
     from
         courses c1_0
-2025-09-25T09:47:47.045Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.183Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(c1_0.course_id) 
     from
@@ -722,7 +725,7 @@ Hibernate:
         courses c1_0 
     where
         c1_0.status=?
-2025-09-25T09:47:47.045Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.184Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         count(c1_0.course_id) 
     from
@@ -736,7 +739,7 @@ Hibernate:
         courses c1_0 
     where
         c1_0.status=?
-2025-09-25T09:47:47.046Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+2025-09-26T08:08:09.185Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
     select
         distinct c1_0.category 
     from
@@ -750,593 +753,11 @@ Hibernate:
         courses c1_0 
     order by
         c1_0.category
-2025-09-25T09:48:04.564Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
-2025-09-25T09:48:04.564Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:04.564Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
-2025-09-25T09:48:04.572Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /LOGO.png
-2025-09-25T09:48:04.572Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:04.572Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /LOGO.png
-2025-09-25T09:48:04.671Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
-2025-09-25T09:48:04.671Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
-2025-09-25T09:48:04.672Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:04.672Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:04.672Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
-2025-09-25T09:48:04.672Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
-2025-09-25T09:48:04.672Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AdminController  : Fetching recent registrations
-2025-09-25T09:48:04.672Z  INFO 4572 --- [tracker-pro-spts] [io-8080-exec-10] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
-2025-09-25T09:48:04.673Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        students s1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        students s1_0
-2025-09-25T09:48:04.673Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=? 
-    order by
-        s1_0.registered_at desc
-Hibernate: 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=? 
-    order by
-        s1_0.registered_at desc
-2025-09-25T09:48:04.674Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-25T09:48:04.675Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-25T09:48:04.676Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-25T09:48:04.676Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-2025-09-25T09:48:04.677Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        users u1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        users u1_0
-2025-09-25T09:48:04.678Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-2025-09-25T09:48:04.679Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-25T09:48:04.680Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-25T09:48:04.681Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        admins a1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        admins a1_0
-2025-09-25T09:48:04.682Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-25T09:48:04.683Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-25T09:48:04.684Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-25T09:48:04.684Z  INFO 4572 --- [tracker-pro-spts] [io-8080-exec-10] com.trackerpro.service.CourseService     : Calculating course statistics
-2025-09-25T09:48:04.684Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        courses c1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        courses c1_0
-2025-09-25T09:48:04.685Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-25T09:48:04.686Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-25T09:48:04.686Z DEBUG 4572 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-Hibernate: 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-2025-09-25T09:48:07.309Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations
-2025-09-25T09:48:07.309Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:07.309Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations
-2025-09-25T09:48:07.310Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AdminController  : Fetching all student registrations
-2025-09-25T09:48:07.311Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0
-Hibernate: 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0
-2025-09-25T09:48:47.495Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
-2025-09-25T09:48:47.495Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:47.495Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
-2025-09-25T09:48:47.496Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
-2025-09-25T09:48:47.496Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        students s1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        students s1_0
-2025-09-25T09:48:47.497Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-25T09:48:47.498Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-25T09:48:47.499Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.status=?
-2025-09-25T09:48:47.499Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-Hibernate: 
-    select
-        count(s1_0.student_id) 
-    from
-        students s1_0 
-    where
-        s1_0.registered_at>=?
-2025-09-25T09:48:47.500Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        users u1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        users u1_0
-2025-09-25T09:48:47.501Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.status=?
-2025-09-25T09:48:47.502Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-25T09:48:47.502Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-Hibernate: 
-    select
-        count(u1_0.user_id) 
-    from
-        users u1_0 
-    where
-        u1_0.role=?
-2025-09-25T09:48:47.503Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        admins a1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        admins a1_0
-2025-09-25T09:48:47.504Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-25T09:48:47.504Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-25T09:48:47.505Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-Hibernate: 
-    select
-        count(a1_0.admin_id) 
-    from
-        admins a1_0 
-    where
-        a1_0.status=?
-2025-09-25T09:48:47.505Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-5] com.trackerpro.service.CourseService     : Calculating course statistics
-2025-09-25T09:48:47.505Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(*) 
-    from
-        courses c1_0
-Hibernate: 
-    select
-        count(*) 
-    from
-        courses c1_0
-2025-09-25T09:48:47.506Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-25T09:48:47.507Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-Hibernate: 
-    select
-        count(c1_0.course_id) 
-    from
-        courses c1_0 
-    where
-        c1_0.status=?
-2025-09-25T09:48:47.507Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-Hibernate: 
-    select
-        distinct c1_0.category 
-    from
-        courses c1_0 
-    order by
-        c1_0.category
-2025-09-25T09:48:47.521Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations
-2025-09-25T09:48:47.521Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:47.522Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations
-2025-09-25T09:48:47.522Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-6] c.trackerpro.controller.AdminController  : Fetching all student registrations
-2025-09-25T09:48:47.523Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0
-Hibernate: 
-    select
-        s1_0.student_id,
-        s1_0.age,
-        s1_0.date_of_birth,
-        s1_0.email,
-        s1_0.first_name,
-        s1_0.gender,
-        s1_0.last_name,
-        s1_0.location,
-        s1_0.mobile_no,
-        s1_0.password,
-        s1_0.registered_at,
-        s1_0.status,
-        s1_0.updated_at 
-    from
-        students s1_0
-2025-09-25T09:48:47.544Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/users
-2025-09-25T09:48:47.544Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:47.544Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/users
-2025-09-25T09:48:47.544Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-7] c.trackerpro.controller.AdminController  : Fetching all users
-2025-09-25T09:48:47.546Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : 
+2025-09-26T08:08:51.093Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/users
+2025-09-26T08:08:51.093Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:08:51.093Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/users
+2025-09-26T08:08:51.094Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AdminController  : Fetching all users
+2025-09-26T08:08:51.095Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
     select
         u1_0.user_id,
         u1_0.city,
@@ -1370,11 +791,327 @@ Hibernate:
         u1_0.updated_at 
     from
         users u1_0
-2025-09-25T09:48:47.565Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
-2025-09-25T09:48:47.566Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
-2025-09-25T09:48:47.566Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
-2025-09-25T09:48:47.566Z  INFO 4572 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AdminController  : Fetching recent registrations
-2025-09-25T09:48:47.567Z DEBUG 4572 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+2025-09-26T08:08:58.919Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/users
+2025-09-26T08:08:58.919Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:08:58.920Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/users
+2025-09-26T08:08:58.947Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AdminController  : Creating new user with email: test.faculty@tracker.com
+2025-09-26T08:08:58.951Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id)>0 
+    from
+        users u1_0 
+    where
+        lower(u1_0.email)=lower(?)
+Hibernate: 
+    select
+        count(u1_0.user_id)>0 
+    from
+        users u1_0 
+    where
+        lower(u1_0.email)=lower(?)
+2025-09-26T08:08:59.045Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        users
+        (city, created_at, date_of_birth, email, first_name, gender, last_name, mobile_no, password, role, status, updated_at, user_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-09-26T08:09:07.162Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/courses
+2025-09-26T08:09:07.162Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:07.163Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/courses
+2025-09-26T08:09:07.165Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AdminController  : Creating new course with code: TEST101
+2025-09-26T08:09:07.165Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Creating new course: TEST101
+2025-09-26T08:09:07.167Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id)>0 
+    from
+        courses c1_0 
+    where
+        lower(c1_0.course_code)=lower(?)
+Hibernate: 
+    select
+        count(c1_0.course_id)>0 
+    from
+        courses c1_0 
+    where
+        lower(c1_0.course_code)=lower(?)
+2025-09-26T08:09:07.168Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Course created successfully with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:07.168Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : 
+    insert 
+    into
+        courses
+        (batches_count, category, course_code, course_title, created_at, description, duration_months, prerequisites, status, updated_at, course_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        courses
+        (batches_count, category, course_code, course_title, created_at, description, duration_months, prerequisites, status, updated_at, course_id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-09-26T08:09:13.363Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/publish
+2025-09-26T08:09:13.363Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:13.363Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/publish
+2025-09-26T08:09:13.365Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AdminController  : Publishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:13.365Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Publishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:13.366Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0 
+    where
+        c1_0.course_id=?
+Hibernate: 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0 
+    where
+        c1_0.course_id=?
+2025-09-26T08:09:13.367Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Course published successfully: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:13.371Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    update
+        courses 
+    set
+        batches_count=?,
+        category=?,
+        course_code=?,
+        course_title=?,
+        created_at=?,
+        description=?,
+        duration_months=?,
+        prerequisites=?,
+        status=?,
+        updated_at=? 
+    where
+        course_id=?
+Hibernate: 
+    update
+        courses 
+    set
+        batches_count=?,
+        category=?,
+        course_code=?,
+        course_title=?,
+        created_at=?,
+        description=?,
+        duration_months=?,
+        prerequisites=?,
+        status=?,
+        updated_at=? 
+    where
+        course_id=?
+2025-09-26T08:09:21.278Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/unpublish
+2025-09-26T08:09:21.278Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:21.279Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf/unpublish
+2025-09-26T08:09:21.279Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AdminController  : Unpublishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:21.280Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] com.trackerpro.service.CourseService     : Unpublishing course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:21.280Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0 
+    where
+        c1_0.course_id=?
+Hibernate: 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0 
+    where
+        c1_0.course_id=?
+2025-09-26T08:09:21.281Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] com.trackerpro.service.CourseService     : Course unpublished successfully: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:21.281Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
+    update
+        courses 
+    set
+        batches_count=?,
+        category=?,
+        course_code=?,
+        course_title=?,
+        created_at=?,
+        description=?,
+        duration_months=?,
+        prerequisites=?,
+        status=?,
+        updated_at=? 
+    where
+        course_id=?
+Hibernate: 
+    update
+        courses 
+    set
+        batches_count=?,
+        category=?,
+        course_code=?,
+        course_title=?,
+        created_at=?,
+        description=?,
+        duration_months=?,
+        prerequisites=?,
+        status=?,
+        updated_at=? 
+    where
+        course_id=?
+2025-09-26T08:09:28.177Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:28.178Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:28.178Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured PUT /api/admin/courses/3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:28.179Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Updating course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:28.179Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Updating course with ID: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:28.179Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0 
+    where
+        c1_0.course_id=?
+Hibernate: 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0 
+    where
+        c1_0.course_id=?
+2025-09-26T08:09:28.181Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id)>0 
+    from
+        courses c1_0 
+    where
+        lower(c1_0.course_code)=lower(?)
+Hibernate: 
+    select
+        count(c1_0.course_id)>0 
+    from
+        courses c1_0 
+    where
+        lower(c1_0.course_code)=lower(?)
+2025-09-26T08:09:28.182Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Course updated successfully: 3a7e9fbd-913a-4486-bf37-ce7aaca479cf
+2025-09-26T08:09:28.182Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    update
+        courses 
+    set
+        batches_count=?,
+        category=?,
+        course_code=?,
+        course_title=?,
+        created_at=?,
+        description=?,
+        duration_months=?,
+        prerequisites=?,
+        status=?,
+        updated_at=? 
+    where
+        course_id=?
+Hibernate: 
+    update
+        courses 
+    set
+        batches_count=?,
+        category=?,
+        course_code=?,
+        course_title=?,
+        created_at=?,
+        description=?,
+        duration_months=?,
+        prerequisites=?,
+        status=?,
+        updated_at=? 
+    where
+        course_id=?
+2025-09-26T08:09:38.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
+2025-09-26T08:09:38.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:38.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
+2025-09-26T08:09:38.661Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /LOGO.png
+2025-09-26T08:09:38.661Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:38.679Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /LOGO.png
+2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/recent
+2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:38.751Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:38.752Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-09-26T08:09:38.752Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/recent
+2025-09-26T08:09:38.752Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-09-26T08:09:38.752Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AdminController  : Fetching recent registrations
+2025-09-26T08:09:38.752Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        students s1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        students s1_0
+2025-09-26T08:09:38.753Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : 
     select
         s1_0.student_id,
         s1_0.age,
@@ -1416,3 +1153,551 @@ Hibernate:
         s1_0.registered_at>=? 
     order by
         s1_0.registered_at desc
+2025-09-26T08:09:38.754Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T08:09:38.755Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T08:09:38.755Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T08:09:38.756Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.registered_at>=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.registered_at>=?
+2025-09-26T08:09:38.756Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        users u1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        users u1_0
+2025-09-26T08:09:38.757Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.status=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.status=?
+2025-09-26T08:09:38.758Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2025-09-26T08:09:38.758Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2025-09-26T08:09:38.759Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        admins a1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        admins a1_0
+2025-09-26T08:09:38.760Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T08:09:38.780Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T08:09:38.781Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T08:09:38.781Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-8] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-09-26T08:09:38.781Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        courses c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        courses c1_0
+2025-09-26T08:09:38.782Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+Hibernate: 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+2025-09-26T08:09:38.783Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+Hibernate: 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+2025-09-26T08:09:38.784Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : 
+    select
+        distinct c1_0.category 
+    from
+        courses c1_0 
+    order by
+        c1_0.category
+Hibernate: 
+    select
+        distinct c1_0.category 
+    from
+        courses c1_0 
+    order by
+        c1_0.category
+2025-09-26T08:09:54.647Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-09-26T08:09:54.648Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:54.648Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-09-26T08:09:54.648Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-09-26T08:09:54.649Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        students s1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        students s1_0
+2025-09-26T08:09:54.650Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T08:09:54.651Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T08:09:54.651Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.status=?
+2025-09-26T08:09:54.652Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.registered_at>=?
+Hibernate: 
+    select
+        count(s1_0.student_id) 
+    from
+        students s1_0 
+    where
+        s1_0.registered_at>=?
+2025-09-26T08:09:54.652Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        users u1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        users u1_0
+2025-09-26T08:09:54.653Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.status=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.status=?
+2025-09-26T08:09:54.654Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2025-09-26T08:09:54.654Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+Hibernate: 
+    select
+        count(u1_0.user_id) 
+    from
+        users u1_0 
+    where
+        u1_0.role=?
+2025-09-26T08:09:54.655Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        admins a1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        admins a1_0
+2025-09-26T08:09:54.656Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T08:09:54.656Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T08:09:54.657Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+Hibernate: 
+    select
+        count(a1_0.admin_id) 
+    from
+        admins a1_0 
+    where
+        a1_0.status=?
+2025-09-26T08:09:54.657Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-2] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-09-26T08:09:54.657Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(*) 
+    from
+        courses c1_0
+Hibernate: 
+    select
+        count(*) 
+    from
+        courses c1_0
+2025-09-26T08:09:54.658Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+Hibernate: 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+2025-09-26T08:09:54.658Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+Hibernate: 
+    select
+        count(c1_0.course_id) 
+    from
+        courses c1_0 
+    where
+        c1_0.status=?
+2025-09-26T08:09:54.659Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : 
+    select
+        distinct c1_0.category 
+    from
+        courses c1_0 
+    order by
+        c1_0.category
+Hibernate: 
+    select
+        distinct c1_0.category 
+    from
+        courses c1_0 
+    order by
+        c1_0.category
+2025-09-26T08:09:54.670Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/users
+2025-09-26T08:09:54.670Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:54.670Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/users
+2025-09-26T08:09:54.671Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AdminController  : Fetching all users
+2025-09-26T08:09:54.672Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : 
+    select
+        u1_0.user_id,
+        u1_0.city,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.gender,
+        u1_0.last_name,
+        u1_0.mobile_no,
+        u1_0.password,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at 
+    from
+        users u1_0
+Hibernate: 
+    select
+        u1_0.user_id,
+        u1_0.city,
+        u1_0.created_at,
+        u1_0.date_of_birth,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.gender,
+        u1_0.last_name,
+        u1_0.mobile_no,
+        u1_0.password,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at 
+    from
+        users u1_0
+2025-09-26T08:09:54.693Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/courses
+2025-09-26T08:09:54.693Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:54.693Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/courses
+2025-09-26T08:09:54.694Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching all courses
+2025-09-26T08:09:54.694Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Fetching all courses
+2025-09-26T08:09:54.695Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0
+Hibernate: 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0
+2025-09-26T08:09:54.760Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/courses
+2025-09-26T08:09:54.760Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-09-26T08:09:54.761Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/courses
+2025-09-26T08:09:54.761Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching all courses
+2025-09-26T08:09:54.761Z  INFO 2774 --- [tracker-pro-spts] [nio-8080-exec-5] com.trackerpro.service.CourseService     : Fetching all courses
+2025-09-26T08:09:54.762Z DEBUG 2774 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0
+Hibernate: 
+    select
+        c1_0.course_id,
+        c1_0.batches_count,
+        c1_0.category,
+        c1_0.course_code,
+        c1_0.course_title,
+        c1_0.created_at,
+        c1_0.description,
+        c1_0.duration_months,
+        c1_0.prerequisites,
+        c1_0.status,
+        c1_0.updated_at 
+    from
+        courses c1_0
