@@ -1575,12 +1575,27 @@
             // Logout functionality
             document.getElementById('logoutBtn').addEventListener('click', function() {
                 if (confirm('Are you sure you want to logout?')) {
-                    // Clear any stored authentication data
+                    // Clear all authentication data
                     localStorage.removeItem('adminToken');
+                    localStorage.removeItem('loginTimestamp');
                     sessionStorage.removeItem('adminSession');
+                    sessionStorage.clear();  // Clear all session storage
                     
-                    // Clear browser history to prevent back navigation
-                    history.replaceState(null, null, 'loginPage.html');
+                    // Prevent back navigation by clearing history
+                    if (history.pushState) {
+                        history.pushState(null, null, location.href);
+                        window.addEventListener('popstate', function() {
+                            // User tried to use back button, redirect to login
+                            window.location.replace('loginPage.html');
+                        });
+                    }
+                    
+                    // Clear browser cache for this session
+                    if ('caches' in window) {
+                        caches.keys().then(function(names) {
+                            for (let name of names) caches.delete(name);
+                        });
+                    }
                     
                     // Redirect to login page
                     window.location.replace('loginPage.html');
