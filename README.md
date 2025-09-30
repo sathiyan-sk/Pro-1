@@ -340,23 +340,40 @@ curl -X POST http://localhost:8080/api/login \
 
 ### **Database Migration to MySQL**
 
-1. **Update application.yml:**
+The application now supports easy migration between H2 (development) and MySQL (production) using Spring profiles.
+
+1. **For Development (H2 Database - Default):**
 ```yaml
 spring:
   profiles:
-    active: mysql
-  datasource:
-    url: jdbc:mysql://localhost:3306/trackerprodb
-    username: your_mysql_username
-    password: your_mysql_password
+    active: development  # Uses H2 in-memory database
 ```
 
-2. **Create MySQL Database:**
+2. **For Production (MySQL Database):**
+```yaml
+spring:
+  profiles:
+    active: production   # Uses MySQL database
+```
+
+3. **Environment Variables (Production):**
+```bash
+# Set environment variables for MySQL
+export DB_USERNAME=your_mysql_username
+export DB_PASSWORD=your_mysql_password
+
+# Or create application-production.yml file with your credentials
+```
+
+4. **Create MySQL Database:**
 ```sql
-CREATE DATABASE trackerprodb;
+CREATE DATABASE trackerprodb CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-3. **Update Maven dependencies** if needed for specific MySQL connector version
+5. **Run with Production Profile:**
+```bash
+java -jar target/tracker-pro-spts-0.0.1-SNAPSHOT.jar --spring.profiles.active=production
+```
 
 ---
 
