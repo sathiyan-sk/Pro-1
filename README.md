@@ -261,20 +261,47 @@ server:
   port: 8080                    # Application port
 
 spring:
-  datasource:
-    url: jdbc:h2:mem:trackerprodb    # H2 database URL
-    username: sa                      # Database username
-    password: password                # Database password
+  profiles:
+    active: development         # Change to 'production' for MySQL
   
-  jpa:
-    hibernate:
-      ddl-auto: create-drop          # Database schema management
-    show-sql: true                   # SQL query logging
+  # Development Profile (H2 Database - Default)
+  ---
+  spring:
+    config:
+      activate:
+        on-profile: development
+    datasource:
+      url: jdbc:h2:mem:trackerprodb
+      driver-class-name: org.h2.Driver
+      username: sa
+      password: password
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+  
+  # Production Profile (MySQL Database)
+  ---
+  spring:
+    config:
+      activate:
+        on-profile: production  
+    datasource:
+      url: jdbc:mysql://localhost:3306/trackerprodb
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: ${DB_USERNAME:root}
+      password: ${DB_PASSWORD:your_mysql_password}
+    jpa:
+      database-platform: org.hibernate.dialect.MySQL8Dialect
+      hibernate:
+        ddl-auto: update
+      show-sql: false
 ```
 
 ### **Environment Profiles**
 - **Development**: H2 in-memory database (default)
-- **Production**: MySQL database support available
+- **Production**: MySQL database with environment variable support
 
 ---
 
