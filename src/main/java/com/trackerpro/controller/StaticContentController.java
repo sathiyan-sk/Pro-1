@@ -40,6 +40,14 @@ public class StaticContentController {
     }
     
     /**
+     * Student dashboard - requires authentication
+     */
+    @GetMapping("/student")
+    public String student() {
+        return "studentApplication.html";
+    }
+    
+    /**
      * Forgot password page
      */
     @GetMapping("/forgot")
