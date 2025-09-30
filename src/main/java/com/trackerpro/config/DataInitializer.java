@@ -105,35 +105,8 @@ public class DataInitializer implements CommandLineRunner {
     }
     
     private void initializeCourses() {
-        if (courseRepository.count() == 0) {
-            logger.info("Creating sample courses...");
-            
-            // Course 1
-            Course course1 = new Course();
-            course1.setCourseCode("WD-001");
-            course1.setCourseTitle("Full Stack Web Development");
-            course1.setDurationMonths(6);
-            course1.setCategory("Web Development");
-            course1.setPrerequisites("Basic Programming Knowledge");
-            course1.setDescription("Complete full-stack web development course covering frontend and backend technologies.");
-            course1.setStatus(CourseStatus.PUBLISHED);
-            course1.setBatchesCount(3);
-            courseRepository.save(course1);
-            
-            // Course 2
-            Course course2 = new Course();
-            course2.setCourseCode("DS-001");
-            course2.setCourseTitle("Data Science Fundamentals");
-            course2.setDurationMonths(4);
-            course2.setCategory("Data Science");
-            course2.setPrerequisites("Mathematics, Statistics");
-            course2.setDescription("Introduction to data science concepts and tools including Python, SQL, and basic machine learning.");
-            course2.setStatus(CourseStatus.DRAFT);
-            course2.setBatchesCount(0);
-            courseRepository.save(course2);
-            
-            logger.info("Sample courses created successfully");
-        }
+        // No sample courses - only admin-created courses will appear
+        logger.info("Course initialization skipped - using only admin-created courses");
     }
     
     private void initializeComplaints() {
