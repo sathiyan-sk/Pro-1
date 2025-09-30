@@ -1507,13 +1507,46 @@
         let editingUserId = null;
 
         // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
+        document.addEventListener('DOMContentLoaded', async function() {
+            await initializeApp();
+            
+            // Set up periodic session validation (every 5 minutes)
+            setInterval(async function() {
+                await validateActiveSession();
+            }, 5 * 60 * 1000); // 5 minutes
+            
+            // Set up activity-based session validation
+            document.addEventListener('click', validateActiveSession);
+            document.addEventListener('keypress', validateActiveSession);
         });
+        
+        async function validateActiveSession() {
+            const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
+            const hasLoginTimestamp = localStorage.getItem('loginTimestamp');
+            
+            if (!hasValidSession || !hasLoginTimestamp) {
+                console.log('Session lost, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+            
+            // Check timestamp validity
+            const loginTime = parseInt(hasLoginTimestamp);
+            const currentTime = Date.now();
+            const oneHour = 60 * 60 * 1000;
+            
+            if ((currentTime - loginTime) >= oneHour) {
+                console.log('Session expired during activity, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+        }
 
-        function initializeApp() {
-            // Check authentication status
-            checkAuthenticationStatus();
+        async function initializeApp() {
+            // Check authentication status first (critical security check)
+            await checkAuthenticationStatus();
             
             setupEventListeners();
             updateDashboardStats();
@@ -1526,39 +1559,90 @@
             });
         }
         
-        function checkAuthenticationStatus() {
-            // Check if user should be authenticated
-            const isFromLogin = document.referrer.includes('loginPage.html');
+        async function checkAuthenticationStatus() {
+            // Critical security check - verify authentication with backend
             const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
             const hasLoginTimestamp = localStorage.getItem('loginTimestamp');
+            const isFromLogin = document.referrer.includes('loginPage.html');
             
-            // Check if user is coming from login or has a valid session
+            // If coming from login page, set initial session and verify with backend
             if (isFromLogin) {
-                // Set session as active if coming from login
                 sessionStorage.setItem('adminSession', 'active');
                 localStorage.setItem('loginTimestamp', Date.now().toString());
-                return;
+                
+                // Verify the session is actually valid by testing dashboard API
+                try {
+                    const response = await fetch('/api/admin/dashboard/stats', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    
+                    if (!response.ok || response.status === 401 || response.status === 403) {
+                        throw new Error('Authentication failed');
+                    }
+                    
+                    // Valid session confirmed
+                    return;
+                } catch (error) {
+                    console.log('Backend authentication failed, redirecting to login');
+                    clearAuthenticationData();
+                    window.location.replace('loginPage.html');
+                    return;
+                }
             }
             
-            // If no session and not from login, check for recent login timestamp
-            if (!hasValidSession) {
-                // Allow access if logged in within the last hour
-                if (hasLoginTimestamp) {
-                    const loginTime = parseInt(hasLoginTimestamp);
-                    const currentTime = Date.now();
-                    const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
-                    
-                    if ((currentTime - loginTime) < oneHour) {
-                        sessionStorage.setItem('adminSession', 'active');
-                        return;
-                    }
-                }
-                
-                // No valid session found, redirect to login
-                console.log('No valid authentication found, redirecting to login');
+            // For direct access attempts - strict validation required
+            if (!hasValidSession || !hasLoginTimestamp) {
+                console.log('No valid session found, redirecting to login');
+                clearAuthenticationData();
                 window.location.replace('loginPage.html');
                 return;
             }
+            
+            // Check session timestamp validity (1 hour max)
+            const loginTime = parseInt(hasLoginTimestamp);
+            const currentTime = Date.now();
+            const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+            
+            if ((currentTime - loginTime) >= oneHour) {
+                console.log('Session expired, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+            
+            // Session exists and is not expired - verify with backend
+            try {
+                const response = await fetch('/api/admin/dashboard/stats', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (!response.ok || response.status === 401 || response.status === 403) {
+                    throw new Error('Session invalid');
+                }
+                
+                // Session is valid, update timestamp
+                localStorage.setItem('loginTimestamp', Date.now().toString());
+                
+            } catch (error) {
+                console.log('Session validation failed, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+        }
+        
+        function clearAuthenticationData() {
+            // Clear all authentication data
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('loginTimestamp');
+            sessionStorage.removeItem('adminSession');
+            sessionStorage.clear();
         }
 
         function setupEventListeners() {
@@ -1576,18 +1660,22 @@
             document.getElementById('logoutBtn').addEventListener('click', function() {
                 if (confirm('Are you sure you want to logout?')) {
                     // Clear all authentication data
-                    localStorage.removeItem('adminToken');
-                    localStorage.removeItem('loginTimestamp');
-                    sessionStorage.removeItem('adminSession');
-                    sessionStorage.clear();  // Clear all session storage
+                    clearAuthenticationData();
                     
-                    // Prevent back navigation by clearing history
+                    // Prevent back navigation by manipulating history
                     if (history.pushState) {
-                        history.pushState(null, null, location.href);
-                        window.addEventListener('popstate', function() {
-                            // User tried to use back button, redirect to login
+                        // Replace current history entry
+                        history.replaceState(null, null, 'loginPage.html');
+                        
+                        // Add multiple entries to make back button ineffective
+                        for (let i = 0; i < 10; i++) {
+                            history.pushState(null, null, 'loginPage.html');
+                        }
+                        
+                        // Set up listener to redirect on back navigation
+                        window.addEventListener('popstate', function(e) {
                             window.location.replace('loginPage.html');
-                        });
+                        }, { once: true });
                     }
                     
                     // Clear browser cache for this session
@@ -1597,7 +1685,7 @@
                         });
                     }
                     
-                    // Redirect to login page
+                    // Force immediate redirect
                     window.location.replace('loginPage.html');
                 }
             });
