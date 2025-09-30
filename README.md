@@ -114,7 +114,7 @@ Once the application starts successfully, you can access:
 
 ## 👤 Default User Accounts
 
-The application comes with pre-configured accounts for immediate testing:
+The application comes with only essential admin account for immediate testing:
 
 ### **🔑 Admin Account**
 - **Email**: `admin@tracker.com`
@@ -131,9 +131,9 @@ The application comes with pre-configured accounts for immediate testing:
 - **Password**: `hr123456`
 - **Access**: Human resources functions
 
-### **🎓 Sample Students**
-- **Student 1**: `john.smith@example.com` / `student123`
-- **Student 2**: `emily.davis@example.com` / `student123`
+### **🎓 Students**
+- **No pre-loaded sample students** - Only real registered users can access the system
+- **Register at**: http://localhost:8080/registerPage.html
 
 ---
 
