@@ -39,6 +39,9 @@ public class AdminController {
     
     @Autowired
     private CourseService courseService;
+    
+    @Autowired
+    private StudentApplicationService applicationService;
 
     /**
      * Get dashboard statistics
