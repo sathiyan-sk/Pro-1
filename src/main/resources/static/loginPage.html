@@ -603,16 +603,16 @@
                         sessionStorage.setItem('studentName', response.user.firstName + ' ' + response.user.lastName);
                     }
                     
-                    // Redirect based on user type
+                    // Redirect based on user type using proper controller paths
                     if (response.userType === 'ADMIN') {
-                        window.location.href = 'adminPage.html';
+                        window.location.href = '/admin';
                     } else if (response.userType === 'STUDENT') {
-                        window.location.href = 'studentApplication.html';
+                        window.location.href = '/student';
                     } else if (response.userType === 'FACULTY' || response.userType === 'HR') {
-                        window.location.href = 'adminPage.html'; // Faculty/HR use admin interface
+                        window.location.href = '/admin'; // Faculty/HR use admin interface
                     } else {
                         // Fallback for any other user types
-                        window.location.href = 'studentApplication.html';
+                        window.location.href = '/student';
                     }
                 } else {
                     throw new Error(response.message || 'Login failed');
