@@ -215,8 +215,11 @@ GET  /api/student/can-apply/{studentId}         # Check if student can apply
 
 1. **Register**: Go to http://localhost:8080/registerPage.html
 2. **Fill Details**: Complete registration form (age 20-25 required)
-3. **Login**: Use your registered credentials
-4. **Access Services**: Use student dashboard features
+3. **Login**: Use your registered credentials at http://localhost:8080/loginPage.html
+4. **Access Student Dashboard**: Automatically redirected to http://localhost:8080/studentApplication.html
+5. **Apply for Courses**: View available courses and submit applications
+6. **Track Progress**: Monitor application status through 5-stage progress tracker:
+   - Registered → Applied → Under Review → Interview → Final Decision
 
 ### **For Faculty/HR:**
 
