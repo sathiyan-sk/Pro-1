@@ -100,39 +100,8 @@ public class DataInitializer implements CommandLineRunner {
     }
     
     private void initializeStudents() {
-        if (studentRepository.count() == 0) {
-            logger.info("Creating sample students...");
-            
-            // Sample student 1
-            Student student1 = new Student();
-            student1.setFirstName("John");
-            student1.setLastName("Smith");
-            student1.setEmail("john.smith@example.com");
-            student1.setPassword(passwordEncoder.encode("student123"));
-            student1.setGender(Gender.MALE);
-            student1.setDateOfBirth("17/10/2003");
-            student1.setAge(21);
-            student1.setLocation("Pune");
-            student1.setMobileNo("8940967403");
-            student1.setStatus(StudentStatus.REGISTERED);
-            studentRepository.save(student1);
-            
-            // Sample student 2
-            Student student2 = new Student();
-            student2.setFirstName("Emily");
-            student2.setLastName("Davis");
-            student2.setEmail("emily.davis@example.com");
-            student2.setPassword(passwordEncoder.encode("student123"));
-            student2.setGender(Gender.FEMALE);
-            student2.setDateOfBirth("25/03/2002");
-            student2.setAge(22);
-            student2.setLocation("Bangalore");
-            student2.setMobileNo("9123456789");
-            student2.setStatus(StudentStatus.REGISTERED);
-            studentRepository.save(student2);
-            
-            logger.info("Sample students created successfully");
-        }
+        // No sample students - only real registered users can login
+        logger.info("Student initialization skipped - using only real registrations");
     }
     
     private void initializeCourses() {
