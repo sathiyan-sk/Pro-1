@@ -178,6 +178,17 @@ GET  /api/admin/admins             # All admin accounts
 POST /api/admin/admins             # Create new admin
 ```
 
+### **Student APIs**
+```http
+GET  /api/student/profile/{studentId}           # Get student profile
+GET  /api/student/courses/available             # Get available courses to apply
+GET  /api/student/courses/{courseId}/details    # Get detailed course information
+POST /api/student/apply                         # Apply for a course
+GET  /api/student/applications/{studentId}      # Get student's application
+GET  /api/student/progress/{studentId}          # Get application progress
+GET  /api/student/can-apply/{studentId}         # Check if student can apply
+```
+
 ### **API Response Format**
 ```json
 {
