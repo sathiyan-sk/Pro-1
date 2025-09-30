@@ -1339,9 +1339,14 @@
             ANIMATION_DURATION: 300
         };
 
-        // Initialize student ID from URL parameter or session storage
-        const urlParams = new URLSearchParams(window.location.search);
-        CONFIG.STUDENT_ID = urlParams.get('studentId') || sessionStorage.getItem('studentId') || 'demo-student-id';
+        // Initialize student ID from session storage (set during login)
+        CONFIG.STUDENT_ID = sessionStorage.getItem('studentId');
+        
+        // Redirect to login if no student ID found
+        if (!CONFIG.STUDENT_ID) {
+            console.warn('No student session found. Redirecting to login.');
+            window.location.href = '/login';
+        }
 
         // ========================================================================
         // GLOBAL STATE MANAGEMENT
