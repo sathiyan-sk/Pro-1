@@ -5,16 +5,24 @@ spring:
   application:
     name: tracker-pro-spts
     
-  # H2 Database Configuration
+  # H2 Database Configuration (Development)
   datasource:
     url: jdbc:h2:mem:trackerprodb
     driver-class-name: org.h2.Driver
     username: sa
     password: password
     
+  # MySQL Database Configuration (Production - Comment out for future migration)
+  # datasource:
+  #   url: jdbc:mysql://localhost:3306/trackerprodb
+  #   driver-class-name: com.mysql.cj.jdbc.Driver
+  #   username: root
+  #   password: your_mysql_password
+    
   # JPA Configuration  
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    # For MySQL use: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
