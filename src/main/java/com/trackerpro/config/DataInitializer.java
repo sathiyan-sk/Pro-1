@@ -110,31 +110,7 @@ public class DataInitializer implements CommandLineRunner {
     }
     
     private void initializeComplaints() {
-        if (complaintRepository.count() == 0) {
-            logger.info("Creating sample complaints...");
-            
-            // Complaint 1
-            Complaint complaint1 = new Complaint();
-            complaint1.setCategory("Course Quality");
-            complaint1.setPriority(ComplaintPriority.HIGH);
-            complaint1.setDescription("Issue with course content quality and outdated materials");
-            complaint1.setStatus(ComplaintStatus.OPEN);
-            complaint1.setStudentName("John Smith");
-            complaint1.setStudentEmail("john.smith@example.com");
-            complaintRepository.save(complaint1);
-            
-            // Complaint 2
-            Complaint complaint2 = new Complaint();
-            complaint2.setCategory("Faculty Behavior");
-            complaint2.setPriority(ComplaintPriority.MEDIUM);
-            complaint2.setDescription("Complaint about faculty behavior during class sessions");
-            complaint2.setStatus(ComplaintStatus.RESOLVED);
-            complaint2.setStudentName("Emily Davis");
-            complaint2.setStudentEmail("emily.davis@example.com");
-            complaint2.setResolutionNotes("Issue resolved after discussion with faculty member");
-            complaintRepository.save(complaint2);
-            
-            logger.info("Sample complaints created successfully");
-        }
+        // No sample complaints - only real user complaints will be stored
+        logger.info("Complaint initialization skipped - using only real user complaints");
     }
 }
