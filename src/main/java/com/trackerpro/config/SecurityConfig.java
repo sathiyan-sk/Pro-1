@@ -73,6 +73,12 @@ public class SecurityConfig {
                 // Temporarily allow admin endpoints for development
                 .requestMatchers("/api/admin/**").permitAll()
                 
+                // Allow student endpoints for development (in production these would need authentication)
+                .requestMatchers("/api/student/**").permitAll()
+                
+                // Allow courses endpoints (needed for student dashboard)
+                .requestMatchers("/api/courses/**").permitAll()
+                
                 // Allow H2 console in development
                 .requestMatchers("/h2-console/**").permitAll()
                 
