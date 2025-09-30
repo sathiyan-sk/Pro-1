@@ -55,16 +55,22 @@ public class AdminController {
             UserService.UserStatistics userStats = userService.getUserStatistics();
             AdminService.AdminStatistics adminStats = adminService.getAdminStatistics();
             CourseService.CourseStatistics courseStats = courseService.getCourseStatistics();
+            StudentApplicationService.ApplicationStatistics appStats = applicationService.getApplicationStatistics();
             
             Map<String, Object> stats = new HashMap<>();
             stats.put("totalStudents", studentStats.getTotalStudents());
             stats.put("newStudentsThisWeek", studentStats.getNewStudentsThisWeek());
+            stats.put("enrolledStudents", studentStats.getEnrolledStudents());
+            stats.put("completedStudents", studentStats.getCompletedStudents());
             stats.put("totalFaculty", userStats.getFacultyCount());
             stats.put("totalHR", userStats.getHrCount());
             stats.put("totalUsers", userStats.getActiveUsers());
             stats.put("totalAdmins", adminStats.getActiveAdmins());
             stats.put("totalCourses", courseStats.getTotalCourses());
             stats.put("publishedCourses", courseStats.getPublishedCourses());
+            stats.put("totalApplications", appStats.getTotalApplications());
+            stats.put("acceptedApplications", appStats.getAcceptedCount());
+            stats.put("pendingApplications", appStats.getAppliedCount() + appStats.getUnderReviewCount());
             
             return ResponseEntity.ok(ApiResponse.success("Dashboard statistics fetched", stats));
             
