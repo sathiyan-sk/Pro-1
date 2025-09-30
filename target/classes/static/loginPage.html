@@ -597,12 +597,22 @@
                 
                 if (response.success) {
                     console.log(' Login successful!');
-                    // Redirect based on user type
+                    // Store user info for student dashboard
+                    if (response.user && response.user.id) {
+                        sessionStorage.setItem('studentId', response.user.id);
+                        sessionStorage.setItem('studentName', response.user.firstName + ' ' + response.user.lastName);
+                    }
+                    
+                    // Redirect based on user type using proper controller paths
                     if (response.userType === 'ADMIN') {
-                        window.location.href = 'adminPage.html';
+                        window.location.href = '/admin';
+                    } else if (response.userType === 'STUDENT') {
+                        window.location.href = '/student';
+                    } else if (response.userType === 'FACULTY' || response.userType === 'HR') {
+                        window.location.href = '/admin'; // Faculty/HR use admin interface
                     } else {
-                        // For students, redirect to student dashboard (to be created later)
-                        window.location.href = 'index.html';
+                        // Fallback for any other user types
+                        window.location.href = '/student';
                     }
                 } else {
                     throw new Error(response.message || 'Login failed');
