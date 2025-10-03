@@ -6,8 +6,35 @@ spring:
     name: tracker-pro-spts
   profiles:
     active: production  # ✅ set to production
+
+# Development Profile (H2 Database)
+---
+spring:
+  config:
+    activate:
+      on-profile: development
   datasource:
-    url: jdbc:mysql://localhost:3306/trackerprodb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:h2:mem:trackerprodb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+
+# Production Profile (MySQL Database)  
+---
+spring:
+  config:
+    activate:
+      on-profile: production
+  datasource:
+    url: jdbc:mysql://localhost:3306/trackerprodb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&createDatabaseIfNotExist=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: accessdb

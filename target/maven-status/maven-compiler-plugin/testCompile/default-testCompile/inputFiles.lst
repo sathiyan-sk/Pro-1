@@ -1,2 +1,2 @@
-/home/sk/WebProject/Pro-1/src/test/java/com/trackerpro/TrackerProApplicationTests.java
-/home/sk/WebProject/Pro-1/src/test/java/com/trackerpro/controller/AuthControllerTest.java
+/app/src/test/java/com/trackerpro/TrackerProApplicationTests.java
+/app/src/test/java/com/trackerpro/controller/AuthControllerTest.java

@@ -1,0 +1,546 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36mcom.trackerpro:tracker-pro-spts[0;1m >-------------------[m
+[[1;34mINFO[m] [1mBuilding tracker-pro-spts 0.0.1-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m>>> [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[0;1m > [0;1mtest-compile[m @ [36mtracker-pro-spts[0;1m >>>[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:resources[m [1m(default-resources)[m @ [36mtracker-pro-spts[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/main/resources to target/classes
+[[1;34mINFO[m] Copying 10 resources from src/main/resources to target/classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:compile[m [1m(default-compile)[m @ [36mtracker-pro-spts[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:3.3.1:testResources[m [1m(default-testResources)[m @ [36mtracker-pro-spts[0;1m ---[m
+[[1;34mINFO[m] Copying 1 resource from src/test/resources to target/test-classes
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.13.0:testCompile[m [1m(default-testCompile)[m @ [36mtracker-pro-spts[0;1m ---[m
+[[1;34mINFO[m] Nothing to compile - all classes are up to date.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m<<< [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[0;1m < [0;1mtest-compile[m @ [36mtracker-pro-spts[0;1m <<<[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mspring-boot-maven-plugin:3.3.5:run[m [1m(default-cli)[m @ [36mtracker-pro-spts[0;1m ---[m
+[[1;34mINFO[m] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.5)
+
+2025-10-03T09:14:06.520Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Starting TrackerProApplication using Java 17.0.16 with PID 2947 (/app/target/classes started by root in /app)
+2025-10-03T09:14:06.521Z DEBUG 2947 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Running with Spring Boot v3.3.5, Spring v6.1.14
+2025-10-03T09:14:06.522Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : The following 1 profile is active: "production"
+2025-10-03T09:14:07.970Z  WARN 2947 --- [tracker-pro-spts] [           main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-10-03T09:14:07.971Z  WARN 2947 --- [tracker-pro-spts] [           main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-10-03T09:14:08.681Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : create table admins (admin_id binary(16) not null, created_at datetime(6) not null, email varchar(100) not null, first_name varchar(50) not null, last_login datetime(6), last_name varchar(50), password varchar(255) not null, status enum ('ACTIVE','INACTIVE','SUSPENDED') not null, updated_at datetime(6), username varchar(50) not null, primary key (admin_id)) engine=InnoDB
+2025-10-03T09:14:08.710Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : create table complaints (complaint_id binary(16) not null, category varchar(50) not null, created_at datetime(6) not null, description TEXT not null, priority enum ('HIGH','LOW','MEDIUM','URGENT') not null, resolution_notes TEXT, resolved_at datetime(6), status enum ('CLOSED','IN_PROGRESS','OPEN','RESOLVED') not null, student_email varchar(50), student_name varchar(100), updated_at datetime(6), primary key (complaint_id)) engine=InnoDB
+2025-10-03T09:14:08.715Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : create table courses (course_id binary(16) not null, batches_count integer not null, category varchar(50) not null, course_code varchar(20) not null, course_title varchar(100) not null, created_at datetime(6) not null, description TEXT, duration_months integer not null, prerequisites varchar(200), status enum ('ARCHIVED','DRAFT','PUBLISHED','SUSPENDED') not null, updated_at datetime(6), primary key (course_id)) engine=InnoDB
+2025-10-03T09:14:08.720Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : create table student_applications (application_id binary(16) not null, accepted_at datetime(6), application_notes TEXT, applied_at datetime(6) not null, completed_at datetime(6), interview_date datetime(6), progress_percentage integer not null, status enum ('ACCEPTED','APPLIED','COMPLETED','INTERVIEW','REJECTED','UNDER_REVIEW') not null, updated_at datetime(6), course_id binary(16) not null, student_id binary(16) not null, primary key (application_id)) engine=InnoDB
+2025-10-03T09:14:08.725Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : create table students (student_id binary(16) not null, age integer not null, date_of_birth varchar(255) not null, email varchar(50) not null, first_name varchar(30) not null, gender enum ('FEMALE','MALE','OTHER') not null, last_name varchar(30), location varchar(50), mobile_no varchar(10) not null, password varchar(255) not null, registered_at datetime(6) not null, status enum ('COMPLETED','DROPPED','ENROLLED','REGISTERED','SUSPENDED') not null, updated_at datetime(6), primary key (student_id)) engine=InnoDB
+2025-10-03T09:14:08.729Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : create table users (user_id binary(16) not null, city varchar(50), created_at datetime(6) not null, date_of_birth varchar(255), email varchar(50) not null, first_name varchar(30) not null, gender enum ('FEMALE','MALE','OTHER'), last_name varchar(30), mobile_no varchar(10), password varchar(255) not null, role enum ('ADMIN','FACULTY','HR') not null, status enum ('ACTIVE','INACTIVE','PENDING','SUSPENDED') not null, updated_at datetime(6), primary key (user_id)) engine=InnoDB
+2025-10-03T09:14:08.735Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table admins drop index UK47bvqemyk6vlm0w7crc3opdd4
+2025-10-03T09:14:08.740Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table admins add constraint UK47bvqemyk6vlm0w7crc3opdd4 unique (email)
+2025-10-03T09:14:08.750Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table admins drop index UKmi8vkhus4xbdbqcac2jm4spvd
+2025-10-03T09:14:08.750Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table admins add constraint UKmi8vkhus4xbdbqcac2jm4spvd unique (username)
+2025-10-03T09:14:08.759Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table courses drop index UKp02ts69sh53ptd62m3c67v0
+2025-10-03T09:14:08.759Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table courses add constraint UKp02ts69sh53ptd62m3c67v0 unique (course_code)
+2025-10-03T09:14:08.767Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table student_applications drop index UK2ohidhhgnw5vih76s2gg63giw
+2025-10-03T09:14:08.768Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table student_applications add constraint UK2ohidhhgnw5vih76s2gg63giw unique (student_id)
+2025-10-03T09:14:08.776Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table students drop index UKe2rndfrsx22acpq2ty1caeuyw
+2025-10-03T09:14:08.777Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table students add constraint UKe2rndfrsx22acpq2ty1caeuyw unique (email)
+2025-10-03T09:14:08.786Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table users drop index UK6dotkott2kjsp8vw4d0m25fb7
+2025-10-03T09:14:08.786Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table users add constraint UK6dotkott2kjsp8vw4d0m25fb7 unique (email)
+2025-10-03T09:14:08.795Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table student_applications add constraint FKd194oeec7nga3u8xbv22l6gb1 foreign key (course_id) references courses (course_id)
+2025-10-03T09:14:08.807Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : alter table student_applications add constraint FKrvvm5qf7mef0631eyqiywniwd foreign key (student_id) references students (student_id)
+2025-10-03T09:14:09.521Z  WARN 2947 --- [tracker-pro-spts] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-10-03T09:14:09.531Z  WARN 2947 --- [tracker-pro-spts] [           main] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: c09a69fd-e092-4ced-8258-cf9067aaf954
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2025-10-03T09:14:09.535Z  INFO 2947 --- [tracker-pro-spts] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2025-10-03T09:14:09.712Z DEBUG 2947 --- [tracker-pro-spts] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2025-10-03T09:14:09.846Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.TrackerProApplication     : Started TrackerProApplication in 3.619 seconds (process running for 3.841)
+2025-10-03T09:14:09.848Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Initializing application data...
+2025-10-03T09:14:09.900Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : select count(*) from admins a1_0
+2025-10-03T09:14:09.907Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default admin...
+2025-10-03T09:14:10.016Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where a1_0.admin_id=?
+2025-10-03T09:14:10.030Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : insert into admins (created_at,email,first_name,last_login,last_name,password,status,updated_at,username,admin_id) values (?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:14:10.034Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default admin created successfully with email: admin@tracker.com
+2025-10-03T09:14:10.036Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : select count(*) from users u1_0
+2025-10-03T09:14:10.036Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Creating default users...
+2025-10-03T09:14:10.159Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : insert into users (city,created_at,date_of_birth,email,first_name,gender,last_name,mobile_no,password,role,status,updated_at,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:14:10.259Z DEBUG 2947 --- [tracker-pro-spts] [           main] org.hibernate.SQL                        : insert into users (city,created_at,date_of_birth,email,first_name,gender,last_name,mobile_no,password,role,status,updated_at,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:14:10.261Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Default users created successfully
+2025-10-03T09:14:10.261Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Student initialization skipped - using only real registrations
+2025-10-03T09:14:10.261Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Course initialization skipped - using only admin-created courses
+2025-10-03T09:14:10.261Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Complaint initialization skipped - using only real user complaints
+2025-10-03T09:14:10.261Z  INFO 2947 --- [tracker-pro-spts] [           main] com.trackerpro.config.DataInitializer    : Application data initialization completed
+2025-10-03T09:14:43.376Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-10-03T09:14:43.380Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:14:43.381Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-10-03T09:14:43.389Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-10-03T09:14:43.391Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from students s1_0
+2025-10-03T09:14:43.405Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:14:43.407Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:14:43.408Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:14:43.410Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.registered_at>=?
+2025-10-03T09:14:43.411Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from users u1_0
+2025-10-03T09:14:43.412Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.status=?
+2025-10-03T09:14:43.413Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.role=?
+2025-10-03T09:14:43.414Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.role=?
+2025-10-03T09:14:43.415Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from admins a1_0
+2025-10-03T09:14:43.416Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:14:43.417Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:14:43.417Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:14:43.418Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-10-03T09:14:43.418Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from courses c1_0
+2025-10-03T09:14:43.419Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(c1_0.course_id) from courses c1_0 where c1_0.status=?
+2025-10-03T09:14:43.420Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(c1_0.course_id) from courses c1_0 where c1_0.status=?
+2025-10-03T09:14:43.421Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select distinct c1_0.category from courses c1_0 order by c1_0.category
+2025-10-03T09:14:43.422Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] c.t.service.StudentApplicationService    : Calculating application statistics
+2025-10-03T09:14:43.423Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from student_applications sa1_0
+2025-10-03T09:14:43.424Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:14:43.425Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:14:43.426Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:14:43.427Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:14:43.428Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:14:43.429Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:14:59.831Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:14:59.831Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:14:59.832Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:14:59.864Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AuthController   : Login attempt for email: admin@tracker.com
+2025-10-03T09:14:59.867Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:14:59.970Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : update admins set created_at=?,email=?,first_name=?,last_login=?,last_name=?,password=?,status=?,updated_at=?,username=? where admin_id=?
+2025-10-03T09:14:59.973Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AuthController   : Login successful for email: admin@tracker.com, userType: ADMIN
+2025-10-03T09:15:06.370Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:15:06.371Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:15:06.371Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:15:06.380Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AuthController   : Student registration attempt for email: test.mysql@example.com
+2025-10-03T09:15:06.384Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : select count(s1_0.student_id)>0 from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:15:06.479Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : insert into students (age,date_of_birth,email,first_name,gender,last_name,location,mobile_no,password,registered_at,status,updated_at,student_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:15:06.481Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AuthController   : Student registration successful for email: test.mysql@example.com, studentId: 6ab538ee-51a8-45ef-ab10-e013f6be18db
+2025-10-03T09:17:02.958Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /
+2025-10-03T09:17:02.959Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:17:02.959Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /
+2025-10-03T09:17:02.968Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /index.html
+2025-10-03T09:17:02.968Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /index.html
+2025-10-03T09:18:05.294Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/status
+2025-10-03T09:18:05.295Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:05.295Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/status
+2025-10-03T09:18:05.798Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:18:05.798Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:05.799Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:18:05.800Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-7] c.trackerpro.controller.AuthController   : Login attempt for email: admin@tracker.com
+2025-10-03T09:18:05.801Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:18:05.895Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : update admins set created_at=?,email=?,first_name=?,last_login=?,last_name=?,password=?,status=?,updated_at=?,username=? where admin_id=?
+2025-10-03T09:18:05.897Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-7] c.trackerpro.controller.AuthController   : Login successful for email: admin@tracker.com, userType: ADMIN
+2025-10-03T09:18:06.400Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:18:06.400Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:06.400Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:18:06.402Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Login attempt for email: sarah.faculty@tracker.com
+2025-10-03T09:18:06.403Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:18:06.405Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:18:06.407Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:18:06.503Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Login successful for email: sarah.faculty@tracker.com, userType: FACULTY
+2025-10-03T09:18:07.006Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:18:07.007Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:07.007Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:18:07.008Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AuthController   : Login attempt for email: mike.hr@tracker.com
+2025-10-03T09:18:07.009Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:18:07.011Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:18:07.012Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:18:07.109Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AuthController   : Login successful for email: mike.hr@tracker.com, userType: HR
+2025-10-03T09:18:07.612Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:18:07.612Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:07.612Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:18:07.618Z ERROR 2947 --- [tracker-pro-spts] [io-8080-exec-10] c.t.exception.GlobalExceptionHandler     : Validation failed: {gender=Gender is required, dob=Date of birth is required, mobileNo=Mobile number is required}
+2025-10-03T09:18:08.121Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:18:08.121Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:08.121Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:18:08.123Z ERROR 2947 --- [tracker-pro-spts] [nio-8080-exec-1] c.t.exception.GlobalExceptionHandler     : Validation failed: {gender=Gender is required, dob=Date of birth is required, mobileNo=Mobile number is required, age=Age must be at least 20}
+2025-10-03T09:18:08.625Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:18:08.626Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:08.626Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:18:08.627Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AuthController   : Login attempt for email: test_student_091805@test.com
+2025-10-03T09:18:08.628Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:18:08.630Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:18:08.631Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:18:08.633Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : select s1_0.student_id,s1_0.age,s1_0.date_of_birth,s1_0.email,s1_0.first_name,s1_0.gender,s1_0.last_name,s1_0.location,s1_0.mobile_no,s1_0.password,s1_0.registered_at,s1_0.status,s1_0.updated_at from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:18:08.633Z  WARN 2947 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AuthController   : Login failed for email: test_student_091805@test.com, reason: Invalid email or password
+2025-10-03T09:18:11.136Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:18:11.137Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:18:11.137Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:18:11.138Z ERROR 2947 --- [tracker-pro-spts] [nio-8080-exec-3] c.t.exception.GlobalExceptionHandler     : Validation failed: {gender=Gender is required, dob=Date of birth is required, mobileNo=Mobile number is required}
+2025-10-03T09:19:06.532Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/status
+2025-10-03T09:19:06.533Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:06.533Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/status
+2025-10-03T09:19:07.036Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:07.036Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:07.036Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:07.037Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AuthController   : Login attempt for email: admin@tracker.com
+2025-10-03T09:19:07.039Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:07.138Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : update admins set created_at=?,email=?,first_name=?,last_login=?,last_name=?,password=?,status=?,updated_at=?,username=? where admin_id=?
+2025-10-03T09:19:07.139Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AuthController   : Login successful for email: admin@tracker.com, userType: ADMIN
+2025-10-03T09:19:07.642Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:07.642Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:07.643Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:07.643Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-6] c.trackerpro.controller.AuthController   : Login attempt for email: sarah.faculty@tracker.com
+2025-10-03T09:19:07.645Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:07.646Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:19:07.648Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:07.741Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-6] c.trackerpro.controller.AuthController   : Login successful for email: sarah.faculty@tracker.com, userType: FACULTY
+2025-10-03T09:19:08.244Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:08.244Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:08.244Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:08.245Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-7] c.trackerpro.controller.AuthController   : Login attempt for email: mike.hr@tracker.com
+2025-10-03T09:19:08.246Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:08.248Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:19:08.249Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:08.342Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-7] c.trackerpro.controller.AuthController   : Login successful for email: mike.hr@tracker.com, userType: HR
+2025-10-03T09:19:08.845Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:19:08.845Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:08.846Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:19:08.847Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Student registration attempt for email: test_student_091906@test.com
+2025-10-03T09:19:08.848Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : select count(s1_0.student_id)>0 from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:19:08.942Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : insert into students (age,date_of_birth,email,first_name,gender,last_name,location,mobile_no,password,registered_at,status,updated_at,student_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:19:08.947Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Student registration successful for email: test_student_091906@test.com, studentId: 8d0d2a88-cd97-48fd-8c36-5d1458541d92
+2025-10-03T09:19:09.449Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:19:09.450Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:09.450Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:19:09.451Z ERROR 2947 --- [tracker-pro-spts] [nio-8080-exec-9] c.t.exception.GlobalExceptionHandler     : Validation failed: {age=Age must be at least 20}
+2025-10-03T09:19:09.954Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:09.954Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:09.954Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:09.955Z  INFO 2947 --- [tracker-pro-spts] [io-8080-exec-10] c.trackerpro.controller.AuthController   : Login attempt for email: test_student_091906@test.com
+2025-10-03T09:19:09.957Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:09.958Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:19:09.959Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:09.960Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : select s1_0.student_id,s1_0.age,s1_0.date_of_birth,s1_0.email,s1_0.first_name,s1_0.gender,s1_0.last_name,s1_0.location,s1_0.mobile_no,s1_0.password,s1_0.registered_at,s1_0.status,s1_0.updated_at from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:19:10.054Z  INFO 2947 --- [tracker-pro-spts] [io-8080-exec-10] c.trackerpro.controller.AuthController   : Login successful for email: test_student_091906@test.com, userType: STUDENT
+2025-10-03T09:19:10.557Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-10-03T09:19:10.557Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:10.557Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-10-03T09:19:10.557Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-10-03T09:19:10.558Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from students s1_0
+2025-10-03T09:19:10.560Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:19:10.560Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:19:10.561Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:19:10.562Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.registered_at>=?
+2025-10-03T09:19:10.563Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from users u1_0
+2025-10-03T09:19:10.564Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.status=?
+2025-10-03T09:19:10.564Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.role=?
+2025-10-03T09:19:10.565Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.role=?
+2025-10-03T09:19:10.566Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from admins a1_0
+2025-10-03T09:19:10.567Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:19:10.568Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:19:10.568Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:19:10.569Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-10-03T09:19:10.569Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from courses c1_0
+2025-10-03T09:19:10.570Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(c1_0.course_id) from courses c1_0 where c1_0.status=?
+2025-10-03T09:19:10.570Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(c1_0.course_id) from courses c1_0 where c1_0.status=?
+2025-10-03T09:19:10.571Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select distinct c1_0.category from courses c1_0 order by c1_0.category
+2025-10-03T09:19:10.571Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] c.t.service.StudentApplicationService    : Calculating application statistics
+2025-10-03T09:19:10.572Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(*) from student_applications sa1_0
+2025-10-03T09:19:10.572Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:10.573Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:10.574Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:10.574Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:10.575Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:10.575Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:11.078Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations
+2025-10-03T09:19:11.079Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:11.079Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations
+2025-10-03T09:19:11.079Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-2] c.trackerpro.controller.AdminController  : Fetching all student registrations
+2025-10-03T09:19:11.081Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] org.hibernate.SQL                        : select s1_0.student_id,s1_0.age,s1_0.date_of_birth,s1_0.email,s1_0.first_name,s1_0.gender,s1_0.last_name,s1_0.location,s1_0.mobile_no,s1_0.password,s1_0.registered_at,s1_0.status,s1_0.updated_at from students s1_0
+2025-10-03T09:19:11.589Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/users
+2025-10-03T09:19:11.589Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:11.589Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/users
+2025-10-03T09:19:11.594Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AdminController  : Creating new user with email: test_faculty_091906@test.com
+2025-10-03T09:19:11.596Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : select count(u1_0.user_id)>0 from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:11.690Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : insert into users (city,created_at,date_of_birth,email,first_name,gender,last_name,mobile_no,password,role,status,updated_at,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:19:11.691Z  WARN 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1048, SQLState: 23000
+2025-10-03T09:19:11.691Z ERROR 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'role' cannot be null
+2025-10-03T09:19:11.694Z ERROR 2947 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AdminController  : Error creating user
+
+org.springframework.dao.DataIntegrityViolationException: could not execute statement [Column 'role' cannot be null] [insert into users (city,created_at,date_of_birth,email,first_name,gender,last_name,mobile_no,password,role,status,updated_at,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into users (city,created_at,date_of_birth,email,first_name,gender,last_name,mobile_no,password,role,status,updated_at,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [null]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.convertHibernateAccessException(HibernateJpaDialect.java:290) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.translateExceptionIfPossible(HibernateJpaDialect.java:241) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:566) ~[spring-orm-6.1.14.jar:6.1.14]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:795) ~[spring-tx-6.1.14.jar:6.1.14]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:758) ~[spring-tx-6.1.14.jar:6.1.14]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:663) ~[spring-tx-6.1.14.jar:6.1.14]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:413) ~[spring-tx-6.1.14.jar:6.1.14]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:768) ~[spring-aop-6.1.14.jar:6.1.14]
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:720) ~[spring-aop-6.1.14.jar:6.1.14]
+	at com.trackerpro.service.UserService$$SpringCGLIB$$0.createUser(<generated>) ~[classes/:na]
+	at com.trackerpro.controller.AdminController.createUser(AdminController.java:159) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:255) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:188) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:926) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:831) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.31.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:100) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191) ~[spring-security-web-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:195) ~[spring-webmvc-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:230) ~[spring-security-config-6.3.4.jar:6.3.4]
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.1.14.jar:6.1.14]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.valves.RemoteIpValve.invoke(RemoteIpValve.java:731) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:384) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.31.jar:10.1.31]
+	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
+Caused by: org.hibernate.exception.ConstraintViolationException: could not execute statement [Column 'role' cannot be null] [insert into users (city,created_at,date_of_birth,email,first_name,gender,last_name,mobile_no,password,role,status,updated_at,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)]
+	at org.hibernate.exception.internal.SQLExceptionTypeDelegate.convert(SQLExceptionTypeDelegate.java:62) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.exception.internal.StandardSQLExceptionConverter.convert(StandardSQLExceptionConverter.java:58) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.spi.SqlExceptionHelper.convert(SqlExceptionHelper.java:108) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:134) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:55) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.doStaticInserts(InsertCoordinatorStandard.java:194) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.coordinateInsert(InsertCoordinatorStandard.java:132) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.persister.entity.mutation.InsertCoordinatorStandard.insert(InsertCoordinatorStandard.java:104) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:110) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:633) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:500) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:385) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:41) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1425) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:487) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2324) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1981) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562) ~[spring-orm-6.1.14.jar:6.1.14]
+	... 108 common frames omitted
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Column 'role' cannot be null
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988) ~[mysql-connector-j-8.3.0.jar:8.3.0]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61) ~[HikariCP-5.1.0.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java) ~[HikariCP-5.1.0.jar:na]
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194) ~[hibernate-core-6.5.3.Final.jar:6.5.3.Final]
+	... 129 common frames omitted
+
+2025-10-03T09:19:12.200Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/search?query=test_student_091906@test.com
+2025-10-03T09:19:12.200Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:12.200Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/search?query=test_student_091906@test.com
+2025-10-03T09:19:12.203Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Searching registrations with query: test_student_091906@test.com
+2025-10-03T09:19:12.207Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select s1_0.student_id,s1_0.age,s1_0.date_of_birth,s1_0.email,s1_0.first_name,s1_0.gender,s1_0.last_name,s1_0.location,s1_0.mobile_no,s1_0.password,s1_0.registered_at,s1_0.status,s1_0.updated_at from students s1_0 where lower(s1_0.first_name) like replace(lower(concat('%',?,'%')),'\\','\\\\') or lower(s1_0.last_name) like replace(lower(concat('%',?,'%')),'\\','\\\\') or lower(s1_0.email) like replace(lower(concat('%',?,'%')),'\\','\\\\')
+2025-10-03T09:19:12.711Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:19:12.711Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:12.711Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:19:12.712Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AuthController   : Student registration attempt for email: test_student_091906@test.com
+2025-10-03T09:19:12.713Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : select count(s1_0.student_id)>0 from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:19:12.714Z  WARN 2947 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AuthController   : Student registration failed for email: test_student_091906@test.com, reason: Email already exists. Please use a different email.
+2025-10-03T09:19:42.790Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/auth/status
+2025-10-03T09:19:42.790Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:42.790Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/auth/status
+2025-10-03T09:19:43.293Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:43.294Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:43.295Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:43.295Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Login attempt for email: admin@tracker.com
+2025-10-03T09:19:43.297Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:43.391Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : update admins set created_at=?,email=?,first_name=?,last_login=?,last_name=?,password=?,status=?,updated_at=?,username=? where admin_id=?
+2025-10-03T09:19:43.393Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Login successful for email: admin@tracker.com, userType: ADMIN
+2025-10-03T09:19:43.896Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:43.896Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:43.896Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:43.897Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AuthController   : Login attempt for email: sarah.faculty@tracker.com
+2025-10-03T09:19:43.898Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:43.899Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:19:43.901Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-9] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:44.000Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-9] c.trackerpro.controller.AuthController   : Login successful for email: sarah.faculty@tracker.com, userType: FACULTY
+2025-10-03T09:19:44.503Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:44.503Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:44.503Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:44.504Z  INFO 2947 --- [tracker-pro-spts] [io-8080-exec-10] c.trackerpro.controller.AuthController   : Login attempt for email: mike.hr@tracker.com
+2025-10-03T09:19:44.506Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:44.507Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:19:44.508Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:44.602Z  INFO 2947 --- [tracker-pro-spts] [io-8080-exec-10] c.trackerpro.controller.AuthController   : Login successful for email: mike.hr@tracker.com, userType: HR
+2025-10-03T09:19:45.105Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:19:45.105Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:45.105Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:19:45.106Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AuthController   : Student registration attempt for email: test_student_091942@test.com
+2025-10-03T09:19:45.108Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : select count(s1_0.student_id)>0 from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:19:45.202Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-1] org.hibernate.SQL                        : insert into students (age,date_of_birth,email,first_name,gender,last_name,location,mobile_no,password,registered_at,status,updated_at,student_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:19:45.204Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-1] c.trackerpro.controller.AuthController   : Student registration successful for email: test_student_091942@test.com, studentId: 9db815fa-e115-4027-bd7b-64ac214b203f
+2025-10-03T09:19:45.706Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:19:45.706Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:45.706Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:19:45.708Z ERROR 2947 --- [tracker-pro-spts] [nio-8080-exec-2] c.t.exception.GlobalExceptionHandler     : Validation failed: {age=Age must be at least 20}
+2025-10-03T09:19:46.210Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/login
+2025-10-03T09:19:46.211Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:46.211Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/login
+2025-10-03T09:19:46.212Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AuthController   : Login attempt for email: test_student_091942@test.com
+2025-10-03T09:19:46.213Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.email)=upper(?)
+2025-10-03T09:19:46.214Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : select a1_0.admin_id,a1_0.created_at,a1_0.email,a1_0.first_name,a1_0.last_login,a1_0.last_name,a1_0.password,a1_0.status,a1_0.updated_at,a1_0.username from admins a1_0 where upper(a1_0.username)=upper(?)
+2025-10-03T09:19:46.215Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : select u1_0.user_id,u1_0.city,u1_0.created_at,u1_0.date_of_birth,u1_0.email,u1_0.first_name,u1_0.gender,u1_0.last_name,u1_0.mobile_no,u1_0.password,u1_0.role,u1_0.status,u1_0.updated_at from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:46.216Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] org.hibernate.SQL                        : select s1_0.student_id,s1_0.age,s1_0.date_of_birth,s1_0.email,s1_0.first_name,s1_0.gender,s1_0.last_name,s1_0.location,s1_0.mobile_no,s1_0.password,s1_0.registered_at,s1_0.status,s1_0.updated_at from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:19:46.310Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-3] c.trackerpro.controller.AuthController   : Login successful for email: test_student_091942@test.com, userType: STUDENT
+2025-10-03T09:19:46.813Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/dashboard/stats
+2025-10-03T09:19:46.813Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:46.813Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/dashboard/stats
+2025-10-03T09:19:46.814Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-4] c.trackerpro.controller.AdminController  : Fetching dashboard statistics
+2025-10-03T09:19:46.814Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(*) from students s1_0
+2025-10-03T09:19:46.816Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:19:46.816Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:19:46.817Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.status=?
+2025-10-03T09:19:46.818Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(s1_0.student_id) from students s1_0 where s1_0.registered_at>=?
+2025-10-03T09:19:46.818Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(*) from users u1_0
+2025-10-03T09:19:46.819Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.status=?
+2025-10-03T09:19:46.820Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.role=?
+2025-10-03T09:19:46.820Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(u1_0.user_id) from users u1_0 where u1_0.role=?
+2025-10-03T09:19:46.821Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(*) from admins a1_0
+2025-10-03T09:19:46.822Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:19:46.822Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:19:46.823Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(a1_0.admin_id) from admins a1_0 where a1_0.status=?
+2025-10-03T09:19:46.823Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-4] com.trackerpro.service.CourseService     : Calculating course statistics
+2025-10-03T09:19:46.824Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(*) from courses c1_0
+2025-10-03T09:19:46.824Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(c1_0.course_id) from courses c1_0 where c1_0.status=?
+2025-10-03T09:19:46.825Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(c1_0.course_id) from courses c1_0 where c1_0.status=?
+2025-10-03T09:19:46.825Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select distinct c1_0.category from courses c1_0 order by c1_0.category
+2025-10-03T09:19:46.826Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-4] c.t.service.StudentApplicationService    : Calculating application statistics
+2025-10-03T09:19:46.826Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(*) from student_applications sa1_0
+2025-10-03T09:19:46.827Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:46.827Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:46.828Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:46.828Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:46.829Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:46.830Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] org.hibernate.SQL                        : select count(sa1_0.application_id) from student_applications sa1_0 where sa1_0.status=?
+2025-10-03T09:19:47.332Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations
+2025-10-03T09:19:47.333Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:47.333Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations
+2025-10-03T09:19:47.333Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-5] c.trackerpro.controller.AdminController  : Fetching all student registrations
+2025-10-03T09:19:47.334Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-5] org.hibernate.SQL                        : select s1_0.student_id,s1_0.age,s1_0.date_of_birth,s1_0.email,s1_0.first_name,s1_0.gender,s1_0.last_name,s1_0.location,s1_0.mobile_no,s1_0.password,s1_0.registered_at,s1_0.status,s1_0.updated_at from students s1_0
+2025-10-03T09:19:47.838Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing POST /api/admin/users
+2025-10-03T09:19:47.839Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:47.839Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured POST /api/admin/users
+2025-10-03T09:19:47.839Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-6] c.trackerpro.controller.AdminController  : Creating new user with email: test_faculty_091942@test.com
+2025-10-03T09:19:47.841Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : select count(u1_0.user_id)>0 from users u1_0 where lower(u1_0.email)=lower(?)
+2025-10-03T09:19:47.934Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-6] org.hibernate.SQL                        : insert into users (city,created_at,date_of_birth,email,first_name,gender,last_name,mobile_no,password,role,status,updated_at,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-10-03T09:19:48.440Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/admin/registrations/search?query=test_student_091942@test.com
+2025-10-03T09:19:48.441Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:48.441Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/admin/registrations/search?query=test_student_091942@test.com
+2025-10-03T09:19:48.442Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-7] c.trackerpro.controller.AdminController  : Searching registrations with query: test_student_091942@test.com
+2025-10-03T09:19:48.443Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-7] org.hibernate.SQL                        : select s1_0.student_id,s1_0.age,s1_0.date_of_birth,s1_0.email,s1_0.first_name,s1_0.gender,s1_0.last_name,s1_0.location,s1_0.mobile_no,s1_0.password,s1_0.registered_at,s1_0.status,s1_0.updated_at from students s1_0 where lower(s1_0.first_name) like replace(lower(concat('%',?,'%')),'\\','\\\\') or lower(s1_0.last_name) like replace(lower(concat('%',?,'%')),'\\','\\\\') or lower(s1_0.email) like replace(lower(concat('%',?,'%')),'\\','\\\\')
+2025-10-03T09:19:48.947Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/register
+2025-10-03T09:19:48.947Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:19:48.947Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/register
+2025-10-03T09:19:48.948Z  INFO 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Student registration attempt for email: test_student_091942@test.com
+2025-10-03T09:19:48.950Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-8] org.hibernate.SQL                        : select count(s1_0.student_id)>0 from students s1_0 where lower(s1_0.email)=lower(?)
+2025-10-03T09:19:48.950Z  WARN 2947 --- [tracker-pro-spts] [nio-8080-exec-8] c.trackerpro.controller.AuthController   : Student registration failed for email: test_student_091942@test.com, reason: Email already exists. Please use a different email.
+2025-10-03T09:20:44.888Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Securing GET /loginPage.html
+2025-10-03T09:20:44.888Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:20:44.888Z DEBUG 2947 --- [tracker-pro-spts] [io-8080-exec-10] o.s.security.web.FilterChainProxy        : Secured GET /loginPage.html
+2025-10-03T09:20:49.496Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing GET /adminPage.html
+2025-10-03T09:20:49.496Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:20:49.496Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured GET /adminPage.html
+2025-10-03T09:20:54.206Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing GET /registerPage.html
+2025-10-03T09:20:54.206Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:20:54.206Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured GET /registerPage.html
+2025-10-03T09:21:00.242Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /registerPage.html
+2025-10-03T09:21:00.243Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-03T09:21:00.243Z DEBUG 2947 --- [tracker-pro-spts] [nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /registerPage.html

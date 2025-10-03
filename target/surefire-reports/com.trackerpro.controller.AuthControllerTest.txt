@@ -1,26 +1,26 @@
 -------------------------------------------------------------------------------
 Test set: com.trackerpro.controller.AuthControllerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 1.249 s <<< FAILURE! -- in com.trackerpro.controller.AuthControllerTest
-com.trackerpro.controller.AuthControllerTest.testLoginEndpoint -- Time elapsed: 0.097 s <<< FAILURE!
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 4.236 s <<< FAILURE! -- in com.trackerpro.controller.AuthControllerTest
+com.trackerpro.controller.AuthControllerTest.testLoginEndpoint -- Time elapsed: 0.120 s <<< FAILURE!
 java.lang.AssertionError: Status expected:<200> but was:<403>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
 	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
 	at com.trackerpro.controller.AuthControllerTest.testLoginEndpoint(AuthControllerTest.java:40)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-com.trackerpro.controller.AuthControllerTest.testRegisterEndpoint -- Time elapsed: 0.027 s <<< FAILURE!
+com.trackerpro.controller.AuthControllerTest.testRegisterEndpoint -- Time elapsed: 0.009 s <<< FAILURE!
 java.lang.AssertionError: Status expected:<200> but was:<403>
 	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
 	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
 	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
 	at com.trackerpro.controller.AuthControllerTest.testRegisterEndpoint(AuthControllerTest.java:59)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
