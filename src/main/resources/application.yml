@@ -4,21 +4,21 @@ server:
 spring:
   application:
     name: tracker-pro-spts
-
+  profiles:
+    active: production  # ✅ set to production
   datasource:
     url: jdbc:mysql://localhost:3306/trackerprodb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: accessdb
-
   jpa:
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        format_sql: true
+      show-sql: true
+      properties:
+        hibernate:
+          format_sql: true
 
 logging:
   level:
