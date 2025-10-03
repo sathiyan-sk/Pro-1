@@ -333,8 +333,10 @@ class MySQLMigrationTester:
             "email": self.test_student_email,  # Same email as before
             "password": "TestPass123!",
             "age": 23,
-            "phoneNumber": "1234567890",
-            "address": "Test Address"
+            "gender": "Male",
+            "dob": "01/01/2001",
+            "mobileNo": "5555555555",
+            "location": "Test City"
         }
         
         success, data, status = self.make_request('POST', '/api/auth/register', duplicate_data)
