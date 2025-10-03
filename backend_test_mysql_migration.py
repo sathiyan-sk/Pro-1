@@ -173,8 +173,10 @@ class MySQLMigrationTester:
             "email": f"invalid_age_{datetime.now().strftime('%H%M%S')}@test.com",
             "password": "TestPass123!",
             "age": 19,  # Below minimum age of 20
-            "phoneNumber": "1234567890",
-            "address": "Test Address"
+            "gender": "Female",
+            "dob": "01/01/2005",
+            "mobileNo": "9876543210",
+            "location": "Test City"
         }
         
         success, data, status = self.make_request('POST', '/api/auth/register', invalid_age_data)
