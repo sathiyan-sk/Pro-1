@@ -219,8 +219,7 @@ class MySQLMigrationTester:
             return self.log_test("Dashboard Stats (MySQL)", False, "No admin token available")
         
         headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.admin_token}'
+            'Content-Type': 'application/json'
         }
         
         success, data, status = self.make_request('GET', '/api/admin/dashboard/stats', headers=headers)
@@ -249,8 +248,7 @@ class MySQLMigrationTester:
             return self.log_test("Student Management (MySQL)", False, "No admin token available")
         
         headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.admin_token}'
+            'Content-Type': 'application/json'
         }
         
         # Test get all registrations
@@ -272,8 +270,7 @@ class MySQLMigrationTester:
             return self.log_test("User Creation (MySQL)", False, "No admin token available")
         
         headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.admin_token}'
+            'Content-Type': 'application/json'
         }
         
         # Create Faculty user
@@ -303,8 +300,7 @@ class MySQLMigrationTester:
             return self.log_test("Data Persistence (MySQL)", False, "No admin token available")
         
         headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Bearer {self.admin_token}'
+            'Content-Type': 'application/json'
         }
         
         # Search for the student we created
