@@ -89,10 +89,10 @@ public class SecurityConfig {
                 
                 // Allow all other requests
                 .anyRequest().permitAll()
-            )
+            );
             
             // Disable frame options for H2 console
-            .headers(headers -> headers.frameOptions().disable());
+          //  .headers(headers -> headers.frameOptions().disable());
         
         return http.build();
     }

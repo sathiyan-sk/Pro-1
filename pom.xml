@@ -78,6 +78,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- Specify your main application class -->
+                    <mainClass>com.trackerpro.TrackerProApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>

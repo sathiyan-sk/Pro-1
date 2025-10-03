@@ -100,7 +100,7 @@ public class DataInitializer implements CommandLineRunner {
     }
     
     private void initializeStudents() {
-        // No sample students - only real registered users can login
+        // No sample students - only real registered users can log in
         logger.info("Student initialization skipped - using only real registrations");
     }
     
