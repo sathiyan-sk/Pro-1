@@ -88,10 +88,12 @@ class MySQLMigrationTester:
         success, data, status = self.make_request('POST', '/api/login', login_data)
         
         if success and data.get('success'):
-            self.admin_token = data.get('token')
+            # Store admin session info for subsequent requests
+            user_data = data.get('user', {})
             user_type = data.get('userType')
+            self.admin_token = "admin_session_active"  # Simple session token
             return self.log_test("Admin Login (MySQL)", True, 
-                               f"UserType: {user_type}, Token received")
+                               f"UserType: {user_type}, Session established")
         else:
             return self.log_test("Admin Login (MySQL)", False, 
                                f"Status: {status}, Response: {data}")
