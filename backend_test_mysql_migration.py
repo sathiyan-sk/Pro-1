@@ -279,8 +279,8 @@ class MySQLMigrationTester:
             "lastName": "Faculty",
             "email": self.test_faculty_email,
             "password": "TestFaculty123!",
-            "userType": "FACULTY",
-            "phoneNumber": "1234567890"
+            "role": "FACULTY",
+            "mobileNo": "1234567890"
         }
         
         success, data, status = self.make_request('POST', '/api/admin/users', faculty_data, headers=headers)
