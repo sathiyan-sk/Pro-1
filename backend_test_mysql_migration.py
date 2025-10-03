@@ -140,15 +140,17 @@ class MySQLMigrationTester:
         """Test student registration with age validation (MySQL persistence)"""
         print("\n🔍 Testing Student Registration with MySQL Persistence...")
         
-        # Test valid age (within 20-25 range)
+        # Test valid age (within 20-25 range) with all required fields
         registration_data = {
             "firstName": "Test",
             "lastName": "Student",
             "email": self.test_student_email,
             "password": "TestPass123!",
             "age": 22,
-            "phoneNumber": "1234567890",
-            "address": "Test Address"
+            "gender": "Male",
+            "dob": "01/01/2002",
+            "mobileNo": "1234567890",
+            "location": "Test City"
         }
         
         success, data, status = self.make_request('POST', '/api/auth/register', registration_data)
