@@ -1,54 +1,24 @@
-server:
-  port: ${PORT:8080}
+# application.yml
 
 spring:
-  application:
-    name: tracker-pro-spts
   profiles:
-    active: production  # ✅ change to "development" if running locally
+    active: ${SPRING_PROFILE:local}  # Default to 'local' if SPRING_PROFILE is not set
 
-# =========================
-# Development Profile (Local H2)
-# =========================
 ---
+
+# Local environment
 spring:
   config:
     activate:
-      on-profile: development
+      on-profile: local
 
   datasource:
-    url: jdbc:h2:mem:trackerprodb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password: password
-
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-
-  h2:
-    console:
-      enabled: true
-
-# =========================
-# Production Profile (Railway MySQL)
-# =========================
----
-spring:
-  config:
-    activate:
-      on-profile: production
-
-  datasource:
-    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}
-    username: ${MYSQLUSER}
-    password: ${MYSQLPASSWORD}
+    url: jdbc:mysql://localhost:3306/trackerprodb?useSSL=false&serverTimezone=UTC
+    username: root
+    password: accessdb
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: update
     show-sql: true
@@ -56,14 +26,26 @@ spring:
       hibernate:
         format_sql: true
 
-logging:
-  level:
-    com.trackerpro: DEBUG
-    org.springframework.security: DEBUG
-    org.hibernate.SQL: DEBUG
-    root: WARN
+server:
+  port: 8080
 
-app:
-  jwt:
-    secret: trackerProSecretKey2024
-    expiration: 86400000
+---
+
+# Railway environment
+spring:
+  config:
+    activate:
+      on-profile: railway
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+
+server:
+  port: ${PORT:8080}  # Railway injects PORT automatically
