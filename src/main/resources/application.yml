@@ -1,8 +1,6 @@
-# application.yml
-
 spring:
   profiles:
-    active: ${SPRING_PROFILE:railway}  # Default to 'local' if SPRING_PROFILE is not set
+    active: ${SPRING_PROFILE:local}  # Default to 'local'
 
 ---
 
@@ -25,7 +23,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MySQLDialect
 
 server:
   port: 8080
@@ -42,14 +39,12 @@ spring:
     url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: validate
     show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
 
 server:
-  port: ${PORT:8080}  # Railway injects PORT automatically
+  port: ${PORT:8080}  # Railway sets this automatically
