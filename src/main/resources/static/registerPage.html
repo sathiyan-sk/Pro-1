@@ -726,7 +726,7 @@
     // === API FUNCTION (Backend Integration) ===
     async function registerUser(data) {
       try {
-        const response = await fetch('https://pro-1-production.up.railway.app/api/auth/register', {
+        const response = await fetch('/api/auth/register', {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json' 

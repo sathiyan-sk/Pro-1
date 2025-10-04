@@ -61,8 +61,11 @@ public class SecurityConfig {
                     "/*.js",
                     "/*.ico",
                     "/static/**",
-                    "/public/**"
-                ).permitAll()
+                    "/public/**",
+                        "/**/*.html",
+                        "/**/*.js",
+                        "/**/*.css"
+                        ).permitAll()
                 
                 // Allow public access to authentication endpoints
                 .requestMatchers(
