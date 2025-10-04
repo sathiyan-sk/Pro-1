@@ -1,10 +1,12 @@
 spring:
   profiles:
-    active: ${SPRING_PROFILE:local}  # Default to 'local'
+    active: ${SPRING_PROFILE:local}  # Default profile is 'local'
 
 ---
 
+# -----------------------------
 # Local environment
+# -----------------------------
 spring:
   config:
     activate:
@@ -29,22 +31,24 @@ server:
 
 ---
 
+# -----------------------------
 # Railway environment
+# -----------------------------
 spring:
   config:
     activate:
       on-profile: railway
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}             # e.g., jdbc:mysql://mysql.railway.internal:3306/railway?useSSL=false&serverTimezone=UTC
+    username: ${SPRING_DATASOURCE_USERNAME}   # Railway MySQL username
+    password: ${SPRING_DATASOURCE_PASSWORD}   # Railway MySQL password
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: validate                       # or 'update' if you want auto schema update
     show-sql: false
 
 server:
-  port: ${PORT:8080}  # Railway sets this automatically
+  port: ${PORT:8080}                          # Railway automatically sets this
