@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackerPro - Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================================================
+           CSS VARIABLES & THEME CONFIGURATION
+           ============================================================================ */
+        :root {
+            /* Primary Colors */
+            --primary-color: #4a6fff;
+            --primary-light: #e5eaff;
+            --primary-dark: #3a5ccc;
+            --secondary-color: #ff7e42;
+            
+            /* Text Colors */
+            --text-color: #333333;
+            --text-light: #666666;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            
+            /* Background Colors */
+            --white: #ffffff;
+            --light-color: #f8f9fc;
+            --bg-hover: #f8f9fa;
+            --bg-active: #e8f0fe;
+            
+            /* Status Colors */
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --danger-color: #e74c3c;
+            --info-color: #17a2b8;
+            
+            /* Layout Dimensions */
+            --header-height: 70px;
+            --sidebar-width: 230px;
+            
+            /* Effects */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ============================================================================
+           RESET & BASE STYLES
+           ============================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============================================================================
+           HEADER COMPONENT
+           ============================================================================ */
+        .header-bar {
+            background-color: var(--white);
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 38px;
+            margin-right: 12px;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* User Profile Dropdown */
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            position: relative;
+            padding: 8px 12px;
+            border-radius: var(--border-radius-md);
+            transition: var(--transition);
+        }
+
+        .user-profile:hover {
+            background-color: var(--bg-hover);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .user-details .user-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        .user-details .user-role {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: var(--white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: var(--transition);
+            z-index: 1000;
+            border: 1px solid #e2e8f0;
+        }
+
+        .user-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.2s;
+            border-bottom: 1px solid var(--light-color);
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--bg-hover);
+        }
+
+        .dropdown-item:last-child {
+            border-bottom: none;
+            color: var(--danger-color);
+        }
+
+        /* ============================================================================
+           LAYOUT STRUCTURE
+           ============================================================================ */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: var(--header-height);
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--white);
+            height: calc(100vh - var(--header-height));
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            overflow-y: auto;
+            z-index: 90;
+            border-right: 1px solid #e8e9ea;
+            transition: var(--transition);
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 400;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+            margin: 2px 0;
+        }
+
+        .nav-item:hover {
+            background-color: var(--bg-hover);
+            color: var(--primary-color);
+        }
+
+        .nav-item.active {
+            background-color: var(--bg-active);
+            color: var(--primary-color);
+            font-weight: 500;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 32px;
+            background-color: var(--white);
+            transition: var(--transition);
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page-title {
+            margin-bottom: 32px;
+            font-size: 28px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* ============================================================================
+           WELCOME CARD COMPONENT
+           ============================================================================ */
+        .welcome-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border-radius: var(--border-radius-md);
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .welcome-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .welcome-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+            font-weight: 600;
+        }
+
+        .welcome-card p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            font-weight: 400;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* ============================================================================
+           APPLICATION PROGRESS TRACKER
+           ============================================================================ */
+        .apt-container {
+            background: var(--white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e8e9ea;
+        }
+
+        .apt-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+        }
+
+        .apt-progress {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            margin: 0 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .apt-progress::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            right: 25px;
+            height: 3px;
+            background: #dfe2e9;
+            z-index: 1;
+            border-radius: 2px;
+        }
+
+        .apt-progress-line {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+            z-index: 2;
+            transition: width 0.8s ease;
+            width: 0%;
+            border-radius: 2px;
+        }
+
+        .apt-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 3;
+            cursor: pointer;
+            flex: 1;
+            padding: 0 10px;
+            transition: var(--transition);
+        }
+
+        .apt-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            transition: var(--transition);
+            border: 3px solid transparent;
+        }
+
+        .apt-step.pending .apt-circle {
+            background: var(--light-color);
+            color: var(--text-light);
+            border-color: #dfe2e9;
+        }
+
+        .apt-step.active .apt-circle {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 20px rgba(74, 111, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .apt-step.completed .apt-circle {
+            background: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+        }
+
+        .apt-label {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 4px;
+            transition: var(--transition);
+        }
+
+        .apt-step.active .apt-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .apt-step.completed .apt-label {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+
+        .apt-description {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* ============================================================================
+           STATUS BADGES SYSTEM
+           ============================================================================ */
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-applied {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #e67e22;
+            border: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .status-accepted {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.2);
+        }
+
+        .status-under_review {
+            background-color: rgba(23, 162, 184, 0.1);
+            color: #17a2b8;
+            border: 1px solid rgba(23, 162, 184, 0.2);
+        }
+
+        .status-completed {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+
+        .status-rejected {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger-color);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+        }
+
+        /* ============================================================================
+           APPLIED COURSES SECTION
+           ============================================================================ */
+        .applied-courses-section {
+            background: var(--white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e8e9ea;
+        }
+
+        .applied-courses-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            text-align: left;
+            border-bottom: 2px solid var(--light-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .simple-courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .simple-course-card {
+            background: var(--light-color);
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius-md);
+            padding: 1.8rem;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .simple-course-card:hover {
+            background: var(--white);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+            border-color: var(--primary-light);
+        }
+
+        .simple-course-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .simple-course-status {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+        }
+
+        .simple-course-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .simple-meta-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        .simple-meta-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .simple-meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .course-id {
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            background: var(--primary-light);
+            padding: 4px 10px;
+            border-radius: 12px;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        /* ============================================================================
+           COURSE CARDS GRID
+           ============================================================================ */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 24px;
+            max-width: 100%;
+        }
+
+        .course-card {
+            background: var(--white);
+            border: 1px solid #dadce0;
+            border-radius: var(--border-radius-md);
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            border-color: var(--primary-light);
+        }
+
+        .course-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .course-institute {
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .course-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .course-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .course-duration,
+        .course-category {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            background: var(--light-color);
+            padding: 4px 8px;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .course-duration::before {
+            content: "🕒";
+            font-size: 14px;
+        }
+
+        .course-category::before {
+            content: "📚";
+            font-size: 14px;
+        }
+
+        .published-status {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--success-color);
+            color: white;
+            padding: 4px 12px;
+            border-radius: var(--border-radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .apply-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius-md);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .apply-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(74, 111, 255, 0.4);
+        }
+
+        .apply-btn:hover::before {
+            left: 100%;
+        }
+
+        .apply-btn.applied {
+            background: var(--success-color);
+            cursor: default;
+            transform: none;
+        }
+
+        .apply-btn.applied:hover {
+            box-shadow: none;
+            transform: none;
+        }
+
+        .apply-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        /* ============================================================================
+           MODAL SYSTEM
+           ============================================================================ */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--border-radius-md);
+            max-width: 750px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalSlideIn 0.4s ease-out;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: scale(0.9) translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 2rem 2rem 1rem 2rem;
+            border-bottom: 1px solid #e2e8f0;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--light-color);
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .job-title {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-institute {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .job-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.8rem;
+            background: var(--light-color);
+            border-radius: var(--border-radius-md);
+        }
+
+        .job-overview-item {
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .job-overview-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .job-overview-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .job-section {
+            margin-bottom: 2rem;
+        }
+
+        .job-section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .job-section-content {
+            color: var(--text-color);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* ============================================================================
+           UTILITY CLASSES
+           ============================================================================ */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #ddd;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            text-align: center;
+            padding: 2rem;
+            background: rgba(231, 76, 60, 0.1);
+            border: 1px solid rgba(231, 76, 60, 0.2);
+            border-radius: var(--border-radius-md);
+            margin: 1rem 0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem;
+            color: var(--text-light);
+        }
+
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 0.8rem;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .content-area {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e8e9ea;
+        }
+
+        /* ============================================================================
+           NOTIFICATION SYSTEM
+           ============================================================================ */
+        .notification {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+            z-index: 1001;
+            max-width: 400px;
+            font-weight: 500;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .notification.success {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .notification.error {
+            background: var(--danger-color);
+            color: white;
+        }
+
+        .notification.warning {
+            background: var(--warning-color);
+            color: var(--text-primary);
+        }
+
+        .notification.info {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* ============================================================================
+           RESPONSIVE DESIGN
+           ============================================================================ */
+        @media (max-width: 1024px) {
+            .main-content {
+                padding: 24px;
+            }
+            
+            .courses-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .job-overview {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+                box-shadow: var(--shadow-md);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 16px;
+            }
+
+            .header-bar {
+                padding: 0 16px;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .user-details {
+                display: none;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .simple-courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .apt-progress {
+                flex-direction: column;
+                gap: 30px;
+                margin: 0;
+            }
+
+            .apt-progress::before,
+            .apt-progress-line {
+                display: none;
+            }
+
+            .apt-step {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            .modal-content {
+                margin: 1rem;
+                max-height: calc(100vh - 2rem);
+            }
+
+            .modal-body {
+                padding: 1.5rem;
+            }
+
+            .job-overview {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .welcome-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .welcome-card h2 {
+                font-size: 1.8rem;
+            }
+
+            .page-title {
+                font-size: 24px;
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-bar {
+                padding: 0 12px;
+            }
+
+            .main-content {
+                padding: 12px;
+            }
+
+            .course-card {
+                padding: 16px;
+            }
+
+            .job-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-overlay {
+                padding: 12px;
+            }
+
+            .welcome-card {
+                padding: 1.5rem;
+            }
+
+            .welcome-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .apt-container {
+                padding: 1.5rem;
+            }
+
+            .applied-courses-section {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ============================================================================
+           PRINT STYLES (Optional)
+           ============================================================================ */
+        @media print {
+            .sidebar,
+            .header-bar,
+            .modal-overlay {
+                display: none !important;
+            }
+
+            .main-content {
+                margin-left: 0 !important;
+                padding: 0 !important;
+            }
+
+            .page {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ============================================================================
+         HEADER SECTION
+         ============================================================================ -->
+    <header class="header-bar">
+        <div class="logo-container">
+            <img src="LOGO.png" alt="Logo" class="logo">
+            <h1 class="logo-text">TrackerPro</h1>
+        </div>
+        
+        <div class="header-actions">
+            <div class="user-profile" onclick="UI.toggleUserDropdown()">
+                <div class="user-avatar" id="userAvatar">S</div>
+                <div class="user-details">
+                    <div class="user-name" id="userName">Loading...</div>
+                    <div class="user-role" id="userRole">Student</div>
+                </div>
+                
+                <div class="user-dropdown" id="userDropdown">
+                    <a href="#" class="dropdown-item">My Profile</a>
+                    <a href="#" class="dropdown-item">Application History</a>
+                    <a href="#" class="dropdown-item">Help & Support</a>
+                    <a href="#" class="dropdown-item" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================================================
+         DASHBOARD CONTAINER
+         ============================================================================ -->
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="nav-item active" data-page="my-applications">
+                <span class="nav-item-text">My Applications</span>
+            </div>
+            <div class="nav-item" data-page="available-courses">
+                <span class="nav-item-text">Available Courses</span>
+            </div>
+            <div class="nav-item" data-page="interview-panel">
+                <span class="nav-item-text">Interview Panel</span>
+            </div>
+            <div class="nav-item" data-page="help-support">
+                <span class="nav-item-text">Help & Support</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- ================================================================
+                 MY APPLICATIONS PAGE
+                 ================================================================ -->
+            <div id="my-applications" class="page active-page">
+                <!-- Welcome Section -->
+                <div class="welcome-card">
+                    <h2 id="welcomeTitle">Welcome, Student</h2>
+                    <p>Track your application progress through our comprehensive student portal</p>
+                </div>
+
+                <!-- Progress Tracker -->
+                <div class="apt-container">
+                    <h2 class="apt-title">Application Progress Tracker</h2>
+                    
+                    <div class="apt-progress" id="progressTracker">
+                        <div class="apt-progress-line" id="progressLine"></div>
+                        
+                        <div class="apt-step pending" data-step="1">
+                            <div class="apt-circle">1</div>
+                            <h3 class="apt-label">Registered</h3>
+                            <p class="apt-description">Account Created</p>
+                        </div>
+                        
+                        <div class="apt-step pending" data-step="2">
+                            <div class="apt-circle">2</div>
+                            <h3 class="apt-label">Applied</h3>
+                            <p class="apt-description">Course Application</p>
+                        </div>
+                        
+                        <div class="apt-step pending" data-step="3">
+                            <div class="apt-circle">3</div>
+                            <h3 class="apt-label">Under Review</h3>
+                            <p class="apt-description">Application Review</p>
+                        </div>
+                        
+                        <div class="apt-step pending" data-step="4">
+                            <div class="apt-circle">4</div>
+                            <h3 class="apt-label">Interview</h3>
+                            <p class="apt-description">Interview Scheduled</p>
+                        </div>
+                        
+                        <div class="apt-step pending" data-step="5">
+                            <div class="apt-circle">5</div>
+                            <h3 class="apt-label">Final Decision</h3>
+                            <p class="apt-description">Enrollment Status</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Applied Courses Section -->
+                <div class="applied-courses-section">
+                    <h2 class="applied-courses-title">Applied Courses</h2>
+                    <div class="simple-courses-grid" id="appliedCoursesContainer">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📚</div>
+                            <h3>No applications yet</h3>
+                            <p>Browse available courses to start your educational journey</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================
+                 AVAILABLE COURSES PAGE
+                 ================================================================ -->
+            <div id="available-courses" class="page">
+                <h1 class="page-title">Available Courses</h1>
+                
+                <div class="courses-grid" id="coursesContainer">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⏳</div>
+                        <h3>Loading courses...</h3>
+                        <p>Please wait while we fetch the latest course offerings</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================
+                 INTERVIEW PANEL PAGE
+                 ================================================================ -->
+            <div id="interview-panel" class="page">
+                <h1 class="page-title">Interview Panel</h1>
+                
+                <div class="content-area">
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🎤</div>
+                        <h3>No interviews scheduled yet</h3>
+                        <p>Your interview details will appear here once you reach the interview stage</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================================================================
+                 HELP & SUPPORT PAGE
+                 ================================================================ -->
+            <div id="help-support" class="page">
+                <h1 class="page-title">Help & Support</h1>
+                
+                <div class="content-area">
+                    <h2>Frequently Asked Questions</h2>
+                    <div class="faq-content">
+                        <p><strong>Q: How do I apply for a course?</strong></p>
+                        <p>A: Browse the "Available Courses" section, click on any course to view details, and click the "Apply" button.</p>
+                        <br>
+                        <p><strong>Q: How can I track my application status?</strong></p>
+                        <p>A: Check the "My Applications" section and the Progress Tracker to see your current status.</p>
+                        <br>
+                        <p><strong>Q: When will I hear back about my application?</strong></p>
+                        <p>A: You'll receive updates via email and can check your dashboard for real-time status changes.</p>
+                        <br>
+                        <p>For additional support, please contact our admissions team.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ============================================================================
+         COURSE DETAILS MODAL
+         ============================================================================ -->
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeCourseModal()" aria-label="Close modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic course details loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ============================================================================
+           JAVASCRIPT - APPLICATION LOGIC
+           ============================================================================ */
+        
+        "use strict";
+
+        // ========================================================================
+        // CONFIGURATION & CONSTANTS
+        // ========================================================================
+        const CONFIG = {
+            // API Configuration - Using Spring Boot backend
+            API_BASE_URL: window.location.origin + '/api',
+            
+            // Student Configuration (In real app, this comes from login session)
+            STUDENT_ID: null, // Will be set from URL parameter or session
+            
+            // UI Configuration
+            NOTIFICATION_DURATION: 4000,
+            ANIMATION_DURATION: 300
+        };
+
+        // Initialize student ID from session storage (set during login)
+        CONFIG.STUDENT_ID = sessionStorage.getItem('studentId');
+        
+        // Redirect to login if no student ID found
+        if (!CONFIG.STUDENT_ID) {
+            console.warn('No student session found. Redirecting to login.');
+            window.location.href = '/login';
+        }
+
+        // ========================================================================
+        // GLOBAL STATE MANAGEMENT
+        // ========================================================================
+        const AppState = {
+            currentStudent: null,
+            availableCourses: [],
+            appliedCourse: null,
+            applicationProgress: null,
+            currentPage: 'my-applications',
+            isLoading: false,
+            canApply: true
+        };
+
+        // ========================================================================
+        // API CLIENT - CENTRALIZED HTTP REQUESTS
+        // ========================================================================
+        class ApiClient {
+            static async request(method, endpoint, data = null) {
+                const url = `${CONFIG.API_BASE_URL}${endpoint}`;
+                const options = {
+                    method,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                };
+
+                if (data && (method === 'POST' || method === 'PUT')) {
+                    options.body = JSON.stringify(data);
+                }
+
+                try {
+                    const response = await fetch(url, options);
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+
+                    return await response.json();
+                } catch (error) {
+                    console.error(`API ${method} error for ${endpoint}:`, error);
+                    throw error;
+                }
+            }
+
+            static async get(endpoint) {
+                return this.request('GET', endpoint);
+            }
+
+            static async post(endpoint, data) {
+                return this.request('POST', endpoint, data);
+            }
+        }
+
+        // ========================================================================
+        // DATA LOADING SERVICES
+        // ========================================================================
+        class DataService {
+            static async loadStudentProfile() {
+                try {
+                    AppState.isLoading = true;
+                    const response = await ApiClient.get(`/student/profile/${CONFIG.STUDENT_ID}`);
+                    if (response.success) {
+                        AppState.currentStudent = response.data;
+                        UIManager.updateStudentProfile(response.data);
+                        return response.data;
+                    }
+                    throw new Error(response.message || 'Failed to load profile');
+                } catch (error) {
+                    console.warn('Using fallback student profile:', error);
+                    const fallbackProfile = {
+                        studentId: CONFIG.STUDENT_ID,
+                        firstName: 'Demo',
+                        lastName: 'Student',
+                        fullName: 'Demo Student',
+                        email: 'demo@example.com'
+                    };
+                    AppState.currentStudent = fallbackProfile;
+                    UIManager.updateStudentProfile(fallbackProfile);
+                    return fallbackProfile;
+                } finally {
+                    AppState.isLoading = false;
+                }
+            }
+
+            static async loadAvailableCourses() {
+                try {
+                    AppState.isLoading = true;
+                    const response = await ApiClient.get('/student/courses/available');
+                    if (response.success) {
+                        AppState.availableCourses = response.data || [];
+                        UIManager.renderCoursesGrid();
+                    } else {
+                        throw new Error(response.message || 'Failed to load courses');
+                    }
+                } catch (error) {
+                    NotificationManager.showError('Failed to load available courses');
+                    console.error('Error loading courses:', error);
+                    AppState.availableCourses = [];
+                    UIManager.renderCoursesGrid();
+                } finally {
+                    AppState.isLoading = false;
+                }
+            }
+
+            static async loadStudentApplication() {
+                try {
+                    const response = await ApiClient.get(`/student/applications/${CONFIG.STUDENT_ID}`);
+                    if (response.success && response.hasApplication) {
+                        AppState.appliedCourse = response.data;
+                        AppState.canApply = false;
+                    } else {
+                        AppState.appliedCourse = null;
+                        AppState.canApply = true;
+                    }
+                    UIManager.renderAppliedCourses();
+                    UIManager.updateProgressTracker();
+                } catch (error) {
+                    console.warn('No applied course found or error loading:', error);
+                    AppState.appliedCourse = null;
+                    AppState.canApply = true;
+                    UIManager.renderAppliedCourses();
+                }
+            }
+
+            static async loadApplicationProgress() {
+                try {
+                    const response = await ApiClient.get(`/student/progress/${CONFIG.STUDENT_ID}`);
+                    if (response.success && response.data) {
+                        AppState.applicationProgress = response.data;
+                        UIManager.updateProgressTracker(response.data);
+                    }
+                } catch (error) {
+                    console.warn('No application progress found:', error);
+                }
+            }
+
+            static async applyCourse(courseId) {
+                try {
+                    const result = await ApiClient.post('/student/apply', {
+                        studentId: CONFIG.STUDENT_ID,
+                        courseId: courseId
+                    });
+
+                    if (result.success) {
+                        NotificationManager.showSuccess(result.message);
+                        // Reload student application to update UI
+                        await this.loadStudentApplication();
+                        return result;
+                    } else {
+                        throw new Error(result.message || 'Application failed');
+                    }
+                } catch (error) {
+                    if (error.message.includes('already applied')) {
+                        NotificationManager.showWarning('You have already applied for a course');
+                    } else {
+                        NotificationManager.showError('Failed to submit application. Please try again.');
+                    }
+                    throw error;
+                }
+            }
+
+            static async getCourseDetails(courseId) {
+                try {
+                    const response = await ApiClient.get(`/student/courses/${courseId}/details`);
+                    if (response.success) {
+                        return response.data;
+                    }
+                    throw new Error(response.message || 'Failed to load course details');
+                } catch (error) {
+                    NotificationManager.showError('Failed to load course details');
+                    throw error;
+                }
+            }
+
+            static async checkCanApply() {
+                try {
+                    const response = await ApiClient.get(`/student/can-apply/${CONFIG.STUDENT_ID}`);
+                    if (response.success) {
+                        AppState.canApply = response.canApply;
+                        return response.canApply;
+                    }
+                    return false;
+                } catch (error) {
+                    console.warn('Error checking application eligibility:', error);
+                    return false;
+                }
+            }
+        }
+
+        // ========================================================================
+        // UI MANAGEMENT - CENTRALIZED DOM MANIPULATION
+        // ========================================================================
+        class UIManager {
+            static updateStudentProfile(profile) {
+                const userName = document.getElementById('userName');
+                const userAvatar = document.getElementById('userAvatar');
+                const welcomeTitle = document.getElementById('welcomeTitle');
+
+                if (userName) userName.textContent = profile.fullName || `${profile.firstName} ${profile.lastName}`;
+                if (userAvatar) userAvatar.textContent = profile.firstName?.charAt(0).toUpperCase() || 'S';
+                if (welcomeTitle) welcomeTitle.textContent = `Welcome, ${profile.firstName || 'Student'}`;
+            }
+
+            static renderCoursesGrid() {
+                const container = document.getElementById('coursesContainer');
+                if (!container) return;
+
+                if (AppState.availableCourses.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📚</div>
+                            <h3>No courses available</h3>
+                            <p>Please check back later for new course offerings</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = AppState.availableCourses.map(course => {
+                    const isApplied = AppState.appliedCourse && AppState.appliedCourse.courseId === course.courseId;
+                    const canApplyToCourse = AppState.canApply && !isApplied;
+                    
+                    return `
+                        <div class="course-card" onclick="CourseManager.showCourseDetails('${course.courseId}')">
+                            <div class="course-id">${course.courseCode}</div>
+                            <div class="published-status">${course.status.toUpperCase()}</div>
+                            <div class="course-institute">TRACKERPRO LEARNING INSTITUTE</div>
+                            <h3 class="course-title">${course.courseTitle}</h3>
+                            <div class="course-meta">
+                                <div class="course-duration">${course.durationMonths} Months</div>
+                                <div class="course-category">${course.category}</div>
+                            </div>
+                            <button class="apply-btn ${isApplied ? 'applied' : ''}" 
+                                    ${!canApplyToCourse ? 'disabled' : ''} 
+                                    onclick="event.stopPropagation(); ${canApplyToCourse ? `CourseManager.applyCourse('${course.courseId}', this)` : ''}">
+                                ${isApplied ? 'Applied' : (AppState.canApply ? 'Apply' : 'Cannot Apply')}
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            static renderAppliedCourses() {
+                const container = document.getElementById('appliedCoursesContainer');
+                if (!container) return;
+
+                if (!AppState.appliedCourse) {
+                    container.innerHTML = `
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📚</div>
+                            <h3>No applications yet</h3>
+                            <p>Browse available courses to start your educational journey</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                const application = AppState.appliedCourse;
+                container.innerHTML = `
+                    <div class="simple-course-card">
+                        <div class="course-id">${application.courseCode}</div>
+                        <div class="simple-course-status">
+                            <span class="status-badge status-${application.status.toLowerCase().replace(' ', '_')}">
+                                ${application.status.toUpperCase()}
+                            </span>
+                        </div>
+                        <h4 class="simple-course-title">${application.courseTitle}</h4>
+                        <div class="simple-course-meta">
+                            <div class="simple-meta-item">
+                                <span class="simple-meta-label">Applied:</span>
+                                <span class="simple-meta-value">${new Date(application.appliedAt).toLocaleDateString()}</span>
+                            </div>
+                            <div class="simple-meta-item">
+                                <span class="simple-meta-label">Progress:</span>
+                                <span class="simple-meta-value">${application.progressPercentage}%</span>
+                            </div>
+                            <div class="simple-meta-item">
+                                <span class="simple-meta-label">Status:</span>
+                                <span class="simple-meta-value">${application.status}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            static updateProgressTracker(progress = null) {
+                const steps = document.querySelectorAll('.apt-step');
+                const progressLine = document.getElementById('progressLine');
+                
+                if (!steps.length || !progressLine) return;
+
+                let currentStep = 1; // Default: registered
+                let progressPercent = 0;
+                
+                if (AppState.appliedCourse) {
+                    // Map application status to progress steps
+                    const statusMap = {
+                        'APPLIED': 2,
+                        'UNDER_REVIEW': 3,
+                        'INTERVIEW': 4,
+                        'ACCEPTED': 5,
+                        'COMPLETED': 5,
+                        'REJECTED': 1
+                    };
+                    
+                    currentStep = statusMap[AppState.appliedCourse.status] || 2;
+                    progressPercent = AppState.appliedCourse.progressPercentage || 25;
+                }
+
+                steps.forEach((step, index) => {
+                    const stepNum = index + 1;
+                    const circle = step.querySelector('.apt-circle');
+                    
+                    if (stepNum < currentStep) {
+                        step.className = 'apt-step completed';
+                        circle.textContent = '✓';
+                    } else if (stepNum === currentStep) {
+                        step.className = 'apt-step active';
+                        circle.textContent = stepNum;
+                    } else {
+                        step.className = 'apt-step pending';
+                        circle.textContent = stepNum;
+                    }
+                });
+
+                // Animate progress line
+                const linePercent = ((currentStep - 1) / 4) * 100;
+                setTimeout(() => {
+                    progressLine.style.width = `${Math.min(linePercent, 100)}%`;
+                }, 300);
+            }
+        }
+
+        // ========================================================================
+        // COURSE MANAGEMENT
+        // ========================================================================
+        class CourseManager {
+            static async applyCourse(courseId, button) {
+                if (button.classList.contains('applied') || button.disabled) return;
+                if (!AppState.canApply) {
+                    NotificationManager.showWarning('You can only apply for one course');
+                    return;
+                }
+
+                const originalText = button.textContent;
+                
+                try {
+                    button.textContent = 'Applying...';
+                    button.disabled = true;
+                    
+                    await DataService.applyCourse(courseId);
+                    
+                    button.textContent = 'Applied';
+                    button.classList.add('applied');
+                    
+                    // Update UI to reflect the new application
+                    UIManager.renderCoursesGrid();
+                    
+                } catch (error) {
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    console.error('Course application error:', error);
+                }
+            }
+
+            static async showCourseDetails(courseId) {
+                try {
+                    const course = await DataService.getCourseDetails(courseId);
+                    const modalBody = document.getElementById('modalBody');
+                    
+                    if (!modalBody) return;
+
+                    modalBody.innerHTML = `
+                        <h2 class="job-title">${course.courseTitle}</h2>
+                        <p class="job-institute">TrackerPro Learning Institute</p>
+                        
+                        <div class="job-overview">
+                            <div class="job-overview-item">
+                                <div class="job-overview-label">Course Code</div>
+                                <div class="job-overview-value">${course.courseCode}</div>
+                            </div>
+                            <div class="job-overview-item">
+                                <div class="job-overview-label">Duration</div>
+                                <div class="job-overview-value">${course.durationMonths} Months</div>
+                            </div>
+                            <div class="job-overview-item">
+                                <div class="job-overview-label">Category</div>
+                                <div class="job-overview-value">${course.category}</div>
+                            </div>
+                            <div class="job-overview-item">
+                                <div class="job-overview-label">Prerequisites</div>
+                                <div class="job-overview-value">${course.prerequisites || 'None'}</div>
+                            </div>
+                            <div class="job-overview-item">
+                                <div class="job-overview-label">Status</div>
+                                <div class="job-overview-value">${course.status.toUpperCase()}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="job-section">
+                            <h3 class="job-section-title">Course Description</h3>
+                            <div class="job-section-content">
+                                <p>${course.description || 'No description available.'}</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    ModalManager.openModal('courseModal');
+                    
+                } catch (error) {
+                    console.error('Error loading course details:', error);
+                }
+            }
+        }
+
+        // ========================================================================
+        // MODAL MANAGEMENT
+        // ========================================================================
+        class ModalManager {
+            static openModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            static closeModal(modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }
+
+            static closeCourseModal() {
+                this.closeModal('courseModal');
+            }
+        }
+
+        // ========================================================================
+        // NAVIGATION MANAGEMENT
+        // ========================================================================
+        class NavigationManager {
+            static init() {
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        const page = e.currentTarget.getAttribute('data-page');
+                        if (page) this.navigateToPage(page);
+                    });
+                });
+            }
+
+            static navigateToPage(page) {
+                // Update navigation active state
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                const activeNavItem = document.querySelector(`[data-page="${page}"]`);
+                if (activeNavItem) {
+                    activeNavItem.classList.add('active');
+                }
+                
+                // Update page visibility
+                document.querySelectorAll('.page').forEach(pageElement => {
+                    pageElement.classList.remove('active-page');
+                });
+                
+                const targetPage = document.getElementById(page);
+                if (targetPage) {
+                    targetPage.classList.add('active-page');
+                }
+
+                // Update app state
+                AppState.currentPage = page;
+
+                // Load data for specific pages
+                this.handlePageSpecificActions(page);
+            }
+
+            static handlePageSpecificActions(page) {
+                switch (page) {
+                    case 'available-courses':
+                        if (AppState.availableCourses.length === 0) {
+                            DataService.loadAvailableCourses();
+                        }
+                        break;
+                    case 'my-applications':
+                        DataService.loadStudentApplication();
+                        DataService.loadApplicationProgress();
+                        break;
+                }
+            }
+        }
+
+        // ========================================================================
+        // NOTIFICATION SYSTEM
+        // ========================================================================
+        class NotificationManager {
+            static show(message, type = 'info') {
+                const notification = document.createElement('div');
+                notification.className = `notification ${type}`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                // Slide in animation
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                // Auto remove
+                setTimeout(() => {
+                    this.remove(notification);
+                }, CONFIG.NOTIFICATION_DURATION);
+            }
+
+            static remove(notification) {
+                if (notification && document.body.contains(notification)) {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        if (document.body.contains(notification)) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }
+
+            static showSuccess(message) {
+                this.show(message, 'success');
+            }
+
+            static showError(message) {
+                this.show(message, 'error');
+            }
+
+            static showWarning(message) {
+                this.show(message, 'warning');
+            }
+
+            static showInfo(message) {
+                this.show(message, 'info');
+            }
+        }
+
+        // ========================================================================
+        // UI INTERFACE UTILITIES
+        // ========================================================================
+        class UI {
+            static toggleUserDropdown() {
+                const dropdown = document.getElementById('userDropdown');
+                if (dropdown) {
+                    dropdown.classList.toggle('active');
+                }
+            }
+
+            static closeUserDropdown() {
+                const dropdown = document.getElementById('userDropdown');
+                if (dropdown) {
+                    dropdown.classList.remove('active');
+                }
+            }
+        }
+
+        // ========================================================================
+        // AUTH MANAGEMENT
+        // ========================================================================
+        class AuthManager {
+            static logout() {
+                if (confirm('Are you sure you want to logout?')) {
+                    NotificationManager.showInfo('Logging out...');
+                    
+                    // Clear any stored user data
+                    AppState.currentStudent = null;
+                    AppState.availableCourses = [];
+                    AppState.appliedCourse = null;
+                    sessionStorage.clear();
+                    
+                    setTimeout(() => {
+                        window.location.href = '/loginPage.html';
+                    }, 1500);
+                }
+            }
+        }
+
+        // ========================================================================
+        // EVENT LISTENERS SETUP
+        // ========================================================================
+        function setupEventListeners() {
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                const userProfile = document.querySelector('.user-profile');
+                if (userProfile && !userProfile.contains(e.target)) {
+                    UI.closeUserDropdown();
+                }
+            });
+
+            // Close modal when clicking overlay
+            document.getElementById('courseModal')?.addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    ModalManager.closeCourseModal();
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    ModalManager.closeCourseModal();
+                    UI.closeUserDropdown();
+                }
+            });
+        }
+
+        // ========================================================================
+        // APPLICATION INITIALIZATION
+        // ========================================================================
+        async function initializeApp() {
+            console.log('🚀 Initializing TrackerPro Student Dashboard...');
+            
+            try {
+                // Setup event listeners
+                setupEventListeners();
+                
+                // Initialize navigation
+                NavigationManager.init();
+                
+                // Load initial data
+                await Promise.all([
+                    DataService.loadStudentProfile(),
+                    DataService.checkCanApply(),
+                    DataService.loadStudentApplication(),
+                    DataService.loadAvailableCourses()
+                ]);
+                
+                NotificationManager.showSuccess('Dashboard loaded successfully!');
+                console.log('✅ TrackerPro Student Dashboard initialized successfully');
+                
+            } catch (error) {
+                console.error('❌ Initialization error:', error);
+                NotificationManager.showWarning('Some features may not work properly. Please refresh the page.');
+            }
+        }
+
+        // ========================================================================
+        // GLOBAL FUNCTION EXPOSURE (for HTML onclick handlers)
+        // ========================================================================
+        window.navigateToPage = NavigationManager.navigateToPage.bind(NavigationManager);
+        window.closeCourseModal = ModalManager.closeCourseModal.bind(ModalManager);
+        window.logout = AuthManager.logout.bind(AuthManager);
+        window.UI = UI;
+        window.CourseManager = CourseManager;
+
+        // ========================================================================
+        // APPLICATION STARTUP
+        // ========================================================================
+        document.addEventListener('DOMContentLoaded', initializeApp);
+
+        // Global error handling
+        window.addEventListener('error', (e) => {
+            console.error('Global error:', e.error);
+            NotificationManager.showError('An unexpected error occurred');
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Unhandled promise rejection:', e.reason);
+            NotificationManager.showError('Network error occurred');
+        });
+    </script>
+</body>
+</html>

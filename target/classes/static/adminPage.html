@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackerPro - Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           CSS VARIABLES FOR EASY THEMING
+           ========================================================================== */
+        :root {
+            --primary-color: #4a6fff;
+            --primary-light: #e5eaff;
+            --primary-dark: #3a5ccc;
+            --secondary-color: #ff7e42;
+            --text-color: #333333;
+            --text-light: #666666;
+            --light-color: #f8f9fc;
+            --gray-color: #dfe2e9;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --danger-color: #e74c3c;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --transition: all 0.3s ease;
+            --header-height: 70px;
+            --sidebar-width: 250px;
+
+            /* Modern Sidebar Variables */
+            --bg-card: #ffffff;
+            --border: #e2e8f0;
+            --text-muted: #64748b;
+            --text-secondary: #475569;
+            --text-primary: #1e293b;
+            --bg-hover: #f1f5f9;
+        }
+
+        /* ==========================================================================
+           GENERAL BASE STYLES
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           HEADER BAR
+           ========================================================================== */
+        .header-bar {
+            background-color: var(--white);
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            justify-content: space-between;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 38px;
+            margin-right: 12px;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: black;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .header-search {
+            position: relative;
+            width: 300px;
+        }
+
+        .header-search input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--gray-color);
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .header-search input:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .header-search::before {
+            content: '🔍︎';
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .header-notifications {
+            position: relative;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .header-notifications:hover {
+            background-color: var(--primary-light);
+        }
+
+        .header-notifications::after {
+            content: '8';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+
+        .user-details .user-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            line-height: 1.2;
+        }
+
+        .user-details .user-role {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .logout-icon {
+            cursor: pointer;
+            font-size: 1.3rem;
+            padding: 8px;
+            border-radius: 50%;
+            transition: var(--transition);
+            margin-left: 10px;
+        }
+
+        .logout-icon:hover {
+            background-color: var(--light-color);
+            transform: scale(1.1);
+        }
+
+        /* ==========================================================================
+           MODERN PROFESSIONAL SIDEBAR
+           ========================================================================== */
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+            padding-top: var(--header-height);
+        }
+
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            height: calc(100vh - var(--header-height));
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            overflow-y: auto;
+            padding: 1.5rem 0;
+            z-index: 90;
+        }
+
+        .nav-section {
+            margin-bottom: 2rem;
+        }
+
+        .nav-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 0 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 0.625rem 1.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-hover);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-color);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            font-size: 0.75rem;
+            padding: 0.125rem 0.5rem;
+            background: var(--danger-color);
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            min-width: 1.25rem;
+            text-align: center;
+        }
+
+        /* ==========================================================================
+           MAIN CONTENT PAGES
+           ========================================================================== */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        .page-title {
+            margin-bottom: 2rem;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           DASHBOARD STATS
+           ========================================================================== */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+        }
+
+        .stat-card.primary::before {
+            background-color: var(--primary-color);
+        }
+
+        .stat-card.secondary::before {
+            background-color: var(--secondary-color);
+        }
+
+        .stat-card.success::before {
+            background-color: var(--success-color);
+        }
+
+        .stat-card.warning::before {
+            background-color: var(--warning-color);
+        }
+
+        .stat-card .stat-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            opacity: 0.1;
+        }
+
+        .stat-card .stat-title {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .stat-card .stat-value {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card .stat-description {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: auto;
+        }
+
+        /* ==========================================================================
+           SHARED COMPONENTS
+           ========================================================================== */
+        .content-area {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .content-area h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--gray-color);
+            padding-bottom: 0.75rem;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-color);
+            vertical-align: middle;
+        }
+
+        .data-table th {
+            font-weight: 500;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: var(--light-color);
+        }
+
+        .badge {
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-success {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--success-color);
+        }
+
+        .badge-warning {
+            background-color: rgba(241, 196, 15, 0.1);
+            color: var(--warning-color);
+        }
+
+        .badge-danger {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--danger-color);
+        }
+
+        .badge-primary {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .btn-sm {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.75rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: var(--white);
+            border: 1px solid var(--gray-color);
+            color: var(--text-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--light-color);
+        }
+
+        .table-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .form-control {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-color);
+            border-radius: var(--border-radius-sm);
+            font-size: 0.875rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        /* ==========================================================================
+           MODAL SYSTEM
+           ========================================================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            width: 100%;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+
+        .modal-content.small {
+            max-width: 500px;
+        }
+
+        .modal-content.medium {
+            max-width: 700px;
+        }
+
+        .modal-content.large {
+            max-width: 900px;
+        }
+
+        .modal-content.extra-large {
+            max-width: 1200px;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--gray-color);
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--gray-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .form-control {
+            width: 100%;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray-color);
+            background: white;
+            cursor: pointer;
+            border-radius: var(--border-radius-sm);
+        }
+
+        .pagination button:hover {
+            background: var(--light-color);
+        }
+
+        .pagination button.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Search and Filter Bar */
+        .search-filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-filter-bar .form-control {
+            min-width: 200px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .dashboard-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .table-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* Success/Error Messages */
+        .alert {
+            padding: 1rem;
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 1rem;
+            border: 1px solid;
+        }
+
+        .alert-success {
+            background: rgba(46, 204, 113, 0.1);
+            border-color: var(--success-color);
+            color: var(--success-color);
+        }
+
+        .alert-error {
+            background: rgba(231, 76, 60, 0.1);
+            border-color: var(--danger-color);
+            color: var(--danger-color);
+        }
+
+        .alert-info {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        /* Status message animations */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Course grid styling */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .course-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .course-code {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .course-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .course-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .batch-count {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--text-muted);
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .empty-state h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header class="header-bar">
+        <div class="logo-container">
+            <img src="LOGO.png" alt="TrackerPro Logo" class="logo">
+            <h1 class="logo-text">TrackerPro</h1>
+        </div>
+        <div class="header-actions">
+            <div class="header-search">
+                <input type="text" placeholder="Search..." id="headerSearch">
+            </div>
+            <div class="header-notifications" title="Notifications" id="notificationsBtn">🔔</div>
+            <div class="user-profile" title="Admin Profile">
+                <div class="user-avatar">A</div>
+                <div class="user-details">
+                    <div class="user-name">Admin User</div>
+                    <div class="user-role">Administrator</div>
+                </div>
+                <div class="logout-icon" title="Logout" id="logoutBtn">➜]</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="nav-section">
+                <div class="nav-title">Main</div>
+                <div class="nav-item active" data-page="dashboard">
+                    <span class="nav-icon">📊</span>
+                    Dashboard
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">User Management</div>
+                <div class="nav-item" data-page="registrations">
+                    <span class="nav-icon">📝</span>
+                    All Registrations
+                    <span class="nav-badge" id="registrationCount">0</span>
+                </div>
+                <div class="nav-item" data-page="user-management">
+                    <span class="nav-icon">👥</span>
+                    User Management
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Academic</div>
+                <div class="nav-item" data-page="course-management">
+                    <span class="nav-icon">📚</span>
+                    Course Management
+                </div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-title">Administration</div>
+                <div class="nav-item" data-page="system-settings">
+                    <span class="nav-icon">⚙️</span>
+                    System Settings
+                </div>
+                <div class="nav-item" data-page="complaints">
+                    <span class="nav-icon">📞</span>
+                    Complaints Management
+                    <span class="nav-badge" id="complaintsCount">0</span>
+                </div>
+            </div>
+
+           
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <div id="dashboard" class="page active-page">
+                <h1 class="page-title">Welcome to Workspace</h1>
+                
+                <div class="dashboard-stats">
+                    <div class="stat-card primary">
+                        <span class="stat-icon">🎓</span>
+                        <div class="stat-title">Total Students</div>
+                        <div class="stat-value" id="totalRegistrations">0</div>
+                        <div class="stat-description">+12% from last month</div>
+                    </div>
+                    <div class="stat-card secondary">
+                        <span class="stat-icon">👨‍🏫</span>
+                        <div class="stat-title">Faculty & HR</div>
+                        <div class="stat-value" id="totalUsers">0</div>
+                        <div class="stat-description">Active users</div>
+                    </div>
+                    <div class="stat-card success">
+                        <span class="stat-icon">📚</span>
+                        <div class="stat-title">Published Courses</div>
+                        <div class="stat-value" id="totalStudents">0</div>
+                        <div class="stat-description">Available courses</div>
+                    </div>
+                    <div class="stat-card warning">
+                        <span class="stat-icon">⭐</span>
+                        <div class="stat-title">New Students</div>
+                        <div class="stat-value" id="newUsers">0</div>
+                        <div class="stat-description">This week</div>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <h2>Recent Registrations</h2>
+                    <div id="recentRegistrationsTable"></div>
+                </div>
+            </div>
+
+            <!-- All Registrations Page -->
+            <div id="registrations" class="page">
+                <h1 class="page-title">All Registrations</h1>
+                
+                <div class="search-filter-bar">
+                    <input type="text" class="form-control" placeholder="Search students by name, email..." id="registrationSearch">
+                    <button class="btn btn-primary" onclick="exportRegistrations()">Export Data</button>
+                </div>
+
+                <div class="content-area">
+                    <div class="table-actions">
+                        <div>
+                            <button class="btn btn-outline" onclick="refreshRegistrations()">Refresh</button>
+                        </div>
+                        <div>
+                            <span>Showing <span id="registrationShowingCount">0</span> of <span id="registrationTotalCount">0</span> entries</span>
+                        </div>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table class="data-table" id="registrationsTable">
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Gender</th>
+                                    <th>DOB</th>
+                                    <th>City</th>
+                                    <th>Mobile No</th>
+                                    <th>Role</th>
+                                    <th>Registered On</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="pagination" id="registrationPagination"></div>
+                </div>
+            </div>
+
+            <!-- User Management Page -->
+            <div id="user-management" class="page">
+                <h1 class="page-title">User Management</h1>
+                
+                <div class="content-area">
+                    <div class="table-actions">
+                        <button class="btn btn-primary" onclick="openAddUserModal()">Add User (HR/Faculty Only)</button>
+                        <div>
+                            <button class="btn btn-outline" onclick="filterUsers('all')" id="filterAll">All Users</button>
+                            <button class="btn btn-outline" onclick="filterUsers('faculty')" id="filterFaculty">Faculty</button>
+                            <button class="btn btn-outline" onclick="filterUsers('hr')" id="filterHR">HR Staff</button>
+                        </div>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table class="data-table" id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Management Page -->
+            <div id="course-management" class="page">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                    <h1 class="page-title" style="margin-bottom: 0;">Course Management</h1>
+                    <button class="btn btn-primary" onclick="toggleCourseForm()">
+                        <span id="courseFormToggleText">+ Create New Course</span>
+                    </button>
+                </div>
+                
+                <div class="content-area">
+                    <div class="table-actions">
+                        <h2 style="margin: 0;">All Courses</h2>
+                        <button class="btn btn-outline" onclick="loadCoursesData()">Refresh</button>
+                    </div>
+                    <div id="coursesList"></div>
+                </div>
+
+                <!-- Course Creation Sheet -->
+                <div id="courseFormSheet" class="modal" style="align-items: flex-start; padding-top: 2rem;">
+                    <div class="modal-content large" style="margin-top: 0; max-height: calc(100vh - 4rem);">
+                        <div class="modal-header">
+                            <h3 id="courseModalTitle">Create New Course</h3>
+                            <button class="close-modal" onclick="toggleCourseForm()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="courseForm" class="form-grid">
+                                <div class="form-group">
+                                    <label for="courseCode">Course Code *</label>
+                                    <input type="text" id="courseCode" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="courseTitle">Course Title *</label>
+                                    <input type="text" id="courseTitle" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="courseDuration">Duration (Months) *</label>
+                                    <input type="number" id="courseDuration" class="form-control" min="1" max="60" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="courseCategory">Category *</label>
+                                    <select id="courseCategory" class="form-control" required>
+                                        <option value="">Select Category</option>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="Mobile Development">Mobile Development</option>
+                                        <option value="Data Science">Data Science</option>
+                                        <option value="AI/ML">AI/ML</option>
+                                        <option value="Cybersecurity">Cybersecurity</option>
+                                        <option value="Cloud Computing">Cloud Computing</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="coursePrerequisites">Prerequisites Skills</label>
+                                    <input type="text" id="coursePrerequisites" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="courseDescription">Course Description</label>
+                                    <textarea id="courseDescription" class="form-control" rows="4"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline" onclick="toggleCourseForm()">Cancel</button>
+                            <button type="submit" form="courseForm" class="btn btn-primary">Save Course</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Settings Page -->
+            <div id="system-settings" class="page">
+                <h1 class="page-title">System Settings</h1>
+                
+                <div class="content-area">
+                    <div class="settings-tabs">
+                        <button class="active" onclick="showSettingsTab('general')">General Settings</button>
+                        <button onclick="showSettingsTab('registration')">Registration</button>
+                        <button onclick="showSettingsTab('notifications')">Notifications</button>
+                    </div>
+
+                    <div id="generalSettings" class="settings-content">
+                        <h3>General System Configuration</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="systemName">System Name</label>
+                                <input type="text" id="systemName" class="form-control" value="TrackerPro SPTS">
+                            </div>
+                            <div class="form-group">
+                                <label for="supportEmail">Support Email</label>
+                                <input type="email" id="supportEmail" class="form-control" value="support@trackerpro.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="organizationName">Organization Name</label>
+                                <input type="text" id="organizationName" class="form-control" value="Educational Institute">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxAdminLogin">Max Admin Login</label>
+                                <input type="number" id="maxAdminLogin" class="form-control" value="5" min="1">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings('general')">Save Settings</button>
+                    </div>
+
+                    <div id="registrationSettings" class="settings-content" style="display: none;">
+                        <h3>Registration & Admission Settings</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="registrationStatus">Registration Control</label>
+                                <select id="registrationStatus" class="form-control">
+                                    <option value="open">Open for Applications</option>
+                                    <option value="closed">Closed - No New Applications</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="studentAgeReq">Student Age Requirement</label>
+                                <input type="text" id="studentAgeReq" class="form-control" value="20-25 years">
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings('registration')">Update Settings</button>
+                    </div>
+
+                    <div id="notificationSettings" class="settings-content" style="display: none;">
+                        <h3>Notification Preferences</h3>
+                        <h4>Email Notifications</h4>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="newApplications" checked>
+                            <label for="newApplications">New Student Applications</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="batchUpdates" checked>
+                            <label for="batchUpdates">Batch Status Updates</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="securityAlerts" checked>
+                            <label for="securityAlerts">System Security Alerts</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="complaintNotifications" checked>
+                            <label for="complaintNotifications">New Complaint Submissions</label>
+                        </div>
+                        <button class="btn btn-primary" onclick="saveSettings('notifications')">Save Preferences</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complaints Management Page -->
+            <div id="complaints" class="page">
+                <h1 class="page-title">Complaints Management</h1>
+                
+                <div class="analytics-grid">
+                    <div class="analytics-card total">
+                        <div class="analytics-number" id="totalComplaints">0</div>
+                        <div class="analytics-label">Total Complaints</div>
+                    </div>
+                    <div class="analytics-card open">
+                        <div class="analytics-number" id="openComplaints">0</div>
+                        <div class="analytics-label">Open</div>
+                    </div>
+                    <div class="analytics-card resolved">
+                        <div class="analytics-number" id="resolvedComplaints">0</div>
+                        <div class="analytics-label">Resolved</div>
+                    </div>
+                    <div class="analytics-card high">
+                        <div class="analytics-number" id="highPriorityComplaints">0</div>
+                        <div class="analytics-label">High Priority</div>
+                    </div>
+                </div>
+
+                <div class="content-area">
+                    <h2>All Complaints</h2>
+                    <div class="table-actions">
+                        <div>
+                            <button class="btn btn-outline" onclick="exportComplaints()">Export Report</button>
+                            <button class="btn btn-outline" onclick="markAllComplaintsRead()">Mark All Read</button>
+                        </div>
+                        <div>
+                            <select class="form-control" id="complaintsFilter">
+                                <option value="">All Status</option>
+                                <option value="Open">Open</option>
+                                <option value="Resolved">Resolved</option>
+                                <option value="High">High Priority</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div style="overflow-x: auto;">
+                        <table class="data-table" id="complaintsTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Category</th>
+                                    <th>Priority</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        
+        </main>
+    </div>
+
+    <!-- Add/Edit User Modal -->
+    <div id="userModal" class="modal">
+        <div class="modal-content medium">
+            <div class="modal-header">
+                <h3 id="userModalTitle">Add New User</h3>
+                <button class="close-modal" onclick="closeModal('userModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="userForm" class="form-grid">
+                    <div class="form-group">
+                        <label for="userFirstName">First Name *</label>
+                        <input type="text" id="userFirstName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userLastName">Last Name</label>
+                        <input type="text" id="userLastName" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Email *</label>
+                        <input type="email" id="userEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userRole">Role *</label>
+                        <select id="userRole" class="form-control" required>
+                            <option value="">Select Role</option>
+                            <option value="FACULTY">Faculty</option>
+                            <option value="HR">HR Staff</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="userGender">Gender</label>
+                        <select id="userGender" class="form-control">
+                            <option value="">Select Gender</option>
+                            <option value="MALE">Male</option>
+                            <option value="FEMALE">Female</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="userMobile">Mobile Number</label>
+                        <input type="tel" id="userMobile" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="userCity">City</label>
+                        <input type="text" id="userCity" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="userDOB">Date of Birth</label>
+                        <input type="date" id="userDOB" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('userModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveUser()">Save User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Complaint Details Modal -->
+    <div id="complaintModal" class="modal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Complaint Details</h3>
+                <button class="close-modal" onclick="closeModal('complaintModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="complaintDetails">
+                <!-- Complaint details will be loaded here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" onclick="closeModal('complaintModal')">Close</button>
+                <button class="btn btn-success" onclick="resolveComplaint()">Mark as Resolved</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================================================
+        // APPLICATION STATE & DATA MANAGEMENT
+        // ==========================================================================
+        
+        class DataManager {
+            constructor() {
+                this.baseURL = '/api';
+            }
+
+            // API Helper method
+            async makeAPICall(endpoint, options = {}) {
+                try {
+                    const response = await fetch(`${this.baseURL}${endpoint}`, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            ...options.headers
+                        },
+                        ...options
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    return data;
+                } catch (error) {
+                    console.error(`API call failed for ${endpoint}:`, error);
+                    throw error;
+                }
+            }
+
+            // Dashboard Statistics
+            async getDashboardStats() {
+                return await this.makeAPICall('/admin/dashboard/stats');
+            }
+
+            // Student Registration methods
+            async getRegistrations(searchQuery = '') {
+                if (searchQuery) {
+                    return await this.makeAPICall(`/admin/registrations/search?query=${encodeURIComponent(searchQuery)}`);
+                } else {
+                    return await this.makeAPICall('/admin/registrations');
+                }
+            }
+
+            async getRecentRegistrations() {
+                return await this.makeAPICall('/admin/registrations/recent');
+            }
+
+            // User Management methods
+            async getAllUsers() {
+                return await this.makeAPICall('/admin/users');
+            }
+
+            async createUser(userData) {
+                return await this.makeAPICall('/admin/users', {
+                    method: 'POST',
+                    body: JSON.stringify(userData)
+                });
+            }
+
+            // Fallback data for UI testing
+            getFallbackData() {
+                return {
+                    registrations: [
+                        {
+                            studentId: 1,
+                            firstName: "John",
+                            lastName: "Smith",
+                            email: "john.smith@example.com",
+                            gender: "MALE",
+                            dateOfBirth: "17/10/2003",
+                            location: "Pune",
+                            mobileNo: "8940967403",
+                            registeredAt: "2023-10-26",
+                            status: "REGISTERED"
+                        }
+                    ],
+                    courses: [],
+                    complaints: [],
+                    settings: {
+                        systemName: "TrackerPro SPTS",
+                        supportEmail: "support@trackerpro.com",
+                        organizationName: "Educational Institute"
+                    }
+                };
+            }
+            
+            // Format student data for display
+            formatStudentForDisplay(student) {
+                return {
+                    id: student.studentId,
+                    firstName: student.firstName,
+                    lastName: student.lastName || '',
+                    email: student.email,
+                    gender: student.gender,
+                    dateOfBirth: student.dateOfBirth,
+                    location: student.location || '',
+                    mobileNo: student.mobileNo,
+                    registeredAt: student.registeredAt ? new Date(student.registeredAt).toLocaleDateString() : '',
+                    status: student.status
+                };
+            }
+
+            // Format user data for display  
+            formatUserForDisplay(user) {
+                return {
+                    id: user.userId,
+                    firstName: user.firstName,
+                    lastName: user.lastName || '',
+                    email: user.email,
+                    role: user.role,
+                    status: user.status,
+                    city: user.city || '',
+                    mobileNo: user.mobileNo || ''
+                };
+            }
+
+            // Course Management methods
+            async getAllCourses() {
+                return await this.makeAPICall('/admin/courses');
+            }
+
+            async getCourseById(courseId) {
+                return await this.makeAPICall(`/admin/courses/${courseId}`);
+            }
+
+            async addCourse(courseData) {
+                return await this.makeAPICall('/admin/courses', {
+                    method: 'POST',
+                    body: JSON.stringify(courseData)
+                });
+            }
+
+            async updateCourse(courseId, courseData) {
+                return await this.makeAPICall(`/admin/courses/${courseId}`, {
+                    method: 'PUT',
+                    body: JSON.stringify(courseData)
+                });
+            }
+
+            async deleteCourse(courseId) {
+                return await this.makeAPICall(`/admin/courses/${courseId}`, {
+                    method: 'DELETE'
+                });
+            }
+
+            async searchCourses(searchQuery) {
+                return await this.makeAPICall(`/admin/courses/search?query=${encodeURIComponent(searchQuery)}`);
+            }
+
+            async publishCourse(courseId) {
+                return await this.makeAPICall(`/admin/courses/${courseId}/publish`, {
+                    method: 'PUT'
+                });
+            }
+
+            async unpublishCourse(courseId) {
+                return await this.makeAPICall(`/admin/courses/${courseId}/unpublish`, {
+                    method: 'PUT'
+                });
+            }
+        }
+
+        // ==========================================================================
+        // APPLICATION INITIALIZATION
+        // ==========================================================================
+        
+        const dataManager = new DataManager();
+        let currentPage = 'dashboard';
+        let currentUser = null;
+        let editingUserId = null;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', async function() {
+            await initializeApp();
+            
+            // Set up periodic session validation (every 5 minutes)
+            setInterval(async function() {
+                await validateActiveSession();
+            }, 5 * 60 * 1000); // 5 minutes
+            
+            // Set up activity-based session validation
+            document.addEventListener('click', validateActiveSession);
+            document.addEventListener('keypress', validateActiveSession);
+        });
+        
+        async function validateActiveSession() {
+            const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
+            const hasLoginTimestamp = localStorage.getItem('loginTimestamp');
+            
+            if (!hasValidSession || !hasLoginTimestamp) {
+                console.log('Session lost, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+            
+            // Check timestamp validity
+            const loginTime = parseInt(hasLoginTimestamp);
+            const currentTime = Date.now();
+            const oneHour = 60 * 60 * 1000;
+            
+            if ((currentTime - loginTime) >= oneHour) {
+                console.log('Session expired during activity, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+        }
+
+        async function initializeApp() {
+            // Check authentication status first (critical security check)
+            await checkAuthenticationStatus();
+            
+            setupEventListeners();
+            updateDashboardStats();
+            loadDashboardData();
+            showStatusMessage('Dashboard loaded successfully', 'success');
+            
+            // Prevent back navigation after logout
+            window.addEventListener('popstate', function(event) {
+                history.pushState(null, null, location.href);
+            });
+        }
+        
+        async function checkAuthenticationStatus() {
+            // Critical security check - verify authentication with backend
+            const hasValidSession = sessionStorage.getItem('adminSession') === 'active';
+            const hasLoginTimestamp = localStorage.getItem('loginTimestamp');
+            const isFromLogin = document.referrer.includes('loginPage.html');
+            
+            // If coming from login page, set initial session and verify with backend
+            if (isFromLogin) {
+                sessionStorage.setItem('adminSession', 'active');
+                localStorage.setItem('loginTimestamp', Date.now().toString());
+                
+                // Verify the session is actually valid by testing dashboard API
+                try {
+                    const response = await fetch('/api/admin/dashboard/stats', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
+                    
+                    if (!response.ok || response.status === 401 || response.status === 403) {
+                        throw new Error('Authentication failed');
+                    }
+                    
+                    // Valid session confirmed
+                    return;
+                } catch (error) {
+                    console.log('Backend authentication failed, redirecting to login');
+                    clearAuthenticationData();
+                    window.location.replace('loginPage.html');
+                    return;
+                }
+            }
+            
+            // For direct access attempts - strict validation required
+            if (!hasValidSession || !hasLoginTimestamp) {
+                console.log('No valid session found, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+            
+            // Check session timestamp validity (1 hour max)
+            const loginTime = parseInt(hasLoginTimestamp);
+            const currentTime = Date.now();
+            const oneHour = 60 * 60 * 1000; // 1 hour in milliseconds
+            
+            if ((currentTime - loginTime) >= oneHour) {
+                console.log('Session expired, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+            
+            // Session exists and is not expired - verify with backend
+            try {
+                const response = await fetch('/api/admin/dashboard/stats', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                
+                if (!response.ok || response.status === 401 || response.status === 403) {
+                    throw new Error('Session invalid');
+                }
+                
+                // Session is valid, update timestamp
+                localStorage.setItem('loginTimestamp', Date.now().toString());
+                
+            } catch (error) {
+                console.log('Session validation failed, redirecting to login');
+                clearAuthenticationData();
+                window.location.replace('loginPage.html');
+                return;
+            }
+        }
+        
+        function clearAuthenticationData() {
+            // Clear all authentication data
+            localStorage.removeItem('adminToken');
+            localStorage.removeItem('loginTimestamp');
+            sessionStorage.removeItem('adminSession');
+            sessionStorage.clear();
+        }
+
+        function setupEventListeners() {
+            // Navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const page = this.getAttribute('data-page');
+                    if (page) {
+                        navigateToPage(page);
+                    }
+                });
+            });
+
+            // Logout functionality
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Are you sure you want to logout?')) {
+                    // Clear all authentication data
+                    clearAuthenticationData();
+                    
+                    // Prevent back navigation by manipulating history
+                    if (history.pushState) {
+                        // Replace current history entry
+                        history.replaceState(null, null, 'loginPage.html');
+                        
+                        // Add multiple entries to make back button ineffective
+                        for (let i = 0; i < 10; i++) {
+                            history.pushState(null, null, 'loginPage.html');
+                        }
+                        
+                        // Set up listener to redirect on back navigation
+                        window.addEventListener('popstate', function(e) {
+                            window.location.replace('loginPage.html');
+                        }, { once: true });
+                    }
+                    
+                    // Clear browser cache for this session
+                    if ('caches' in window) {
+                        caches.keys().then(function(names) {
+                            for (let name of names) caches.delete(name);
+                        });
+                    }
+                    
+                    // Force immediate redirect
+                    window.location.replace('loginPage.html');
+                }
+            });
+
+            // Search functionality
+            document.getElementById('headerSearch').addEventListener('input', function() {
+                const searchTerm = this.value;
+                if (currentPage === 'registrations') {
+                    filterRegistrations();
+                }
+            });
+
+            // Registration search functionality
+            const registrationSearch = document.getElementById('registrationSearch');
+            if (registrationSearch) {
+                registrationSearch.addEventListener('input', function() {
+                    filterRegistrations();
+                });
+            }
+
+            // Modal close on outside click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeModal(modal.id);
+                    }
+                });
+            });
+
+            // Course form submission
+            document.getElementById('courseForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveCourse();
+            });
+
+            // User form submission
+            document.getElementById('userForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveUser();
+            });
+        }
+
+        // ==========================================================================
+        // NAVIGATION & PAGE MANAGEMENT
+        // ==========================================================================
+        
+        function navigateToPage(page) {
+            // Remove active class from all nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to clicked nav item
+            document.querySelector(`[data-page="${page}"]`).classList.add('active');
+
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(pageElement => {
+                pageElement.classList.remove('active-page');
+            });
+
+            // Show selected page
+            const targetPage = document.getElementById(page);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+                currentPage = page;
+
+                // Load page-specific data
+                switch(page) {
+                    case 'dashboard':
+                        updateDashboardStats();
+                        loadDashboardData();
+                        break;
+                    case 'registrations':
+                        loadRegistrationsData();
+                        break;
+                    case 'user-management':
+                        loadUsersData();
+                        break;
+                    case 'course-management':
+                        loadCoursesData(); // This should call the async version
+                        break;
+                    case 'complaints':
+                        loadComplaintsData();
+                        break;
+                    case 'system-settings':
+                        loadSettingsData();
+                        break;
+                    case 'analytics':
+                        loadAnalyticsData();
+                        break;
+                }
+            }
+        }
+
+        // ==========================================================================
+        // DASHBOARD FUNCTIONALITY
+        // ==========================================================================
+        
+        async function updateDashboardStats() {
+            try {
+                showStatusMessage('Loading dashboard statistics...', 'info');
+                const response = await dataManager.getDashboardStats();
+                
+                if (response.success) {
+                    const stats = response.data;
+                    // Total Students card
+                    document.getElementById('totalRegistrations').textContent = stats.totalStudents || 0;
+                    // Faculty & HR card  
+                    document.getElementById('totalUsers').textContent = (stats.totalFaculty || 0) + (stats.totalHR || 0);
+                    // Published Courses card (this was incorrectly mapped to totalStudents)
+                    document.getElementById('totalStudents').textContent = stats.publishedCourses || 0;
+                    // New Students card
+                    document.getElementById('newUsers').textContent = stats.newStudentsThisWeek || 0;
+                    // For other elements that might need total registrations
+                    const registrationCountElement = document.getElementById('registrationCount');
+                    if (registrationCountElement) {
+                        registrationCountElement.textContent = stats.totalStudents || 0;
+                    }
+                    
+                    showStatusMessage('Dashboard statistics loaded successfully', 'success');
+                } else {
+                    console.error('Failed to load dashboard stats:', response.message);
+                    showStatusMessage('Failed to load dashboard statistics', 'error');
+                    // Use fallback data
+                    setFallbackStats();
+                }
+            } catch (error) {
+                console.error('Error loading dashboard stats:', error);
+                showStatusMessage('Error loading dashboard statistics', 'error');
+                setFallbackStats();
+            }
+        }
+
+        function setFallbackStats() {
+            document.getElementById('totalRegistrations').textContent = '0';
+            document.getElementById('totalUsers').textContent = '0';
+            document.getElementById('totalStudents').textContent = '0'; // This is for Published Courses
+            document.getElementById('newUsers').textContent = '0';
+            const registrationCountElement = document.getElementById('registrationCount');
+            if (registrationCountElement) {
+                registrationCountElement.textContent = '0';
+            }
+            const complaintsCountElement = document.getElementById('complaintsCount');
+            if (complaintsCountElement) {
+                complaintsCountElement.textContent = '0';
+            }
+        }
+
+        async function loadDashboardData() {
+            try {
+                showStatusMessage('recent registers...', 'info');
+                const response = await dataManager.getRecentRegistrations();
+                
+                if (response.success && response.data) {
+                    const recentStudents = response.data.map(student => dataManager.formatStudentForDisplay(student));
+                    
+                    const tableHTML = `
+                        <div style="overflow-x: auto;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Location</th>
+                                        <th>Registered On</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${recentStudents.length > 0 ? recentStudents.map(student => `
+                                        <tr>
+                                            <td>${student.firstName} ${student.lastName}</td>
+                                            <td>${student.email}</td>
+                                            <td>${student.location || '-'}</td>
+                                            <td>${student.registeredAt}</td>
+                                            <td><span class="badge badge-success">${student.status}</span></td>
+                                        </tr>
+                                    `).join('') : `
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; color: #666; padding: 2rem;">
+                                                No recent student registrations found
+                                            </td>
+                                        </tr>
+                                    `}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                    
+                    document.getElementById('recentRegistrationsTable').innerHTML = tableHTML;
+                    showStatusMessage('Recent registrations loaded successfully', 'success');
+                } else {
+                    console.error('Failed to load recent registrations:', response.message);
+                    document.getElementById('recentRegistrationsTable').innerHTML = `
+                        <div style="text-align: center; color: #666; padding: 2rem;">
+                            <p>No recent registrations available</p>
+                        </div>
+                    `;
+                    showStatusMessage('No recent registrations found', 'info');
+                }
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                document.getElementById('recentRegistrationsTable').innerHTML = `
+                    <div style="text-align: center; color: #e74c3c; padding: 2rem;">
+                        <p>Error loading recent registrations</p>
+                    </div>
+                `;
+                showStatusMessage('Error loading recent registrations', 'error');
+            }
+        }
+
+        // ==========================================================================
+        // REGISTRATIONS MANAGEMENT
+        // ==========================================================================
+        
+        async function loadRegistrationsData() {
+            try {
+                showStatusMessage('Loading student registrations...', 'info');
+                const response = await dataManager.getRegistrations();
+                
+                if (response.success && response.data) {
+                    const studentRegistrations = response.data.map(student => dataManager.formatStudentForDisplay(student));
+                    renderRegistrationsTable(studentRegistrations);
+                    showStatusMessage(`Loaded ${studentRegistrations.length} student registrations`, 'success');
+                } else {
+                    console.error('Failed to load registrations:', response.message);
+                    renderRegistrationsTable([]);
+                    showStatusMessage('Failed to load student registrations', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading registrations:', error);
+                renderRegistrationsTable([]);
+                showStatusMessage('Error loading student registrations', 'error');
+            }
+        }
+
+        function renderRegistrationsTable(registrations) {
+            const tbody = document.querySelector('#registrationsTable tbody');
+            
+            tbody.innerHTML = registrations.length > 0 ? registrations.map(reg => `
+                <tr>
+                    <td>${reg.firstName}</td>
+                    <td>${reg.lastName || '-'}</td>
+                    <td>${reg.email}</td>
+                    <td>${reg.gender || '-'}</td>
+                    <td>${reg.dateOfBirth || '-'}</td>
+                    <td>${reg.location || '-'}</td>
+                    <td>${reg.mobileNo || '-'}</td>
+                    <td><span class="badge badge-primary">Student</span></td>
+                    <td>${reg.registeredAt}</td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-outline" onclick="viewStudentDetails('${reg.id}')">View Details</button>
+                            <span class="badge badge-success">${reg.status}</span>
+                        </div>
+                    </td>
+                </tr>
+            `).join('') : `
+                <tr>
+                    <td colspan="10" style="text-align: center; color: #666; padding: 2rem;">
+                        No student registrations found
+                    </td>
+                </tr>
+            `;
+
+            // Update counts
+            document.getElementById('registrationShowingCount').textContent = registrations.length;
+            document.getElementById('registrationTotalCount').textContent = registrations.length;
+        }
+
+        async function filterRegistrations() {
+            const searchTerm = document.getElementById('registrationSearch')?.value || '';
+            
+            if (searchTerm.trim()) {
+                try {
+                    showStatusMessage('Searching registrations...', 'info');
+                    const response = await dataManager.getRegistrations(searchTerm);
+                    
+                    if (response.success && response.data) {
+                        const filteredRegistrations = response.data.map(student => dataManager.formatStudentForDisplay(student));
+                        renderRegistrationsTable(filteredRegistrations);
+                        showStatusMessage(`Found ${filteredRegistrations.length} matching registrations`, 'success');
+                    } else {
+                        renderRegistrationsTable([]);
+                        showStatusMessage('No matching registrations found', 'info');
+                    }
+                } catch (error) {
+                    console.error('Error searching registrations:', error);
+                    showStatusMessage('Error searching registrations', 'error');
+                }
+            } else {
+                loadRegistrationsData();
+            }
+        }
+
+        function viewStudentDetails(studentId) {
+            showStatusMessage(`Viewing details for student ID: ${studentId}`, 'info');
+            // This could open a modal with detailed student information
+        }
+
+        function refreshRegistrations() {
+            loadRegistrationsData();
+        }
+
+        function refreshRegistrations() {
+            loadRegistrationsData();
+        }
+
+        function exportRegistrations() {
+            showStatusMessage('Export functionality not implemented yet', 'info');
+        }
+
+        // ==========================================================================
+        // USER MANAGEMENT
+        // ==========================================================================
+        
+        function loadUsersData() {
+            // Show ONLY Faculty and HR users (no students)
+            const allUsers = dataManager.getRegistrations();
+            const facultyHRUsers = allUsers.filter(user => user.role === 'Faculty' || user.role === 'HR');
+            renderUsersTable(facultyHRUsers);
+        }
+
+        function renderUsersTable(users) {
+            const tbody = document.querySelector('#usersTable tbody');
+            
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td>${user.firstName} ${user.lastName || ''}</td>
+                    <td>${user.email}</td>
+                    <td><span class="badge badge-primary">${user.role}</span></td>
+                    <td><span class="badge badge-success">${user.status}</span></td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-outline" onclick="editUser(${user.id})">Modify</button>
+                            <button class="btn btn-sm btn-danger" onclick="toggleUserStatus(${user.id})">${user.status === 'Active' ? 'Disable' : 'Enable'}</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterUsers(type) {
+            // Update active filter button
+            document.querySelectorAll('#user-management .btn-outline').forEach(btn => {
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-outline');
+            });
+            
+            const activeBtn = document.getElementById(`filter${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('btn-outline');
+                activeBtn.classList.add('btn-primary');
+            }
+
+            let users = dataManager.getRegistrations();
+            // First filter out students, then apply role filter
+            users = users.filter(user => user.role === 'Faculty' || user.role === 'HR');
+            
+            if (type !== 'all') {
+                const roleMap = {
+                    'faculty': 'Faculty',
+                    'hr': 'HR'
+                };
+                users = users.filter(user => user.role === roleMap[type]);
+            }
+            
+            renderUsersTable(users);
+        }
+
+        function openAddUserModal() {
+            editingUserId = null;
+            document.getElementById('userModalTitle').textContent = 'Add New User';
+            clearUserForm();
+            document.getElementById('userModal').classList.add('active');
+        }
+
+        function editUser(id) {
+            const user = dataManager.getRegistrations().find(u => u.id == id);
+            if (user) {
+                editingUserId = id;
+                document.getElementById('userModalTitle').textContent = 'Edit User';
+                populateUserForm(user);
+                document.getElementById('userModal').classList.add('active');
+            }
+        }
+
+        function viewUser(id) {
+            const user = dataManager.getRegistrations().find(u => u.id == id);
+            if (user) {
+                // Create a simple view modal or navigate to detail page
+                alert(`User Details:\nName: ${user.firstName} ${user.lastName}\nEmail: ${user.email}\nRole: ${user.role}\nMobile: ${user.mobile || 'N/A'}\nCity: ${user.city || 'N/A'}`);
+            }
+        }
+
+        function deleteUser(id) {
+            if (confirm('Are you sure you want to delete this user? This action cannot be undone.')) {
+                dataManager.deleteRegistration(id);
+                loadRegistrationsData();
+                updateDashboardStats();
+                showStatusMessage('User deleted successfully', 'success');
+            }
+        }
+
+        function toggleUserStatus(id) {
+            const user = dataManager.getRegistrations().find(u => u.id == id);
+            if (user) {
+                const newStatus = user.status === 'Active' ? 'Disabled' : 'Active';
+                dataManager.updateRegistration(id, { status: newStatus });
+                loadUsersData();
+                showStatusMessage(`User ${newStatus.toLowerCase()} successfully`, 'success');
+            }
+        }
+
+        function populateUserForm(user) {
+            document.getElementById('userFirstName').value = user.firstName || '';
+            document.getElementById('userLastName').value = user.lastName || '';
+            document.getElementById('userEmail').value = user.email || '';
+            document.getElementById('userRole').value = user.role || '';
+            document.getElementById('userGender').value = user.gender || '';
+            document.getElementById('userMobile').value = user.mobile || '';
+            document.getElementById('userCity').value = user.city || '';
+            document.getElementById('userDOB').value = user.dob ? user.dob.split('/').reverse().join('-') : '';
+        }
+
+        function clearUserForm() {
+            document.getElementById('userForm').reset();
+        }
+
+        // ==========================================================================
+        // COURSE MANAGEMENT
+        // ==========================================================================
+        
+        async function loadCoursesData() {
+            try {
+                showStatusMessage('Loading courses...', 'info');
+                const response = await dataManager.getAllCourses();
+                
+                if (response.success && response.data) {
+                    renderCoursesGrid(response.data);
+                    showStatusMessage(`Loaded ${response.data.length} courses successfully`, 'success');
+                } else {
+                    console.error('Failed to load courses:', response.message);
+                    renderCoursesGrid([]);
+                    showStatusMessage('Failed to load courses', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading courses:', error);
+                renderCoursesGrid([]);
+                showStatusMessage('Error loading courses', 'error');
+            }
+        }
+
+        function renderCoursesGrid(courses) {
+            const coursesContainer = document.getElementById('coursesList');
+            
+            if (courses.length === 0) {
+                coursesContainer.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📚</div>
+                        <h3>No courses found</h3>
+                        <p>Create your first course using the button above.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            coursesContainer.innerHTML = `
+                <div class="course-grid">
+                    ${courses.map(course => `
+                        <div class="course-card">
+                            <div class="course-header">
+                                <div>
+                                    <div class="course-title">${course.courseTitle}</div>
+                                    <div class="course-code">${course.courseCode}</div>
+                                </div>
+                                <span class="badge badge-${course.status === 'PUBLISHED' ? 'success' : course.status === 'DRAFT' ? 'warning' : 'primary'}">${course.status}</span>
+                            </div>
+                            <div class="course-meta">
+                                <span><strong>${course.category}</strong></span>
+                                <span>${course.durationMonths} months</span>
+                            </div>
+                            <div class="course-description">${course.description || 'No description available'}</div>
+                            <div class="course-stats">
+                                <div class="batch-count">${course.batchesCount || 0} Active Batches</div>
+                                <div class="course-actions">
+                                    <button class="btn btn-sm btn-primary" onclick="editCourse('${course.courseId}')">Edit</button>
+                                    ${course.status === 'DRAFT' ? `<button class="btn btn-sm btn-success" onclick="publishCourse('${course.courseId}')">Publish</button>` : `<button class="btn btn-sm btn-outline" onclick="unpublishCourse('${course.courseId}')">Unpublish</button>`}
+                                    <button class="btn btn-sm btn-danger" onclick="deleteCourse('${course.courseId}')">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        async function saveCourse() {
+            const formData = {
+                courseCode: document.getElementById('courseCode').value,
+                courseTitle: document.getElementById('courseTitle').value,
+                durationMonths: parseInt(document.getElementById('courseDuration').value),
+                category: document.getElementById('courseCategory').value,
+                prerequisites: document.getElementById('coursePrerequisites').value,
+                description: document.getElementById('courseDescription').value
+            };
+
+            // Basic validation
+            if (!formData.courseCode || !formData.courseTitle || !formData.durationMonths || !formData.category) {
+                showStatusMessage('Please fill in all required fields', 'error');
+                return;
+            }
+
+            try {
+                showStatusMessage('Saving course...', 'info');
+                
+                if (editingCourseId) {
+                    const response = await dataManager.updateCourse(editingCourseId, formData);
+                    if (response.success) {
+                        showStatusMessage('Course updated successfully', 'success');
+                        editingCourseId = null;
+                    } else {
+                        throw new Error(response.message || 'Failed to update course');
+                    }
+                } else {
+                    const response = await dataManager.addCourse(formData);
+                    if (response.success) {
+                        showStatusMessage('Course created successfully', 'success');
+                    } else {
+                        throw new Error(response.message || 'Failed to create course');
+                    }
+                }
+                
+                document.getElementById('courseForm').reset();
+                toggleCourseForm(); // Close the sheet after saving
+                await loadCoursesData(); // Reload courses data
+            } catch (error) {
+                console.error('Error saving course:', error);
+                showStatusMessage('Error saving course: ' + error.message, 'error');
+            }
+        }
+
+        // Additional course management functions
+        async function editCourse(courseId) {
+            try {
+                showStatusMessage('Loading course data...', 'info');
+                console.log('Attempting to edit course with ID:', courseId);
+                
+                const response = await dataManager.getCourseById(courseId);
+                console.log('Course data response:', response);
+                
+                if (response && response.success && response.data) {
+                    const course = response.data;
+                    console.log('Course data:', course);
+                    
+                    // Set editing mode first
+                    editingCourseId = courseId;
+                    console.log('Set editingCourseId to:', editingCourseId);
+                    
+                    // Open form sheet first
+                    const formSheet = document.getElementById('courseFormSheet');
+                    const toggleText = document.getElementById('courseFormToggleText');
+                    
+                    if (!formSheet) {
+                        console.error('courseFormSheet element not found!');
+                        showStatusMessage('Error: Course form not found', 'error');
+                        return;
+                    }
+                    
+                    formSheet.classList.add('active');
+                    if (toggleText) toggleText.textContent = 'Close Form';
+                    
+                    // Set modal title
+                    const modalTitle = document.getElementById('courseModalTitle');
+                    if (modalTitle) modalTitle.textContent = 'Edit Course';
+                    
+                    // Populate form with course data - add small delay to ensure form is visible
+                    setTimeout(() => {
+                        console.log('Populating form fields...');
+                        
+                        const fields = {
+                            'courseCode': course.courseCode || '',
+                            'courseTitle': course.courseTitle || '',
+                            'courseDuration': course.durationMonths || '',
+                            'courseCategory': course.category || '',
+                            'coursePrerequisites': course.prerequisites || '',
+                            'courseDescription': course.description || ''
+                        };
+                        
+                        for (const [fieldId, value] of Object.entries(fields)) {
+                            const field = document.getElementById(fieldId);
+                            if (field) {
+                                field.value = value;
+                                console.log(`Set ${fieldId} to:`, value);
+                            } else {
+                                console.error(`Field ${fieldId} not found!`);
+                            }
+                        }
+                        
+                        showStatusMessage('Course data loaded successfully', 'success');
+                    }, 100);
+                    
+                } else {
+                    const errorMsg = response?.message || 'Unknown error';
+                    showStatusMessage('Failed to load course data: ' + errorMsg, 'error');
+                    console.error('Course loading failed:', response);
+                }
+            } catch (error) {
+                console.error('Error loading course:', error);
+                showStatusMessage('Error loading course data: ' + error.message, 'error');
+            }
+        }
+
+        async function deleteCourse(courseId) {
+            if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
+                try {
+                    showStatusMessage('Deleting course...', 'info');
+                    const response = await dataManager.deleteCourse(courseId);
+                    
+                    if (response.success) {
+                        showStatusMessage('Course deleted successfully', 'success');
+                        await loadCoursesData();
+                    } else {
+                        throw new Error(response.message || 'Failed to delete course');
+                    }
+                } catch (error) {
+                    console.error('Error deleting course:', error);
+                    showStatusMessage('Error deleting course: ' + error.message, 'error');
+                }
+            }
+        }
+
+        async function publishCourse(courseId) {
+            try {
+                showStatusMessage('Publishing course...', 'info');
+                const response = await dataManager.publishCourse(courseId);
+                
+                if (response.success) {
+                    showStatusMessage('Course published successfully', 'success');
+                    await loadCoursesData();
+                } else {
+                    throw new Error(response.message || 'Failed to publish course');
+                }
+            } catch (error) {
+                console.error('Error publishing course:', error);
+                showStatusMessage('Error publishing course: ' + error.message, 'error');
+            }
+        }
+
+        async function unpublishCourse(courseId) {
+            try {
+                showStatusMessage('Unpublishing course...', 'info');
+                const response = await dataManager.unpublishCourse(courseId);
+                
+                if (response.success) {
+                    showStatusMessage('Course unpublished successfully', 'success');
+                    await loadCoursesData();
+                } else {
+                    throw new Error(response.message || 'Failed to unpublish course');
+                }
+            } catch (error) {
+                console.error('Error unpublishing course:', error);
+                showStatusMessage('Error unpublishing course: ' + error.message, 'error');
+            }
+        }
+
+        function toggleCourseForm() {
+            const formSheet = document.getElementById('courseFormSheet');
+            const toggleText = document.getElementById('courseFormToggleText');
+            
+            if (formSheet.classList.contains('active')) {
+                // Closing the form
+                formSheet.classList.remove('active');
+                toggleText.textContent = '+ Create New Course';
+                editingCourseId = null;
+                document.getElementById('courseForm').reset();
+                document.getElementById('courseModalTitle').textContent = 'Create New Course';
+            } else {
+                // Opening the form for new course creation
+                formSheet.classList.add('active');
+                toggleText.textContent = 'Close Form';
+                // Only reset if not editing
+                if (!editingCourseId) {
+                    document.getElementById('courseForm').reset();
+                    document.getElementById('courseModalTitle').textContent = 'Create New Course';
+                }
+            }
+        }
+
+        // ==========================================================================
+        // COMPLAINTS MANAGEMENT
+        // ==========================================================================
+        
+        function loadComplaintsData() {
+            const complaints = dataManager.getComplaints();
+            updateComplaintStats(complaints);
+            renderComplaintsTable(complaints);
+        }
+
+        function updateComplaintStats(complaints) {
+            const total = complaints.length;
+            const open = complaints.filter(c => c.status === 'Open').length;
+            const resolved = complaints.filter(c => c.status === 'Resolved').length;
+            const high = complaints.filter(c => c.priority === 'High').length;
+
+            document.getElementById('totalComplaints').textContent = total;
+            document.getElementById('openComplaints').textContent = open;
+            document.getElementById('resolvedComplaints').textContent = resolved;
+            document.getElementById('highPriorityComplaints').textContent = high;
+        }
+
+        function renderComplaintsTable(complaints) {
+            const tbody = document.querySelector('#complaintsTable tbody');
+            
+            tbody.innerHTML = complaints.map(complaint => `
+                <tr>
+                    <td>#C${complaint.id.toString().padStart(3, '0')}</td>
+                    <td>${complaint.category}</td>
+                    <td><span class="badge badge-${complaint.priority === 'High' ? 'danger' : complaint.priority === 'Medium' ? 'warning' : 'primary'}">${complaint.priority}</span></td>
+                    <td>${complaint.date}</td>
+                    <td><span class="badge badge-${complaint.status === 'Open' ? 'warning' : 'success'}">${complaint.status}</span></td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-outline" onclick="viewComplaint(${complaint.id})">View Details</button>
+                            ${complaint.status === 'Open' ? `<button class="btn btn-sm btn-success" onclick="resolveComplaint(${complaint.id})">Resolve</button>` : ''}
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function viewComplaint(id) {
+            const complaint = dataManager.getComplaints().find(c => c.id == id);
+            if (complaint) {
+                document.getElementById('complaintDetails').innerHTML = `
+                    <div class="form-grid">
+                        <div><strong>Complaint ID:</strong> #C${complaint.id.toString().padStart(3, '0')}</div>
+                        <div><strong>Category:</strong> ${complaint.category}</div>
+                        <div><strong>Priority:</strong> <span class="badge badge-${complaint.priority === 'High' ? 'danger' : complaint.priority === 'Medium' ? 'warning' : 'primary'}">${complaint.priority}</span></div>
+                        <div><strong>Date:</strong> ${complaint.date}</div>
+                        <div><strong>Status:</strong> <span class="badge badge-${complaint.status === 'Open' ? 'warning' : 'success'}">${complaint.status}</span></div>
+                        <div><strong>Student:</strong> ${complaint.studentName}</div>
+                        <div><strong>Email:</strong> ${complaint.studentEmail}</div>
+                        <div style="grid-column: 1 / -1;"><strong>Description:</strong><br>${complaint.description}</div>
+                    </div>
+                `;
+                currentComplaintId = id;
+                document.getElementById('complaintModal').classList.add('active');
+            }
+        }
+
+        function resolveComplaint(id) {
+            if (id) {
+                dataManager.updateComplaintStatus(id, 'Resolved');
+            } else if (currentComplaintId) {
+                dataManager.updateComplaintStatus(currentComplaintId, 'Resolved');
+                closeModal('complaintModal');
+            }
+            
+            loadComplaintsData();
+            updateDashboardStats();
+            showStatusMessage('Complaint marked as resolved', 'success');
+        }
+
+        function exportComplaints() {
+            const complaints = dataManager.getComplaints();
+            const csvContent = convertToCSV(complaints);
+            downloadFile(csvContent, 'complaints.csv', 'text/csv');
+            showStatusMessage('Complaints data exported successfully', 'success');
+        }
+
+        function markAllComplaintsRead() {
+            showStatusMessage('All complaints marked as read', 'success');
+        }
+
+        // ==========================================================================
+        // SYSTEM SETTINGS
+        // ==========================================================================
+        
+        function loadSettingsData() {
+            const data = dataManager.getData();
+            const settings = data.settings;
+            
+            // Populate form fields with current settings
+            document.getElementById('systemName').value = settings.systemName || '';
+            document.getElementById('supportEmail').value = settings.supportEmail || '';
+            document.getElementById('organizationName').value = settings.organizationName || '';
+            document.getElementById('maxAdminLogin').value = settings.maxAdminLogin || 5;
+            document.getElementById('registrationStatus').value = settings.registrationStatus || 'open';
+            document.getElementById('studentAgeReq').value = settings.studentAgeReq || '20-25 years';
+        }
+
+        function showSettingsTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.settings-tabs button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Hide all settings content
+            document.querySelectorAll('.settings-content').forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Show selected tab content
+            const contentMap = {
+                'general': 'generalSettings',
+                'registration': 'registrationSettings',
+                'notifications': 'notificationSettings'
+            };
+            
+            const targetContent = document.getElementById(contentMap[tab]);
+            if (targetContent) {
+                targetContent.style.display = 'block';
+            }
+        }
+
+        function saveSettings(type) {
+            const data = dataManager.getData();
+            
+            switch(type) {
+                case 'general':
+                    data.settings.systemName = document.getElementById('systemName').value;
+                    data.settings.supportEmail = document.getElementById('supportEmail').value;
+                    data.settings.organizationName = document.getElementById('organizationName').value;
+                    data.settings.maxAdminLogin = document.getElementById('maxAdminLogin').value;
+                    break;
+                case 'registration':
+                    data.settings.registrationStatus = document.getElementById('registrationStatus').value;
+                    data.settings.studentAgeReq = document.getElementById('studentAgeReq').value;
+                    break;
+                case 'notifications':
+                    // Handle notification settings
+                    break;
+            }
+            
+            dataManager.saveData(data);
+            showStatusMessage(`${type.charAt(0).toUpperCase() + type.slice(1)} settings saved successfully`, 'success');
+        }
+        // ANALYTICS & REPORTS
+
+        // USER MANAGEMENT
+        
+        async function loadUsersData() {
+            try {
+                showStatusMessage('Loading users...', 'info');
+                const response = await dataManager.getAllUsers();
+                
+                if (response.success && response.data) {
+                    const users = response.data.map(user => dataManager.formatUserForDisplay(user));
+                    renderUsersTable(users);
+                    showStatusMessage(`Loaded ${users.length} users`, 'success');
+                } else {
+                    console.error('Failed to load users:', response.message);
+                    renderUsersTable([]);
+                    showStatusMessage('Failed to load users', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading users:', error);
+                renderUsersTable([]);
+                showStatusMessage('Error loading users', 'error');
+            }
+        }
+
+        function renderUsersTable(users) {
+            const tbody = document.querySelector('#usersTable tbody');
+            
+            tbody.innerHTML = users.length > 0 ? users.map(user => `
+                <tr>
+                    <td>${user.firstName} ${user.lastName || ''}</td>
+                    <td>${user.email}</td>
+                    <td><span class="badge badge-primary">${user.role}</span></td>
+                    <td><span class="badge badge-success">${user.status}</span></td>
+                    <td>
+                        <div class="actions">
+                            <button class="btn btn-sm btn-outline" onclick="viewUserDetails('${user.id}')">View</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('') : `
+                <tr>
+                    <td colspan="5" style="text-align: center; color: #666; padding: 2rem;">
+                        No users found
+                    </td>
+                </tr>
+            `;
+        }
+
+        function viewUserDetails(userId) {
+            showStatusMessage(`Viewing details for user ID: ${userId}`, 'info');
+        }
+
+        function openAddUserModal() {
+            document.getElementById('userModalTitle').textContent = 'Add New User';
+            clearUserForm();
+            document.getElementById('userModal').classList.add('active');
+        }
+
+        function clearUserForm() {
+            document.getElementById('userForm').reset();
+        }
+
+        async function saveUser() {
+            // Validate required fields
+            const firstName = document.getElementById('userFirstName').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const role = document.getElementById('userRole').value;
+            
+            if (!firstName || !email || !role) {
+                showStatusMessage('Please fill in all required fields (First Name, Email, Role)', 'error');
+                return;
+            }
+            
+            // Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showStatusMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            const userData = {
+                firstName: firstName,
+                lastName: document.getElementById('userLastName').value.trim() || '',
+                email: email,
+                role: role,
+                gender: document.getElementById('userGender').value || null,
+                mobileNo: document.getElementById('userMobile').value.trim() || null,
+                city: document.getElementById('userCity').value.trim() || null,
+                dateOfBirth: document.getElementById('userDOB').value || null,
+                password: 'DefaultPass123!' // Default password for new users
+            };
+
+            try {
+                showStatusMessage('Creating user...', 'info');
+                const response = await dataManager.createUser(userData);
+                
+                if (response.success) {
+                    showStatusMessage('User created successfully', 'success');
+                    closeModal('userModal');
+                    loadUsersData();
+                } else {
+                    showStatusMessage('Failed to create user: ' + (response.message || 'Unknown error'), 'error');
+                }
+            } catch (error) {
+                console.error('Error creating user:', error);
+                showStatusMessage('Error creating user: ' + error.message, 'error');
+            }
+        }
+
+        function filterUsers(type) {
+            // Update active filter button
+            document.querySelectorAll('#user-management .btn-outline').forEach(btn => {
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-outline');
+            });
+            
+            const activeBtn = document.getElementById(`filter${type.charAt(0).toUpperCase() + type.slice(1)}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('btn-outline');
+                activeBtn.classList.add('btn-primary');
+            }
+
+            // For now, just reload all users - can be enhanced to filter by role
+            loadUsersData();
+        }
+
+        // ==========================================================================
+        // COMPLAINTS MANAGEMENT
+        // ==========================================================================
+        
+        function loadComplaintsData() {
+            showStatusMessage('Complaints management with database integration coming soon', 'info');
+        }
+
+        function loadSettingsData() {
+            showStatusMessage('Settings loaded', 'info');
+        }
+
+        function loadAnalyticsData() {
+            showStatusMessage('Analytics dashboard coming soon', 'info');
+        }
+
+        // ==========================================================================
+        // UTILITY FUNCTIONS
+        // ==========================================================================
+        
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Status message system
+        function showStatusMessage(message, type = 'info') {
+            // Remove any existing status messages
+            const existingMessages = document.querySelectorAll('.status-message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            // Create status message element
+            const statusDiv = document.createElement('div');
+            statusDiv.className = `status-message alert alert-${type}`;
+            statusDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                padding: 12px 20px;
+                border-radius: 4px;
+                font-weight: 500;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            // Set colors based on type
+            if (type === 'success') {
+                statusDiv.style.backgroundColor = '#d4edda';
+                statusDiv.style.color = '#155724';
+                statusDiv.style.border = '1px solid #c3e6cb';
+            } else if (type === 'error') {
+                statusDiv.style.backgroundColor = '#f8d7da';
+                statusDiv.style.color = '#721c24';
+                statusDiv.style.border = '1px solid #f5c6cb';
+            } else {
+                statusDiv.style.backgroundColor = '#d1ecf1';
+                statusDiv.style.color = '#0c5460';
+                statusDiv.style.border = '1px solid #bee5eb';
+            }
+            
+            statusDiv.textContent = message;
+            document.body.appendChild(statusDiv);
+            
+            // Auto-remove after 4 seconds
+            setTimeout(() => {
+                if (statusDiv.parentNode) {
+                    statusDiv.style.animation = 'slideOut 0.3s ease-in';
+                    setTimeout(() => statusDiv.remove(), 300);
+                }
+            }, 4000);
+        }
+
+        // Clear all forms in the modal
+        function clearForm() {
+            document.querySelectorAll('form').forEach(form => form.reset());
+            editingRegistrationId = null;
+            editingCourseId = null;
+        }
+
+        function convertToCSV(data) {
+            if (!data || data.length === 0) return '';
+            
+            const headers = Object.keys(data[0]);
+            const csvRows = [
+                headers.join(','),
+                ...data.map(row => 
+                    headers.map(header => {
+                        const value = row[header];
+                        return typeof value === 'string' && value.includes(',') ? `"${value}"` : value;
+                    }).join(',')
+                )
+            ];
+            
+            return csvRows.join('\n');
+        }
+
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // ==========================================================================
+        // ERROR HANDLING
+        // ==========================================================================
+        
+        window.addEventListener('error', function(e) {
+            console.error('Application error:', e.error);
+            showStatusMessage('An unexpected error occurred. Please try again.', 'error');
+        });
+
+        // Handle unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Unhandled promise rejection:', e.reason);
+            showStatusMessage('Server error occurred. Please try again.', 'error');
+        });
+
+        // Global variables for modal state
+        let currentComplaintId = null;
+        let editingCourseId = null;
+        let editingRegistrationId = null;
+    </script>
+</body>
+</html>
