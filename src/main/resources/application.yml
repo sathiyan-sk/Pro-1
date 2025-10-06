@@ -2,18 +2,26 @@ spring:
   profiles:
     active: railway
 
+---
+
+spring:
+  config:
+    activate:
+      on-profile: railway
+
   datasource:
-    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/railway?useSSL=false&serverTimezone=UTC
     username: ${MYSQLUSER}
     password: ${MYSQLPASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: update   # auto-create missing tables
+      ddl-auto: update  # automatically creates/updates tables
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+
 server:
-  port: 0
+  port: 8080
