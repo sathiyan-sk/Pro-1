@@ -1,7 +1,4 @@
 spring:
-  profiles:
-    active: railway
-
   datasource:
     url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}?useSSL=false&serverTimezone=UTC
     username: ${MYSQLUSER}
@@ -10,10 +7,11 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update   # auto-create missing tables
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+
 server:
-  port: 0
+  port: ${PORT:8080}
