@@ -1836,7 +1836,7 @@
 
         async function loadDashboardData() {
             try {
-                showStatusMessage('Loading recent registrations...', 'info');
+                showStatusMessage('recent registers...', 'info');
                 const response = await dataManager.getRecentRegistrations();
                 
                 if (response.success && response.data) {
@@ -2525,15 +2525,9 @@
             dataManager.saveData(data);
             showStatusMessage(`${type.charAt(0).toUpperCase() + type.slice(1)} settings saved successfully`, 'success');
         }
-
-        // ==========================================================================
         // ANALYTICS & REPORTS
-        // ==========================================================================
-        
 
-        // ==========================================================================
         // USER MANAGEMENT
-        // ==========================================================================
         
         async function loadUsersData() {
             try {
