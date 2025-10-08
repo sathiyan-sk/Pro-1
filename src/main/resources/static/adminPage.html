@@ -1579,8 +1579,6 @@
             setupEventListeners();
             updateDashboardStats();
             loadDashboardData();
-            showStatusMessage('Dashboard loaded successfully', 'success');
-            
             // Prevent back navigation after logout
             window.addEventListener('popstate', function(event) {
                 history.pushState(null, null, location.href);
