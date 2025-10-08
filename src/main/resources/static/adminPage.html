@@ -1830,8 +1830,7 @@
                     if (registrationCountElement) {
                         registrationCountElement.textContent = stats.totalStudents || 0;
                     }
-                    
-                    showStatusMessage('Dashboard statistics loaded successfully', 'success');
+
                 } else {
                     console.error('Failed to load dashboard stats:', response.message);
                     showStatusMessage('Failed to load dashboard statistics', 'error');
