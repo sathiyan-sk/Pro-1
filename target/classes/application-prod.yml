@@ -1,0 +1,231 @@
+# Production configuration for Railway deployment
+spring:
+  # Database configuration using Railway environment variables
+  datasource:
+    url: jdbc:mysql://${MYSQLHOST:viaduct.proxy.rlwy.net}:${MYSQLPORT:21419}/${MYSQLDATABASE:railway}
+    username: ${MYSQLUSER:root}
+    password: ${MYSQLPASSWORD:XJWyXnWnfXUdduKRpOdTfRlMBVIvkBYb}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: ProductionHikariPool
+      maximum-pool-size: 20
+      minimum-idle: 10
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      keepalive-time: 30000
+      leak-detection-threshold: 60000
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+        useLocalSessionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: false
+        default_batch_fetch_size: 64
+        order_inserts: true
+        order_updates: true
+        batch_versioned_data: true
+        generate_statistics: false
+    defer-datasource-initialization: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+        debug: false
+
+  # Session management
+  session:
+    store-type: none
+    timeout: 1800
+
+  # Jackson configuration
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      write-dates-as-timestamps: false
+    deserialization:
+      accept-case-insensitive-properties: true
+
+  # Web configuration
+  web:
+    resources:
+      cache:
+        period: 3600s
+
+# Server configuration
+server:
+  port: ${PORT:8080}
+  servlet:
+    session:
+      timeout: 1800
+  shutdown: graceful
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    min-response-size: 1024
+
+# Logging configuration for production
+logging:
+  level:
+    com.trackerpro: INFO
+    com.trackerpro.config: INFO
+    com.trackerpro.service: INFO
+    com.trackerpro.repository: WARN
+    com.trackerpro.controller: WARN
+    org.springframework: WARN
+    org.springframework.web: WARN
+    org.springframework.security: WARN
+    org.springframework.jdbc: WARN
+    org.springframework.transaction: WARN
+    org.springframework.orm: WARN
+    org.springframework.data: WARN
+    org.hibernate: WARN
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql.BasicBinder: OFF
+    org.hibernate.type.descriptor.sql.BasicExtractor: OFF
+    org.hibernate.hql.internal.ast: ERROR
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: ERROR
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/application.log
+    max-size: 10MB
+    max-history: 10
+    total-size-cap: 100MB
+
+# CORS settings for production
+cors:
+  allowed-origins:
+    - https://trackerpro.up.railway.app
+    # Add your custom domain if you have one
+    # - https://www.yourdomain.com
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: Authorization,Content-Type,X-Requested-With,Accept,Origin,Access-Control-Request-Method,Access-Control-Request-Headers
+  allow-credentials: true
+  max-age: 3600
+
+# Security settings
+security:
+  cors-filter-order: -2147483648
+  content-negotiation: true
+
+# JWT Configuration
+jwt:
+  token-validity-in-seconds: 86400
+  header: Authorization
+  secret: ${JWT_SECRET:your-production-jwt-secret-key-change-this}
+  refresh-token-validity-in-seconds: 2592000
+
+# Application-specific settings
+app:
+  name: TrackerPro
+  version: 1.0.0
+  description: Student Tracking and Management System
+  client-app-url: https://trackerpro.up.railway.app
+  admin-email: admin@trackerpro.com
+  support-email: support@trackerpro.com
+  enable-registration: true
+  enable-password-reset: true
+  terms-url: https://trackerpro.up.railway.app/terms
+  privacy-url: https://trackerpro.up.railway.app/privacy
+
+# Cache configuration
+cache:
+  type: none
+  redis:
+    enabled: false
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD}
+    database: 0
+    timeout: 2000
+  ehcache:
+    config: classpath:ehcache.xml
+
+# Monitoring and management
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+      base-path: /actuator
+    enabled-by-default: true
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
+    loggers:
+      enabled: true
+    metrics:
+      enabled: true
+  health:
+    mail:
+      enabled: false
+    database:
+      enabled: true
+    redis:
+      enabled: false
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+        step: 60
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        all: true
+
+# Health check
+health:
+  database:
+    enabled: true
+  mail:
+    enabled: false
+  redis:
+    enabled: false
+  disk-space:
+    enabled: true
+    threshold: 10MB
+
+# Multipart file upload
+servlet:
+  multipart:
+    enabled: true
+    file-size-threshold: 2KB
+    max-file-size: 10MB
+    max-request-size: 10MB
+    resolve-lazily: false
+
+# Internationalization
+messages:
+  basename: i18n/messages
+  encoding: UTF-8
+  cache-duration: PT1H
+  use-code-as-default-message: false

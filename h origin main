@@ -1,0 +1,178 @@
+[33mf83a4ec[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Revert "changed logout icon style"
+[33m9d451b3[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m refresh text to icon
+[33mbe0160a[m clear notification issue in that loading
+[33m3be944d[m clear notification issue in that loading
+[33m312a221[m changed logout icon style
+[33m33eafa9[m Fix course creation error handling
+[33m5d33adc[m Fix SecurityConfig pattern parsing error
+[33m7b02a89[m found the issue of 500 error for global exception so fixed to updated it
+[33m75a8df0[m claude to correct for deploy issues
+[33m44707b6[m un knowing to check for work 2
+[33mbe10d73[m un knowing to check for work
+[33mb437f17[m "Ready for Railway deployment without running tests"
+[33m67d7290[m "Ready for Railway deployment without running tests"
+[33mf10a120[m chacking api match to railways
+[33mee33fb8[m in that match api to both locally and railway so here is like("/api/login")
+[33m5d113a0[m mistake so, re changing api to production (https://pro-1-production.up.railway.app)
+[33m7b5ed68[m changing api to production (https://mysql-production-58f7.up.railway.app)
+[33md327619[m last depoy changes on yml
+[33mceef3c2[m yml configured ed
+[33mc7f2e00[m yml configured
+[33mb948526[m both supported for localhost and railway
+[33m9362357[m modified
+[33m6cd52c5[m compreshive testing by our *
+[33m47a99f5[m auto-commit for 6e71b210-add9-4d91-a629-e4c5ba37c602
+[33mabac7d7[m auto-commit for efe038aa-c336-465d-ae26-9897ccc49400
+[33m3e85180[m auto-commit for 002c15c8-88bf-454a-aef6-76e565918113
+[33mc7cfffe[m auto-commit for 1e596301-f22c-469f-80b9-b05a5c3bf8c4
+[33m1a8efe6[m auto-commit for c0393bcc-9b4d-4030-9485-2ec39ef3789c
+[33m0b40442[m auto-commit for dc4bf9f8-6f2c-4ac9-b43e-4a26e4c8432a
+[33m2315b55[m auto-commit for 48c47d8a-df5d-4d19-b849-4c2acaa1d2e8
+[33m3f9ac23[m auto-commit for d4b9162b-5116-4b8b-9158-001f4344493f
+[33mbc782a4[m Auto-commit before changes
+[33ma6e061e[m auto-commit for 3c1e60f8-7420-452d-9c6e-edf1f2989e1b
+[33mf9b45ab[m auto-commit for 75c8dda4-52d6-44ba-aaef-6c35de89ad2f
+[33mcfbd3e4[m ready deploy
+[33m5228be9[m yml ypdate
+[33m02caaf0[m ready for deployment
+[33mf032377[m none, updated yml file for production
+[33m0c606de[m updated for railway deployment
+[33m732397f[m Assigned Logo
+[33m3754d94[m fixed bud while started and login issues on authentication
+[33mad8c0d3[m auto-commit for 5b12670b-52a5-4087-bcc4-a82759ba68a8
+[33m5f88ccf[m auto-commit for 13c50940-45ec-4cbb-8899-dec767aa76a2
+[33mcadc334[m auto-commit for 705c208e-ffe8-42a7-b822-f9255826f064
+[33m26e9a14[m auto-commit for c6f5f677-b3d7-4472-b184-ed360d77bb1c
+[33m7d87ddb[m auto-commit for c216bb8c-5e95-468d-ac6e-4a99079fb138
+[33m5ebb628[m auto-commit for d0d9f65a-b158-42b8-9ffc-75f6cb0257b1
+[33m72f2870[m auto-commit for 36b07518-00cb-4910-8b2d-f7ce4b265b8b
+[33md8923c6[m auto-commit for 2730b2a9-1c5b-42a9-9626-fcf862fa5baa
+[33m70ae151[m auto-commit for 74c9aae0-a7ae-4f20-8581-b78171ce67b7
+[33m23c757e[m auto-commit for 6eae1e2d-0ca8-4477-918c-f5f6cd2c5d42
+[33maab205b[m auto-commit for 3e757c6b-f097-41f5-ba53-63811467b848
+[33mcddd68d[m auto-commit for dc26d84a-e8db-45cd-a590-8862bb6b784f
+[33mdf448d9[m auto-commit for de3ecf34-5b91-44b9-aa6c-11bc66be8af3
+[33m9b35389[m auto-commit for 96630441-e978-4728-8c56-a117be1f9490
+[33m4be35ca[m auto-commit for 7cc846de-1cce-4edf-a76c-e1a3774e91fa
+[33m2a2f1eb[m auto-commit for 944c77da-e52e-4d21-ac08-26b32c1a3008
+[33m06016c1[m auto-commit for 6a3af1ab-9ed1-437c-9e99-3088014ce928
+[33ma911f4d[m auto-commit for 56537393-1d3f-42ee-aab5-f92f2abaec0c
+[33ma93c931[m tested complete for student application portal
+[33m8fba597[m added student application portal dashboard and backend connectivuy
+[33mfb64393[m auto-commit for 15aa9355-1a95-458e-8427-3ba3cf16ac2a
+[33mf2f8295[m auto-commit for a39abd3b-13c2-41dd-a3c8-8d4d4b95f97e
+[33mfe95fcd[m auto-commit for faaef0b9-c983-4598-93ab-5e0758fec01c
+[33m312396b[m auto-commit for d8cb6bdc-9a4a-45dc-bc63-a83dad3c9f12
+[33m9ff1340[m auto-commit for 7c3e0a5e-298c-4298-afad-442b9dfe1e80
+[33maf7d925[m auto-commit for 069512a9-09fa-4788-8710-8299d2c07b6b
+[33m8066cff[m auto-commit for a84c0ff1-d81a-44aa-bdb5-49f5ae9f6001
+[33me55c156[m auto-commit for ce7f0dd2-ac2c-4fcf-a7c3-2346ff541ad0
+[33m86014be[m auto-commit for febb8713-4049-46f4-859d-1b352b111d40
+[33mc4361e6[m auto-commit for 99976585-15f5-4fe7-a9b2-0c91babc307d
+[33mb589ec9[m auto-commit for a0c09451-efa1-49a3-9a54-fdeba43219e0
+[33m45340f8[m auto-commit for 9dd7d873-6bc3-4c2f-bde0-2c6302e6fa79
+[33m65b0c8d[m auto-commit for 2cee1a41-c443-44e8-a4db-a3ae3b524477
+[33m1cb8c26[m auto-commit for 2870fb65-b9ab-4c32-bf7b-6b3af616aec4
+[33mb778ca2[m Update application.yml
+[33m554029b[m fixed secuity issue in the adminpage, and prevents active if logout
+[33mb82c5ed[m auto-commit for 1f419038-0f30-4df8-9b40-ade13eb65179
+[33m9fafe79[m auto-commit for 91056d25-d74c-4d82-b4bb-e61c62f3b44c
+[33mb4f6e28[m auto-commit for 865e81ef-c05b-43fb-892c-98d6a6ddbd76
+[33mcd10ff7[m auto-commit for 96c14908-0bef-4b31-943f-5ce742e2ee66
+[33m42d7d12[m tested ok for continue 2
+[33m08a9646[m auto-commit for cc0662b5-5510-4003-9948-d962322ec770
+[33ma9dfe4d[m Auto-commit before changes
+[33m92a80f6[m auto-commit for 3f02b40e-8616-4670-befa-319ac37fd4a0
+[33me1a4532[m Auto-commit before changes
+[33mf922e6d[m auto-commit for 4f5b0034-ea42-4346-aabf-8b9912a55d8d
+[33m5f583cf[m auto-commit for c56b5d09-3dcd-4896-96c6-b2e2e34487e9
+[33mbf44bbf[m auto-commit for dc10c4c1-9a39-4ad4-915c-2abbad0bc48f
+[33m9e5ae26[m auto-commit for b05ef007-99f0-4db9-bd96-9c468ffa863b
+[33m68cad9c[m auto-commit for cea105ec-dbca-430e-8bd2-ac1dc5fab844
+[33m2a78bb7[m Auto-commit before changes
+[33m71dadf2[m auto-commit for fb82d8ab-d0d6-4c59-990c-78f525310fef
+[33m5a7af85[m auto-commit for a00b7cf1-4a0f-4e84-b9dc-ed05197055cd
+[33m83b02d7[m auto-commit for a7907e19-3683-4dd0-b299-6322da3552d5
+[33m18a6195[m auto-commit for c6486c47-6b1a-4fec-902d-b7ee47b6eabd
+[33m62a9fd1[m auto-commit for c3aecc45-fa44-454b-aaae-78c4fc3b1021
+[33m3c053ec[m auto-commit for d3824e73-e08e-4322-8a9a-ed793fb6e361
+[33m4053f33[m fixing user , and add user functionality and loaded refresh fixing
+[33m1a4f126[m auto-commit for 0f798eb5-cbc8-4abd-aca1-4ab4ca5734a8
+[33m8b5edda[m auto-commit for 551d977f-d1f2-4b7f-b583-cccabc94018d
+[33m3556850[m auto-commit for 31caa97f-4825-4d19-a01c-2bc8902ab592
+[33m553d0e7[m auto-commit for 2983a56f-07e1-4136-b1a7-8a6f2cf033a4
+[33m933da5d[m auto-commit for 90f899e5-f9a6-4b7e-a455-68b18c832ca6
+[33m014779a[m auto-commit for 3566bd83-174f-41d3-bf02-21efa2cafaa5
+[33m59b5ace[m Auto-commit before changes
+[33mef40220[m updated test files
+[33m399717d[m auto-commit for b800cbf7-5cab-44ad-bf84-d2317762c889
+[33m0f790ec[m auto-commit for eccc1a2d-97d0-42e4-bfcc-fbb77c6f3740
+[33mf843b47[m auto-commit for 45530250-e138-4a6c-ab25-7a2fdddcd87b
+[33mb6e787d[m auto-commit for f13a568a-9bce-422a-a93b-09f2dd4bdd92
+[33m886d069[m Auto-commit before changes
+[33m1c14b1f[m auto-commit for 0434241f-c1b0-4ad7-9896-c82351bebf49
+[33mfa4eef0[m Auto-commit before changes
+[33m46e76be[m auto-commit for 53980a76-a4ee-4cc7-92c2-1e86286b4fc8
+[33mae46852[m auto-commit for 8b26d7e4-4bf1-4818-9bb5-e654e120c356
+[33m11c47db[m auto-commit for 1b671355-3d13-47d0-bb5b-402bf9b282e5
+[33mcb3aa9b[m auto-commit for 89d62e2c-2d00-4ba6-99be-ada71980fb3a
+[33m60d8bcf[m auto-commit for dfc84b81-4785-4d5a-b6a1-dbefe222df80
+[33m257cd18[m auto-commit for 1fb57d15-9bdc-4c78-a9af-1af2a76bde4f
+[33ma717c0e[m auto-commit for 19f39eec-d528-4aee-8ed5-9df8bd5797ac
+[33m6dd2e0e[m auto-commit for 6cf56ff8-1795-4e36-96b0-af79fa38da36
+[33md95a8d9[m auto-commit for 93476ed8-8f79-449c-93eb-819ac3f6ff9b
+[33mc1c133c[m auto-commit for d6ed0617-7524-4d34-b48b-1bfffa0ae2cd
+[33mef1978f[m auto-commit for cba002c0-53da-4385-90d0-ca890b236c4c
+[33m2bc52bc[m just replaced logout icon
+[33mb6eb8b1[m auto-commit for 5eff5f09-d944-4d89-996d-3df0f9cb115d
+[33md6a42d1[m auto-commit for 54d35f5b-28dc-4549-8f7c-71ec3e0a367f
+[33m153e2b1[m auto-commit for ebeffb5d-85d0-4ac5-b9d6-4a1f64a28cad
+[33m4b5a0b4[m auto-commit for 331338a3-c0fb-4298-9dc2-ac1f590b271a
+[33mee166dd[m auto-commit for 3122c39f-596b-4c35-95c2-7cc9987f37ff
+[33m9b4f08d[m auto-commit for 6fed3206-617b-49f7-a76e-0264ab8a0a41
+[33m4a0873b[m auto-commit for 322a4a2a-37a1-4e93-818a-8fb41c864f28
+[33m86cc792[m Auto-commit before changes
+[33mfd786c5[m auto-commit for f98d5d96-689b-4ea1-8098-cbadbdfc893a
+[33m6b9f71b[m auto-commit for 0e5aa116-7aa3-4931-b053-e0a8704775a8
+[33meda1245[m auto-commit for c653f9c0-7358-476d-a62c-48ce81dedc85
+[33m29ba896[m auto-commit for 6e9b5a9e-6c29-44b5-a642-0ffe390bccf3
+[33m832d4e2[m auto-commit for 0b238121-21c1-4034-b37d-8f643e7c5ef2
+[33m4181111[m auto-commit for f85e840d-ca35-492f-8379-253012dff003
+[33m51d151f[m Auto-commit before changes
+[33md8b4fab[m auto-commit for cf8481c7-215c-4fa6-900a-7c24033d8aab
+[33m5f06f63[m auto-commit for 1e11eabe-f6f6-4c2b-b808-c4b4eed8fb8f
+[33mba8571a[m auto-commit for 7bbf1310-a352-4347-8914-75734cfaba80
+[33m16529c6[m auto-commit for c5ff2d2e-35ef-448e-9fee-1acc9716888c
+[33md41a64b[m auto-commit for 86854b55-230a-453c-90a0-9043c5e017d7
+[33m4ab657a[m auto-commit for 0eb8a12c-0f8a-4c5d-a15c-3779b5f4898e
+[33m46a8b29[m auto-commit for 324e5081-6fea-48bf-943c-6a1e7332dff5
+[33md374eea[m auto-commit for 234f3fb7-66ff-4ac3-a3d9-35765c1b9638
+[33md44b082[m added specific admin role of the acees to the adminPage
+[33md3ece17[m auto-commit for 643839c2-bc6a-45f4-bb9c-668d44acea02
+[33m9539509[m auto-commit for 04eda899-6350-4cc6-a961-390b2df8fa5a
+[33m287cc54[m auto-commit for 648a1b34-2edb-4224-bad6-4aca1bf5fd93
+[33ma995e83[m auto-commit for 9f22c370-ba6c-4957-ac85-4a56bd29d5e8
+[33me747f3e[m Auto-commit before changes
+[33md3c8dff[m auto-commit for ab05de44-978b-40fc-b297-124126303bff
+[33m26ef323[m auto-commit for eabca88d-2382-4459-a8cd-603c09cf6f6e
+[33m50dbc74[m Auto-commit before changes
+[33m13dd070[m auto-commit for 9a793125-9667-42c6-af2a-0d6898356519
+[33m4e44268[m Auto-commit before changes
+[33md0b3c34[m auto-commit for cd1f07e6-4068-476c-83e6-9942b7ca3cb4
+[33ma106c90[m auto-commit for 40bd4106-e3fb-4ef7-a3d5-dae26a8ccf6c
+[33m026b8e3[m auto-commit for 2065046b-964d-4f68-b5fa-18865406b7d3
+[33m843c9ec[m auto-commit for e32274b9-6790-44f2-9c11-c15c28f172b9
+[33me5c3f45[m auto-commit for dc20e668-8d19-464e-a4cd-33b44e72c71f
+[33mc8a668f[m auto-commit for 80d9b194-2319-452a-9dea-c43de3a4afe4
+[33m61a800c[m auto-commit for bc7cc71c-cedf-4c25-bc38-25292f83b543
+[33m3d0498e[m auto-commit for 23276092-aa07-4a29-a77b-ed537c6ede8b
+[33mb20e5c5[m auto-commit for 2fde0a9d-a4c0-488a-b472-592b03b6cfb0
+[33m783b1de[m auto-commit for a9ef9d01-7829-4a94-8965-8202f9353fa0
+[33m70d8553[m auto-commit for 5aea5ca1-245d-4016-b282-9cfc81e16745
+[33md246795[m auto-commit for 747c7d37-b93c-44d5-8861-669edd11d030
+[33m07778c1[m auto-commit for 8b4a0b6a-926b-4ebe-9d75-120f49f230ed
+[33me34b1fa[m auto-commit for e6a37d87-09b1-47e9-b96f-46927e3cec27
+[33mbef2ac2[m Update registerPage.html
+[33m92a2f2e[m Create adminPage.html
+[33m75e214b[m Delete adminDashPage.html
+[33m1c27f9a[m Add files via upload

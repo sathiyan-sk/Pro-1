@@ -190,19 +190,19 @@
             font-size: 0.8rem;
             color: var(--text-light);
         }
-
-        .logout-icon {
+         .logout-icon {
             cursor: pointer;
-            font-size: 1.3rem;
-            padding: 8px;
-            border-radius: 50%;
+            font-size: 1.4rem;
+            padding: 10px;
+            border-radius: 10px;
             transition: var(--transition);
-            margin-left: 10px;
+            color: var(--text-muted);
         }
 
         .logout-icon:hover {
-            background-color: var(--light-color);
-            transform: scale(1.1);
+            background-color: var(--danger-color);
+            color: white;
+            transform: scale(1.05);
         }
 
         /* ==========================================================================
@@ -626,7 +626,6 @@
         }
 
         .form-group label {
-            display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
             font-size: 0.875rem;
@@ -987,7 +986,7 @@
                 <div class="content-area">
                     <div class="table-actions">
                         <div>
-                            <button class="btn btn-outline" onclick="refreshRegistrations()">Refresh</button>
+                            <button class="btn btn-outline" onclick="refreshRegistrations()">⟳</button>
                         </div>
                         <div>
                             <span>Showing <span id="registrationShowingCount">0</span> of <span id="registrationTotalCount">0</span> entries</span>
@@ -1460,12 +1459,40 @@
                 return await this.makeAPICall(`/admin/courses/${courseId}`);
             }
 
-            async addCourse(courseData) {
-                return await this.makeAPICall('/admin/courses', {
-                    method: 'POST',
-                    body: JSON.stringify(courseData)
-                });
-            }
+           async addCourse(courseData) {
+    try {
+        console.log('Sending course data:', courseData);
+
+        const response = await fetch(`${this.baseURL}/admin/courses`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(courseData)
+        });
+
+        console.log('HTTP response status:', response.status);
+
+        const data = await response.json();
+        console.log('Response data:', data);
+
+        if (!response.ok) {
+            console.error('HTTP error:', response.status, data);
+            return {
+                success: false,
+                message: data.message || `HTTP error ${response.status}`
+            };
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Network error in addCourse:', error);
+        return {
+            success: false,
+            message: 'Network error: ' + error.message
+        };
+    }
+}
 
             async updateCourse(courseId, courseData) {
                 return await this.makeAPICall(`/admin/courses/${courseId}`, {
@@ -1551,8 +1578,6 @@
             setupEventListeners();
             updateDashboardStats();
             loadDashboardData();
-            showStatusMessage('Dashboard loaded successfully', 'success');
-            
             // Prevent back navigation after logout
             window.addEventListener('popstate', function(event) {
                 history.pushState(null, null, location.href);
@@ -1804,8 +1829,7 @@
                     if (registrationCountElement) {
                         registrationCountElement.textContent = stats.totalStudents || 0;
                     }
-                    
-                    showStatusMessage('Dashboard statistics loaded successfully', 'success');
+
                 } else {
                     console.error('Failed to load dashboard stats:', response.message);
                     showStatusMessage('Failed to load dashboard statistics', 'error');
@@ -2183,50 +2207,73 @@
             `;
         }
 
-        async function saveCourse() {
-            const formData = {
-                courseCode: document.getElementById('courseCode').value,
-                courseTitle: document.getElementById('courseTitle').value,
-                durationMonths: parseInt(document.getElementById('courseDuration').value),
-                category: document.getElementById('courseCategory').value,
-                prerequisites: document.getElementById('coursePrerequisites').value,
-                description: document.getElementById('courseDescription').value
-            };
+       async function saveCourse() {
+    const formData = {
+        courseCode: document.getElementById('courseCode').value.trim(),
+        courseTitle: document.getElementById('courseTitle').value.trim(),
+        durationMonths: parseInt(document.getElementById('courseDuration').value),
+        category: document.getElementById('courseCategory').value,
+        prerequisites: document.getElementById('coursePrerequisites').value.trim(),
+        description: document.getElementById('courseDescription').value.trim()
+    };
 
-            // Basic validation
-            if (!formData.courseCode || !formData.courseTitle || !formData.durationMonths || !formData.category) {
-                showStatusMessage('Please fill in all required fields', 'error');
-                return;
+    // Basic validation
+    if (!formData.courseCode || !formData.courseTitle || !formData.durationMonths || !formData.category) {
+        showStatusMessage('Please fill in all required fields', 'error');
+        return;
+    }
+
+    // Validate category is not the default "Select Category"
+    if (formData.category === 'Select Category' || formData.category === '') {
+        showStatusMessage('Please select a valid category', 'error');
+        return;
+    }
+
+    // Validate duration is a valid number
+    if (isNaN(formData.durationMonths) || formData.durationMonths < 1 || formData.durationMonths > 60) {
+        showStatusMessage('Duration must be between 1 and 60 months', 'error');
+        return;
+    }
+
+    try {
+        showStatusMessage('Saving course...', 'info');
+        console.log('Course data to save:', formData);
+
+        let response;
+        if (editingCourseId) {
+            response = await dataManager.updateCourse(editingCourseId, formData);
+            console.log('Update response:', response);
+
+            if (response && response.success) {
+                showStatusMessage('Course updated successfully', 'success');
+                editingCourseId = null;
+            } else {
+                const errorMsg = response?.message || 'Failed to update course';
+                console.error('Update failed:', response);
+                throw new Error(errorMsg);
             }
+        } else {
+            response = await dataManager.addCourse(formData);
+            console.log('Create response:', response);
 
-            try {
-                showStatusMessage('Saving course...', 'info');
-                
-                if (editingCourseId) {
-                    const response = await dataManager.updateCourse(editingCourseId, formData);
-                    if (response.success) {
-                        showStatusMessage('Course updated successfully', 'success');
-                        editingCourseId = null;
-                    } else {
-                        throw new Error(response.message || 'Failed to update course');
-                    }
-                } else {
-                    const response = await dataManager.addCourse(formData);
-                    if (response.success) {
-                        showStatusMessage('Course created successfully', 'success');
-                    } else {
-                        throw new Error(response.message || 'Failed to create course');
-                    }
-                }
-                
-                document.getElementById('courseForm').reset();
-                toggleCourseForm(); // Close the sheet after saving
-                await loadCoursesData(); // Reload courses data
-            } catch (error) {
-                console.error('Error saving course:', error);
-                showStatusMessage('Error saving course: ' + error.message, 'error');
+            if (response && response.success) {
+                showStatusMessage('Course created successfully', 'success');
+            } else {
+                const errorMsg = response?.message || 'Failed to create course';
+                console.error('Creation failed:', response);
+                throw new Error(errorMsg);
             }
         }
+
+        document.getElementById('courseForm').reset();
+        toggleCourseForm();
+        await loadCoursesData();
+
+    } catch (error) {
+        console.error('Error saving course:', error);
+        showStatusMessage('Error saving course: ' + error.message, 'error');
+    }
+}
 
         // Additional course management functions
         async function editCourse(courseId) {
