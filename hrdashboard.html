@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackerPro - HR Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================================================
+           CSS VARIABLES
+           ============================================================================ */
+        :root {
+            --primary-color: #4a6fff;
+            --primary-light: #e5eaff;
+            --primary-dark: #3a5ccc;
+            --internshala-blue: #008BDC;
+            --success-color: #28a745;
+            --warning-color: #ff9800;
+            --danger-color: #dc3545;
+            --text-color: #333333;
+            --text-light: #666666;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --white: #ffffff;
+            --light-color: #f8f9fc;
+            --bg-hover: #f8f9fa;
+            --bg-active: #e8f0fe;
+            --header-height: 70px;
+            --sidebar-width: 250px;
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-color: #f5f7fa; color: var(--text-color); line-height: 1.6; overflow-x: hidden; }
+
+        /* HEADER */
+        .header-bar { background-color: var(--white); height: var(--header-height); position: fixed; top: 0; left: 0; right: 0; z-index: 100; box-shadow: var(--shadow-sm); display: flex; align-items: center; padding: 0 2rem; justify-content: space-between; }
+        .logo-container { display: flex; align-items: center; }
+        .logo { height: 38px; margin-right: 12px; }
+        .logo-text { font-size: 1.4rem; font-weight: 600; color: black; }
+        .header-actions { display: flex; align-items: center; gap: 1rem; }
+        .user-profile { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; position: relative; }
+        .user-avatar { width: 40px; height: 40px; background-color: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--primary-dark); font-size: 1.2rem; }
+        .user-details .user-name { font-weight: 500; font-size: 0.9rem; line-height: 1.2; }
+        .user-details .user-role { font-size: 0.8rem; color: var(--text-light); }
+        .user-dropdown { position: absolute; top: calc(100% + 10px); right: 0; background: var(--white); border-radius: var(--border-radius-md); box-shadow: var(--shadow-md); min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: var(--transition); z-index: 1000; }
+        .user-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown-item { display: block; padding: 12px 20px; color: var(--text-color); text-decoration: none; font-size: 14px; transition: background-color 0.2s; border-bottom: 1px solid var(--light-color); cursor: pointer; }
+        .dropdown-item:hover { background-color: var(--light-color); }
+        .dropdown-item:last-child { border-bottom: none; color: #dc3545; }
+
+        /* LAYOUT */
+        .dashboard-container { display: flex; min-height: 100vh; padding-top: var(--header-height); }
+        .sidebar { width: var(--sidebar-width); background: var(--white); height: calc(100vh - var(--header-height)); position: fixed; top: var(--header-height); left: 0; overflow-y: auto; z-index: 90; border-right: 1px solid #e8e9ea; transition: var(--transition); }
+        .accordion-section { margin-bottom: 0.5rem; }
+        .accordion-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; cursor: pointer; font-size: 0.75rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; transition: var(--transition); user-select: none; }
+        .accordion-header:hover { background-color: var(--bg-hover); color: var(--text-primary); }
+        .accordion-icon { font-size: 0.75rem; transition: transform 0.3s ease; }
+        .accordion-section.active .accordion-icon { transform: rotate(90deg); }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .accordion-section.active .accordion-content { max-height: 500px; }
+        .nav-item { display: flex; align-items: center; padding: 10px 16px 10px 32px; color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 400; transition: all 0.2s ease; cursor: pointer; border-left: 3px solid transparent; }
+        .nav-item:hover { background-color: var(--bg-hover); color: #1a73e8; }
+        .nav-item.active { background-color: var(--bg-active); color: #1a73e8; font-weight: 500; border-left: 3px solid #1a73e8; }
+        .main-content { flex: 1; margin-left: var(--sidebar-width); padding: 32px; background-color: #f5f7fa; transition: var(--transition); }
+        .page { display: none; }
+        .page.active-page { display: block; }
+
+        /* PAGE HEADER */
+        .page-header-section { background: var(--white); padding: 1.5rem; border-radius: var(--border-radius-md); margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); }
+        .page-header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .page-title { font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0; }
+        .header-controls { display: flex; gap: 0.75rem; align-items: center; }
+        .three-dot-menu { position: relative; }
+        .three-dot-btn { background: var(--white); border: 1px solid #ddd; border-radius: var(--border-radius-sm); width: 40px; height: 38px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: var(--transition); }
+        .three-dot-btn:hover { background: var(--light-color); border-color: var(--primary-color); }
+        .three-dot-icon { font-size: 1.2rem; color: var(--text-color); }
+        .three-dot-dropdown { position: absolute; top: calc(100% + 5px); right: 0; background: var(--white); border-radius: var(--border-radius-sm); box-shadow: var(--shadow-md); min-width: 160px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: var(--transition); z-index: 100; border: 1px solid #e8e9ea; }
+        .three-dot-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .three-dot-option { padding: 10px 15px; cursor: pointer; font-size: 0.875rem; color: var(--text-color); transition: background-color 0.2s; }
+        .three-dot-option:hover { background-color: var(--light-color); }
+        .records-per-page { position: relative; }
+        .records-select { padding: 0.5rem 2rem 0.5rem 0.75rem; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-size: 0.875rem; font-family: inherit; background: var(--white); cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.5rem center; }
+        .records-select:focus { outline: none; border-color: var(--primary-color); }
+        .results-info { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+        .showing-text { color: var(--text-secondary); font-size: 0.875rem; }
+        .select-all-wrapper { display: flex; align-items: center; gap: 0.5rem; }
+        .select-all-checkbox { cursor: pointer; width: 16px; height: 16px; }
+        .select-all-label { font-size: 0.875rem; color: var(--text-color); cursor: pointer; }
+        .selected-count { color: var(--primary-color); font-weight: 600; margin-left: 0.5rem; }
+        .search-filter-bar { display: flex; gap: 1rem; margin-top: 1rem; }
+        .search-box { flex: 1; position: relative; }
+        .search-input { width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem; border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-size: 0.875rem; font-family: inherit; transition: border-color 0.2s; }
+        .search-input:focus { outline: none; border-color: var(--primary-color); }
+        .search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-light); font-size: 1rem; }
+        .filters-btn, .import-btn { display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--white); border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-size: 0.875rem; font-weight: 500; color: var(--text-color); cursor: pointer; transition: var(--transition); position: relative; }
+        .filters-btn:hover, .import-btn:hover { background: var(--light-color); border-color: var(--primary-color); }
+
+        /* APPLICATION CARD */
+        .application-card { background: var(--white); border-radius: var(--border-radius-md); padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid #e8e9ea; transition: var(--transition); position: relative; }
+        .application-card:hover { box-shadow: var(--shadow-md); }
+        .application-card.selected { border-color: var(--primary-color); background-color: #fafbff; }
+        .application-card.hidden { display: none; }
+        .card-checkbox { position: absolute; top: 1.5rem; left: 1.5rem; width: 18px; height: 18px; cursor: pointer; }
+        .card-content { margin-left: 2rem; }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #f0f0f0; }
+        .applicant-main-info { flex: 1; }
+        .applicant-name-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+        .applicant-name { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); }
+        .applied-date { font-size: 0.875rem; color: var(--text-light); }
+        .contact-info { display: flex; align-items: center; gap: 1.5rem; margin-top: 0.5rem; }
+        .contact-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--text-secondary); }
+        .contact-icon { color: var(--text-light); }
+        .view-resume-btn { padding: 0.5rem 1.25rem; background: var(--white); border: 1px solid #ddd; border-radius: var(--border-radius-sm); font-size: 0.875rem; font-weight: 500; color: var(--text-color); cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .view-resume-btn:hover { background: var(--primary-color); border-color: var(--primary-color); color: white; }
+        .info-sections { display: flex; gap: 2rem; margin-bottom: 1.5rem; }
+        .info-section { flex: 1; }
+        .section-title { font-size: 0.75rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+        .info-grid { display: flex; flex-direction: column; gap: 0.75rem; }
+        .info-item { display: flex; align-items: center; gap: 0.5rem; }
+        .info-label { font-size: 0.875rem; color: var(--text-secondary); font-weight: 500; min-width: 120px; }
+        .info-value { font-size: 0.875rem; color: var(--text-primary); font-weight: 400; }
+        .status-badge { display: inline-block; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .status-applied { background-color: #e3f2fd; color: #1976d2; }
+        .status-scheduled { background-color: #fff8e1; color: #f57c00; }
+        .status-awaiting { background-color: #fff8e1; color: #f57c00; }
+        .status-completed { background-color: #e8f5e9; color: #2e7d32; }
+        .status-cancelled { background-color: #ffebee; color: #c62828; }
+        .link-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.75rem; background: var(--white); border: 1px solid var(--primary-color); border-radius: var(--border-radius-sm); color: var(--primary-color); font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: var(--transition); }
+        .link-btn:hover { background: var(--primary-color); color: white; }
+        .card-actions { display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f0f0f0; }
+        .action-btn { padding: 0.5rem 1.25rem; border-radius: var(--border-radius-sm); font-size: 0.875rem; font-weight: 500; cursor: pointer; border: 1px solid; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
+        .btn-reject { background: var(--white); border-color: #dc3545; color: #dc3545; }
+        .btn-reject:hover { background: #dc3545; color: white; }
+        .btn-shortlist { background: var(--white); border-color: #ff9800; color: #ff9800; }
+        .btn-shortlist:hover { background: #ff9800; color: white; }
+
+        /* SHORTLISTED TABLE */
+        .shortlisted-table-container { background: var(--white); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08); border: 1px solid #e8e9ea; }
+        .table-header { display: grid; grid-template-columns: 40px 60px 1.5fr 1.5fr 1fr 1.5fr 2fr 1.5fr 300px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 1rem 1.5rem; align-items: center; gap: 1rem; font-weight: 600; font-size: 0.85rem; color: var(--white); }
+        .table-header.hide-checkbox { grid-template-columns: 60px 1.5fr 1.5fr 1fr 1.5fr 2fr 1.5fr 300px; }
+        .header-cell { text-align: left; }
+        .header-checkbox { width: 18px; height: 18px; cursor: pointer; }
+        .header-checkbox.hidden { display: none; }
+        .shortlisted-list { display: flex; flex-direction: column; }
+        .shortlisted-card { display: grid; grid-template-columns: 40px 60px 1.5fr 1.5fr 1fr 1.5fr 2fr 1.5fr 300px; border-bottom: 1px solid #f0f0f0; padding: 1.25rem 1.5rem; transition: var(--transition); align-items: center; gap: 1rem; }
+        .shortlisted-card.hide-checkbox { grid-template-columns: 60px 1.5fr 1.5fr 1fr 1.5fr 2fr 1.5fr 300px; }
+        .shortlisted-card:last-child { border-bottom: none; }
+        .shortlisted-card:hover { background-color: #f8f9ff; }
+        .shortlisted-checkbox { width: 18px; height: 18px; cursor: pointer; }
+        .shortlisted-checkbox.hidden { display: none; }
+        .app-no { font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); text-align: center; }
+        .candidate-first-name, .candidate-last-name { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+        .candidate-gender, .candidate-city, .candidate-email, .candidate-phone { font-size: 0.875rem; color: var(--text-secondary); }
+        .shortlisted-actions { display: flex; gap: 0.75rem; align-items: center; justify-content: flex-end; }
+        .btn-schedule { background: var(--internshala-blue); color: white; border: none; padding: 0.5rem 1.25rem; border-radius: 0; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .btn-schedule:hover { background: #0077b6; }
+        .next-steps-wrapper { position: relative; display: inline-block; }
+        .btn-next-steps { background: var(--success-color); color: white; border: none; padding: 0.5rem 1.25rem; border-radius: var(--border-radius-sm); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .btn-next-steps:hover { background: #218838; }
+        .next-steps-dropdown { position: absolute; top: calc(100% + 5px); right: 0; background: var(--white); border-radius: var(--border-radius-sm); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: var(--transition); z-index: 100; border: 1px solid #e8e9ea; }
+        .next-steps-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .next-steps-option { padding: 12px 16px; cursor: pointer; font-size: 0.875rem; color: var(--text-color); transition: background-color 0.2s; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid #f0f0f0; }
+        .next-steps-option:last-child { border-bottom: none; }
+        .next-steps-option:hover { background-color: var(--light-color); }
+
+        /* INTERVIEW TABS */
+        .interview-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .interview-tabs { display: flex; gap: 0; }
+        .interview-tab { padding: 0.65rem 1.75rem; cursor: pointer; font-size: 0.875rem; font-weight: 500; color: var(--text-secondary); background: #e8e9ea; border: none; transition: var(--transition); }
+        .interview-tab:first-child { border-radius: 20px 0 0 0; }
+        .interview-tab:last-child { border-radius: 0 20px 0 0; }
+        .interview-tab:hover { color: var(--text-primary); background: #d8d9da; }
+        .interview-tab.active { color: white; background: var(--internshala-blue); font-weight: 600; }
+        .search-interview { position: relative; width: 300px; }
+        .search-interview input { width: 100%; padding: 0.65rem 1rem 0.65rem 2.5rem; border: 1px solid #d1d5db; border-radius: 6px; font-size: 0.875rem; }
+        .search-interview input:focus { outline: none; border-color: var(--internshala-blue); }
+        .search-interview::before { content: "🔍"; position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); font-size: 1rem; }
+
+        /* INTERVIEW TABLE */
+        .interview-table-wrapper { background: var(--white); border-radius: var(--border-radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+        .interview-table { width: 100%; border-collapse: collapse; }
+        .interview-table thead { background: #f8f9fa; border-bottom: 1px solid #e8e9ea; }
+        .interview-table th { padding: 1rem 1.5rem; text-align: left; font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .interview-table tbody tr { border-bottom: 1px solid #f0f0f0; transition: background-color 0.2s; cursor: pointer; }
+        .interview-table tbody tr:hover { background-color: #fafafa; }
+        .interview-table tbody tr:last-child { border-bottom: none; }
+        .interview-table td { padding: 1.25rem 1.5rem; font-size: 0.875rem; color: var(--text-color); vertical-align: middle; }
+        
+        .applicant-cell { display: flex; align-items: center; gap: 0.75rem; }
+        .expand-icon { font-size: 1rem; color: var(--text-light); transition: transform 0.3s; cursor: pointer; }
+        .expand-icon.expanded { transform: rotate(180deg); }
+        .interview-applicant-name { font-weight: 600; color: var(--text-primary); font-size: 0.9rem; }
+        
+        .datetime-cell { display: flex; flex-direction: column; gap: 0.25rem; }
+        .interview-date { font-weight: 500; color: var(--text-primary); }
+        .interview-time { color: var(--text-secondary); font-size: 0.85rem; }
+        
+        .status-info-icon { font-size: 1rem; cursor: help; }
+        
+        .type-cell { display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); }
+        .type-icon { font-size: 1rem; }
+        
+        /* ACTIONS CELL - BUTTONS ONLY */
+        .actions-cell { display: flex; align-items: center; gap: 0.5rem; }
+        .btn-add-notes { padding: 0.5rem 1rem; background: var(--white); border: 1.5px solid #d1d5db; border-radius: 0; font-size: 0.8rem; font-weight: 500; color: var(--text-color); cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .btn-add-notes:hover { background: #f3f4f6; border-color: var(--internshala-blue); color: var(--internshala-blue); }
+        
+        .decision-dropdown-wrapper { position: relative; display: inline-block; }
+        .btn-make-decision { padding: 0.5rem 1rem; background: var(--internshala-blue); border: none; border-radius: 0; font-size: 0.8rem; font-weight: 500; color: white; cursor: pointer; transition: var(--transition); white-space: nowrap; }
+        .btn-make-decision:hover { background: #0077b6; }
+        .decision-dropdown { position: absolute; top: calc(100% + 5px); right: 0; background: var(--white); border-radius: 4px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); min-width: 160px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: var(--transition); z-index: 100; border: 1px solid #e8e9ea; }
+        .decision-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .decision-option { padding: 12px 16px; cursor: pointer; font-size: 0.875rem; color: var(--text-color); transition: background-color 0.2s; display: flex; align-items: center; gap: 0.75rem; border-bottom: 1px solid #f0f0f0; }
+        .decision-option:last-child { border-bottom: none; }
+        .decision-option:hover { background-color: var(--light-color); }
+        .decision-option.reschedule:hover { background-color: #fff8e1; color: var(--warning-color); }
+        .decision-option.hire:hover { background-color: #e8f5e9; color: var(--success-color); }
+        .decision-option.cancel:hover { background-color: #ffebee; color: var(--danger-color); }
+
+        /* EXPANDED ROW DETAILS */
+        .expanded-details { display: none; }
+        .expanded-details.show { display: table-row; }
+        .expanded-details td { padding: 1.5rem; background: #fafbfc; border-top: 1px solid #e8e9ea; }
+        .details-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .detail-item { display: flex; flex-direction: column; gap: 0.5rem; }
+        .detail-label { font-size: 0.75rem; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .detail-value { font-size: 0.9rem; color: var(--text-primary); font-weight: 500; }
+
+        /* NOTES MODAL */
+        .notes-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; }
+        .notes-modal.active { display: flex; }
+        .notes-modal-container { background: var(--white); border-radius: 4px; width: 100%; max-width: 600px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
+        .notes-modal-header { padding: 1.5rem; border-bottom: 1px solid #e8e9ea; display: flex; justify-content: space-between; align-items: center; }
+        .notes-modal-title { font-size: 1.125rem; font-weight: 600; color: var(--text-primary); display: flex; align-items: center; gap: 0.5rem; }
+        .close-notes-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-secondary); }
+        .notes-modal-body { padding: 1.5rem; }
+        .notes-info-text { color: var(--text-secondary); font-size: 0.875rem; margin-bottom: 1rem; }
+        .notes-textarea { width: 100%; min-height: 200px; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: 0.875rem; font-family: inherit; resize: vertical; }
+        .notes-textarea:focus { outline: none; border-color: var(--internshala-blue); box-shadow: 0 0 0 3px rgba(0, 139, 220, 0.1); }
+        .notes-char-count { text-align: right; font-size: 0.75rem; color: var(--text-light); margin-top: 0.5rem; }
+        .notes-modal-footer { padding: 1rem 1.5rem; border-top: 1px solid #e8e9ea; display: flex; justify-content: flex-end; }
+        .btn-save-notes { padding: 0.75rem 1.5rem; background: var(--internshala-blue); color: white; border: none; border-radius: 0; font-size: 0.875rem; font-weight: 500; cursor: pointer; }
+
+        /* INTERVIEW MODAL */
+        .interview-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; }
+        .interview-modal.active { display: flex; }
+        .interview-form-container { background: var(--white); border-radius: 4px; width: 100%; max-width: 750px; max-height: 95vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2); }
+        .interview-form-container::-webkit-scrollbar { width: 0; height: 0; }
+        .interview-form-container { scrollbar-width: none; -ms-overflow-style: none; }
+        .interview-form-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid #e8e9ea; display: flex; justify-content: space-between; align-items: center; background: var(--internshala-blue); }
+        .interview-header-content { display: flex; align-items: center; gap: 0.75rem; }
+        .interview-icon { font-size: 1.5rem; }
+        .interview-form-title { font-size: 1.125rem; font-weight: 600; color: white; }
+        .close-interview-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: white; padding: 0.25rem 0.5rem; transition: color 0.2s; }
+        .interview-form-body { padding: 1.5rem; padding-bottom: 0.5rem; }
+        .to-field-group { margin-bottom: 1.25rem; display: flex; align-items: baseline; gap: 0.5rem; }
+        .to-label { font-size: 0.875rem; font-weight: 500; color: var(--text-primary); flex-shrink: 0; }
+        .to-value { font-size: 0.875rem; color: var(--text-secondary); }
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; font-size: 0.875rem; font-weight: 500; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .form-label.required::after { content: " *"; color: #dc3545; font-weight: 600; }
+        .form-input, .form-select, .form-textarea { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0; font-size: 0.875rem; font-family: inherit; transition: border-color 0.2s; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { outline: none; border-color: var(--internshala-blue); box-shadow: 0 0 0 3px rgba(0, 139, 220, 0.1); }
+        .form-textarea { resize: vertical; min-height: 120px; }
+        .char-count { display: block; text-align: right; font-size: 0.75rem; color: var(--text-light); margin-top: 0.25rem; }
+        .duration-buttons { display: flex; gap: 0.75rem; }
+        .duration-btn { padding: 0.5rem 1.25rem; border: 1px solid #d1d5db; border-radius: 0; background: var(--white); font-size: 0.875rem; cursor: pointer; transition: var(--transition); font-weight: 500; }
+        .duration-btn.active { background: var(--internshala-blue); color: white; border-color: var(--internshala-blue); }
+        .duration-btn:hover:not(.active) { background: var(--light-color); }
+        .date-time-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .date-picker-wrapper { position: relative; }
+        .date-input-with-icon { position: relative; }
+        .date-input-with-icon .form-input { padding-right: 2.5rem; }
+        .calendar-icon { position: absolute; right: 0.75rem; top: 50%; transform: translateY(-50%); color: var(--text-light); pointer-events: none; }
+        .time-slot-wrapper { position: relative; }
+        .time-slot-display { width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0; font-size: 0.875rem; cursor: pointer; background: var(--white); display: flex; justify-content: space-between; align-items: center; transition: border-color 0.2s; }
+        .time-slot-display:hover { border-color: var(--internshala-blue); }
+        .time-slot-display.has-value { color: var(--text-primary); }
+        .time-slot-display.placeholder { color: #9ca3af; }
+        .time-slots-dropdown { position: absolute; top: calc(100% + 5px); left: 0; right: 0; background: var(--white); border: 1px solid #d1d5db; border-radius: 0; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); max-height: 250px; overflow-y: auto; z-index: 100; display: none; }
+        .time-slots-dropdown.active { display: block; }
+        .time-slot-option { padding: 0.75rem; cursor: pointer; font-size: 0.875rem; color: var(--text-color); transition: background-color 0.2s; border-bottom: 1px solid #f0f0f0; }
+        .time-slot-option:last-child { border-bottom: none; }
+        .time-slot-option:hover { background-color: #e0f2fe; }
+        .time-slot-option.selected { background-color: #e0f2fe; color: var(--internshala-blue); font-weight: 500; }
+        .interview-mode-group { display: flex; gap: 2rem; }
+        .radio-option { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+        .radio-option input[type="radio"] { cursor: pointer; width: 18px; height: 18px; }
+        .radio-option label { cursor: pointer; font-size: 0.875rem; color: var(--text-color); }
+        .conditional-field { display: none; }
+        .conditional-field.visible { display: block; }
+        .interview-form-footer { padding: 0.75rem 1.5rem 1.5rem 1.5rem; display: flex; justify-content: flex-start; }
+        .btn-submit-interview { padding: 0.75rem 1.5rem; background: var(--internshala-blue); color: white; border: none; border-radius: 0; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: var(--transition); }
+        .btn-submit-interview:hover { background: #0077b6; }
+
+        /* IMPORT DROPDOWN */
+        .import-dropdown { position: absolute; top: calc(100% + 5px); right: 0; background: var(--white); border-radius: var(--border-radius-sm); box-shadow: var(--shadow-md); min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: var(--transition); z-index: 100; border: 1px solid #e8e9ea; }
+        .import-dropdown.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        .import-option { padding: 10px 15px; cursor: pointer; font-size: 0.875rem; color: var(--text-color); transition: background-color 0.2s; display: flex; align-items: center; gap: 0.5rem; }
+        .import-option:hover { background-color: var(--light-color); }
+
+        /* RESUME MODAL */
+        .resume-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; }
+        .resume-modal.active { display: flex; }
+        .resume-viewer { background: var(--white); border-radius: var(--border-radius-md); width: 100%; max-width: 900px; height: 90vh; display: flex; flex-direction: column; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); }
+        .resume-header { padding: 1.5rem; border-bottom: 1px solid #e8e9ea; display: flex; justify-content: space-between; align-items: center; }
+        .resume-title { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); }
+        .resume-actions { display: flex; gap: 1rem; }
+        .download-btn { padding: 0.5rem 1rem; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius-sm); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: var(--transition); }
+        .download-btn:hover { background: var(--primary-dark); }
+        .close-resume-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-light); padding: 0.25rem 0.5rem; }
+        .close-resume-btn:hover { color: var(--text-color); }
+        .resume-content { flex: 1; overflow: hidden; position: relative; }
+        .resume-iframe { width: 100%; height: 100%; border: none; }
+
+        /* EMPTY STATE */
+        .empty-state { text-align: center; padding: 3rem; color: var(--text-light); background: var(--white); border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); }
+        .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .empty-state h3 { margin-bottom: 0.5rem; color: var(--text-secondary); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .main-content { margin-left: 0; padding: 16px; }
+            .user-details { display: none; }
+            .info-sections { flex-direction: column; }
+            .card-header { flex-direction: column; gap: 1rem; }
+            .view-resume-btn { width: 100%; }
+            .card-actions { flex-direction: column; }
+            .action-btn { width: 100%; justify-content: center; }
+            .search-filter-bar { flex-direction: column; }
+            .contact-info { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .card-content { margin-left: 0; }
+            .card-checkbox { left: 0.5rem; top: 0.5rem; }
+            .date-time-row { grid-template-columns: 1fr; }
+            .duration-buttons { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header-bar">
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/38x38/4a6fff/ffffff?text=TP" alt="TrackerPro Logo" class="logo">
+            <h1 class="logo-text">TrackerPro HR</h1>
+        </div>
+        <div class="header-actions">
+            <div class="user-profile" onclick="toggleUserDropdown()">
+                <div class="user-avatar">H</div>
+                <div class="user-details">
+                    <div class="user-name">HR Manager</div>
+                    <div class="user-role">Recruiter</div>
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="dropdown-item" onclick="goToProfile()">My Profile</div>
+                    <div class="dropdown-item" onclick="goToSettings()">Settings</div>
+                    <div class="dropdown-item" onclick="goToHelp()">Help Center</div>
+                    <div class="dropdown-item" onclick="logout()">Logout</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="accordion-section active">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Screening Mode</span>
+                    <span class="accordion-icon">▶</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="nav-item active" data-page="applications">Applications</div>
+                    <div class="nav-item" data-page="shortlisted">Shortlisted</div>
+                </div>
+            </div>
+            <div class="accordion-section">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>Recruitment Mode</span>
+                    <span class="accordion-icon">▶</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="nav-item" data-page="interviews">Interviews</div>
+                    <div class="nav-item" data-page="hired">Hired</div>
+                    <div class="nav-item" data-page="not-selected">Not Selected</div>
+                    <div class="nav-item" data-page="chat-messages">Chat Messages</div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- APPLICATIONS PAGE -->
+            <div id="applications" class="page active-page">
+                <div class="page-header-section">
+                    <h1 class="page-title">Student Applications - Received</h1>
+                    <div class="results-info">
+                        <span class="showing-text" id="showingText">Showing 3 results</span>
+                        <div class="select-all-wrapper">
+                            <input type="checkbox" id="selectAll" class="select-all-checkbox" onchange="selectAllCards()">
+                            <label for="selectAll" class="select-all-label">Select All</label>
+                            <span class="selected-count" id="selectedCount"></span>
+                        </div>
+                    </div>
+                    <div class="search-filter-bar">
+                        <div class="search-box">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" class="search-input" id="searchInput" placeholder="Search applicants by name, email, location..." oninput="searchApplications()">
+                        </div>
+                        <button class="filters-btn">📊 Filters</button>
+                        <button class="import-btn" onclick="toggleImportDropdown()">
+                            ➕ Import
+                            <div class="import-dropdown" id="importDropdown">
+                                <div class="import-option" onclick="uploadMassData()">📤 Upload Mass Data</div>
+                                <div class="import-option" onclick="uploadCSV()">📄 Upload CSV</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="applications-container">
+                    <div class="application-card" data-name="Raj Kumar" data-email="raj.kumar@example.com" data-location="Pune" data-gender="Male" data-phone="9876543210">
+                        <input type="checkbox" class="card-checkbox" onchange="updateSelectedCount()">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="applicant-main-info">
+                                    <div class="applicant-name-row">
+                                        <h2 class="applicant-name">Raj Kumar</h2>
+                                        <span class="applied-date">Applied 10/10/2025</span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-item"><span class="contact-icon">📧</span><span>raj.kumar@example.com</span></div>
+                                        <div class="contact-item"><span class="contact-icon">📍</span><span>Pune</span></div>
+                                        <div class="contact-item"><span class="contact-icon">📱</span><span>9876543210</span></div>
+                                    </div>
+                                </div>
+                                <button class="view-resume-btn" onclick="viewResume('Raj Kumar', 'https://www.africau.edu/images/default/sample.pdf')">📄 View Resume</button>
+                            </div>
+                            <div class="info-sections">
+                                <div class="info-section">
+                                    <div class="section-title">Personal Information</div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><div class="info-label">Gender:</div><div class="info-value">MALE</div></div>
+                                        <div class="info-item"><div class="info-label">Date of Birth:</div><div class="info-value">15/08/2002</div></div>
+                                        <div class="info-item"><div class="info-label">Status:</div><div class="info-value"><span class="status-badge status-applied">APPLIED</span></div></div>
+                                    </div>
+                                </div>
+                                <div class="info-section">
+                                    <div class="section-title">Additional Information</div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><div class="info-label">GitHub Profile:</div><div class="info-value"><a href="https://github.com/rajkumar" target="_blank" class="link-btn">🔗 View GitHub</a></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-reject" onclick="rejectCandidate('Raj Kumar', this)">✕ Reject</button>
+                                <button class="action-btn btn-shortlist" onclick="shortlistCandidate('Raj', 'Kumar', 'Male', 'Pune', 'raj.kumar@example.com', '9876543210', '10/10/2025', this)">⭐ Shortlist</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="application-card" data-name="Priya Sharma" data-email="priya.sharma@example.com" data-location="Mumbai" data-gender="Female" data-phone="8765432109">
+                        <input type="checkbox" class="card-checkbox" onchange="updateSelectedCount()">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="applicant-main-info">
+                                    <div class="applicant-name-row">
+                                        <h2 class="applicant-name">Priya Sharma</h2>
+                                        <span class="applied-date">Applied 10/10/2025</span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-item"><span class="contact-icon">📧</span><span>priya.sharma@example.com</span></div>
+                                        <div class="contact-item"><span class="contact-icon">📍</span><span>Mumbai</span></div>
+                                        <div class="contact-item"><span class="contact-icon">📱</span><span>8765432109</span></div>
+                                    </div>
+                                </div>
+                                <button class="view-resume-btn" onclick="viewResume('Priya Sharma', 'https://www.africau.edu/images/default/sample.pdf')">📄 View Resume</button>
+                            </div>
+                            <div class="info-sections">
+                                <div class="info-section">
+                                    <div class="section-title">Personal Information</div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><div class="info-label">Gender:</div><div class="info-value">FEMALE</div></div>
+                                        <div class="info-item"><div class="info-label">Date of Birth:</div><div class="info-value">22/05/2001</div></div>
+                                        <div class="info-item"><div class="info-label">Status:</div><div class="info-value"><span class="status-badge status-applied">APPLIED</span></div></div>
+                                    </div>
+                                </div>
+                                <div class="info-section">
+                                    <div class="section-title">Additional Information</div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><div class="info-label">GitHub Profile:</div><div class="info-value"><a href="https://github.com/priyasharma" target="_blank" class="link-btn">🔗 View GitHub</a></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-reject" onclick="rejectCandidate('Priya Sharma', this)">✕ Reject</button>
+                                <button class="action-btn btn-shortlist" onclick="shortlistCandidate('Priya', 'Sharma', 'Female', 'Mumbai', 'priya.sharma@example.com', '8765432109', '10/10/2025', this)">⭐ Shortlist</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="application-card" data-name="Arjun Reddy" data-email="arjun.reddy@example.com" data-location="Hyderabad" data-gender="Male" data-phone="9988776655">
+                        <input type="checkbox" class="card-checkbox" onchange="updateSelectedCount()">
+                        <div class="card-content">
+                            <div class="card-header">
+                                <div class="applicant-main-info">
+                                    <div class="applicant-name-row">
+                                        <h2 class="applicant-name">Arjun Reddy</h2>
+                                        <span class="applied-date">Applied 09/10/2025</span>
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-item"><span class="contact-icon">📧</span><span>arjun.reddy@example.com</span></div>
+                                        <div class="contact-item"><span class="contact-icon">📍</span><span>Hyderabad</span></div>
+                                        <div class="contact-item"><span class="contact-icon">📱</span><span>9988776655</span></div>
+                                    </div>
+                                </div>
+                                <button class="view-resume-btn" onclick="viewResume('Arjun Reddy', 'https://www.africau.edu/images/default/sample.pdf')">📄 View Resume</button>
+                            </div>
+                            <div class="info-sections">
+                                <div class="info-section">
+                                    <div class="section-title">Personal Information</div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><div class="info-label">Gender:</div><div class="info-value">MALE</div></div>
+                                        <div class="info-item"><div class="info-label">Date of Birth:</div><div class="info-value">10/12/1999</div></div>
+                                        <div class="info-item"><div class="info-label">Status:</div><div class="info-value"><span class="status-badge status-applied">APPLIED</span></div></div>
+                                    </div>
+                                </div>
+                                <div class="info-section">
+                                    <div class="section-title">Additional Information</div>
+                                    <div class="info-grid">
+                                        <div class="info-item"><div class="info-label">GitHub Profile:</div><div class="info-value"><a href="https://github.com/arjunreddy" target="_blank" class="link-btn">🔗 View GitHub</a></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="action-btn btn-reject" onclick="rejectCandidate('Arjun Reddy', this)">✕ Reject</button>
+                                <button class="action-btn btn-shortlist" onclick="shortlistCandidate('Arjun', 'Reddy', 'Male', 'Hyderabad', 'arjun.reddy@example.com', '9988776655', '09/10/2025', this)">⭐ Shortlist</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SHORTLISTED PAGE -->
+            <div id="shortlisted" class="page">
+                <div class="page-header-section">
+                    <div class="page-header-top">
+                        <h1 class="page-title">Shortlisted Candidates</h1>
+                        <div class="header-controls">
+                            <div class="three-dot-menu">
+                                <button class="three-dot-btn" onclick="toggleThreeDotMenu()"><span class="three-dot-icon">⋮</span></button>
+                                <div class="three-dot-dropdown" id="threeDotDropdown">
+                                    <div class="three-dot-option" onclick="markAll()">✓ Mark All</div>
+                                    <div class="three-dot-option" onclick="deselectAll()">✕ Deselect All</div>
+                                </div>
+                            </div>
+                            <div class="records-per-page">
+                                <select class="records-select" id="recordsPerPage" onchange="updateRecordsPerPage()">
+                                    <option value="10">10 Records Per Page</option>
+                                    <option value="20">20 Records Per Page</option>
+                                    <option value="30">30 Records Per Page</option>
+                                    <option value="40">40 Records Per Page</option>
+                                    <option value="50">50 Records Per Page</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showing-text" id="shortlistedCount">Showing 0 shortlisted candidates</div>
+                </div>
+                <div class="shortlisted-table-container" id="shortlistedTableContainer" style="display: none;">
+                    <div class="table-header" id="tableHeader">
+                        <input type="checkbox" class="header-checkbox" id="headerCheckbox" onchange="toggleAllShortlisted()" style="display: none;">
+                        <div class="header-cell">No.</div>
+                        <div class="header-cell">First Name</div>
+                        <div class="header-cell">Last Name</div>
+                        <div class="header-cell">Gender</div>
+                        <div class="header-cell">City</div>
+                        <div class="header-cell">Email</div>
+                        <div class="header-cell">Mobile</div>
+                        <div class="header-cell">Actions</div>
+                    </div>
+                    <div class="shortlisted-list" id="shortlistedContainer"></div>
+                </div>
+                <div class="empty-state" id="shortlistedEmpty">
+                    <div class="empty-state-icon">⭐</div>
+                    <h3>No Shortlisted Candidates Yet</h3>
+                    <p>Candidates you shortlist from applications will appear here</p>
+                </div>
+            </div>
+
+            <!-- INTERVIEWS PAGE -->
+            <div id="interviews" class="page">
+                <div class="page-header-section">
+                    <h1 class="page-title">Interviews for Web Development Internship</h1>
+                    
+                    <div class="interview-header">
+                        <div class="interview-tabs">
+                            <button class="interview-tab active" data-tab="upcoming" onclick="switchInterviewTab('upcoming')">Upcoming</button>
+                            <button class="interview-tab" data-tab="past" onclick="switchInterviewTab('past')">Past</button>
+                        </div>
+                        
+                        <div class="search-interview">
+                            <input type="text" placeholder="Search applicants by name" id="searchInterviews">
+                        </div>
+                    </div>
+
+                    <!-- UPCOMING INTERVIEWS -->
+                    <div id="upcomingInterviews" class="interview-tab-content">
+                        <div class="interview-table-wrapper" id="upcomingTableWrapper" style="display: none;">
+                            <table class="interview-table">
+                                <thead>
+                                    <tr>
+                                        <th>APPLICANT</th>
+                                        <th>DATE & TIME</th>
+                                        <th>STATUS</th>
+                                        <th>TYPE</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="upcomingTableBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="empty-state" id="upcomingEmpty">
+                            <div class="empty-state-icon">📅</div>
+                            <h3>No Upcoming Interviews</h3>
+                            <p>Schedule interviews with shortlisted candidates</p>
+                        </div>
+                    </div>
+
+                    <!-- PAST INTERVIEWS -->
+                    <div id="pastInterviews" class="interview-tab-content" style="display: none;">
+                        <div class="interview-table-wrapper" id="pastTableWrapper" style="display: none;">
+                            <table class="interview-table">
+                                <thead>
+                                    <tr>
+                                        <th>APPLICANT</th>
+                                        <th>DATE & TIME</th>
+                                        <th>STATUS</th>
+                                        <th>TYPE</th>
+                                        <th>ACTIONS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pastTableBody"></tbody>
+                            </table>
+                        </div>
+                        <div class="empty-state" id="pastEmpty">
+                            <div class="empty-state-icon">📋</div>
+                            <h3>No Past Interviews</h3>
+                            <p>Completed and cancelled interviews will appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OTHER PAGES -->
+            <div id="hired" class="page"><div class="empty-state"><div class="empty-state-icon">✅</div><h3>No Hired Candidates Yet</h3><p>Successfully hired candidates will appear here</p></div></div>
+            <div id="not-selected" class="page"><div class="empty-state"><div class="empty-state-icon">❌</div><h3>No Rejected Candidates</h3><p>Candidates not selected will be listed here</p></div></div>
+            <div id="chat-messages" class="page"><div class="empty-state"><div class="empty-state-icon">💬</div><h3>No Messages</h3><p>Chat with candidates and team members</p></div></div>
+        </main>
+    </div>
+
+    <!-- NOTES MODAL -->
+    <div class="notes-modal" id="notesModal">
+        <div class="notes-modal-container">
+            <div class="notes-modal-header">
+                <h2 class="notes-modal-title">📝 Notes</h2>
+                <button class="close-notes-btn" onclick="closeNotesModal()">✕</button>
+            </div>
+            <div class="notes-modal-body">
+                <p class="notes-info-text">You can save your notes on the applicant here</p>
+                <textarea class="notes-textarea" id="notesTextarea" maxlength="1000" oninput="updateNotesCharCount()" placeholder="Add your notes here..."></textarea>
+                <div class="notes-char-count" id="notesCharCount">0/1000</div>
+            </div>
+            <div class="notes-modal-footer">
+                <button class="btn-save-notes" onclick="saveNotes()">Save notes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCHEDULE INTERVIEW MODAL -->
+    <div class="interview-modal" id="interviewModal">
+        <div class="interview-form-container">
+            <div class="interview-form-header">
+                <div class="interview-header-content">
+                    <span class="interview-icon">📅</span>
+                    <h2 class="interview-form-title">Schedule interview</h2>
+                </div>
+                <button class="close-interview-btn" onclick="closeInterviewModal()">✕</button>
+            </div>
+            <form class="interview-form-body" id="interviewForm" onsubmit="submitInterview(event)">
+                <div class="to-field-group">
+                    <span class="to-label">To:</span>
+                    <span class="to-value" id="candidateToDisplay"></span>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Add title</label>
+                    <input type="text" class="form-input" id="interviewTitle" placeholder="e.g. First round interview with Tech lead" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Duration</label>
+                    <div class="duration-buttons">
+                        <button type="button" class="duration-btn active" data-duration="30" onclick="selectDuration(30)">30 min</button>
+                        <button type="button" class="duration-btn" data-duration="60" onclick="selectDuration(60)">60 min</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Interview date & time</label>
+                    <div class="date-time-row">
+                        <div class="date-picker-wrapper">
+                            <div class="date-input-with-icon">
+                                <input type="date" class="form-input" id="interviewDate" required>
+                                <span class="calendar-icon">📅</span>
+                            </div>
+                        </div>
+                        <div class="time-slot-wrapper">
+                            <div class="time-slot-display placeholder" id="timeSlotDisplay" onclick="toggleTimeSlots()">
+                                <span id="selectedTimeText">Pick a slot</span>
+                                <span>▼</span>
+                            </div>
+                            <div class="time-slots-dropdown" id="timeSlotsDropdown">
+                                <div class="time-slot-option" data-time="09:00" onclick="selectTimeSlot('09:00', '09:00 AM - 09:30 AM')">09:00 AM - 09:30 AM</div>
+                                <div class="time-slot-option" data-time="09:30" onclick="selectTimeSlot('09:30', '09:30 AM - 10:00 AM')">09:30 AM - 10:00 AM</div>
+                                <div class="time-slot-option" data-time="10:00" onclick="selectTimeSlot('10:00', '10:00 AM - 10:30 AM')">10:00 AM - 10:30 AM</div>
+                                <div class="time-slot-option" data-time="10:30" onclick="selectTimeSlot('10:30', '10:30 AM - 11:00 AM')">10:30 AM - 11:00 AM</div>
+                                <div class="time-slot-option" data-time="11:00" onclick="selectTimeSlot('11:00', '11:00 AM - 11:30 AM')">11:00 AM - 11:30 AM</div>
+                                <div class="time-slot-option" data-time="11:30" onclick="selectTimeSlot('11:30', '11:30 AM - 12:00 PM')">11:30 AM - 12:00 PM</div>
+                                <div class="time-slot-option" data-time="12:00" onclick="selectTimeSlot('12:00', '12:00 PM - 12:30 PM')">12:00 PM - 12:30 PM</div>
+                                <div class="time-slot-option" data-time="12:30" onclick="selectTimeSlot('12:30', '12:30 PM - 01:00 PM')">12:30 PM - 01:00 PM</div>
+                                <div class="time-slot-option" data-time="13:00" onclick="selectTimeSlot('13:00', '01:00 PM - 01:30 PM')">01:00 PM - 01:30 PM</div>
+                                <div class="time-slot-option" data-time="13:30" onclick="selectTimeSlot('13:30', '01:30 PM - 02:00 PM')">01:30 PM - 02:00 PM</div>
+                                <div class="time-slot-option" data-time="14:00" onclick="selectTimeSlot('14:00', '02:00 PM - 02:30 PM')">02:00 PM - 02:30 PM</div>
+                                <div class="time-slot-option" data-time="14:30" onclick="selectTimeSlot('14:30', '02:30 PM - 03:00 PM')">02:30 PM - 03:00 PM</div>
+                                <div class="time-slot-option" data-time="15:00" onclick="selectTimeSlot('15:00', '03:00 PM - 03:30 PM')">03:00 PM - 03:30 PM</div>
+                                <div class="time-slot-option" data-time="15:30" onclick="selectTimeSlot('15:30', '03:30 PM - 04:00 PM')">03:30 PM - 04:00 PM</div>
+                                <div class="time-slot-option" data-time="16:00" onclick="selectTimeSlot('16:00', '04:00 PM - 04:30 PM')">04:00 PM - 04:30 PM</div>
+                                <div class="time-slot-option" data-time="16:30" onclick="selectTimeSlot('16:30', '04:30 PM - 05:00 PM')">04:30 PM - 05:00 PM</div>
+                            </div>
+                            <input type="hidden" id="selectedTimeSlot" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label required">Interview type</label>
+                    <div class="interview-mode-group">
+                        <div class="radio-option">
+                            <input type="radio" name="interviewMode" id="modeOnline" value="online" checked onchange="toggleInterviewMode()">
+                            <label for="modeOnline">Online</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="interviewMode" id="modeOffline" value="offline" onchange="toggleInterviewMode()">
+                            <label for="modeOffline">Offline</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group conditional-field visible" id="videoLinkGroup">
+                    <label class="form-label">Share video call link</label>
+                    <input type="url" class="form-input" id="videoCallLink" placeholder="e.g. https://meet.google.com/dwr-pduw-htr">
+                </div>
+                <div class="form-group conditional-field" id="locationGroup">
+                    <label class="form-label">Interview Location</label>
+                    <input type="text" class="form-input" id="interviewLocation" placeholder="Enter office address">
+                </div>
+                <div class="form-group" style="margin-bottom: 0.5rem;">
+                    <label class="form-label">Add description & contact number</label>
+                    <textarea class="form-textarea" id="interviewDescription" maxlength="1500" oninput="updateCharCount()">Hi Tarun,
+
+Can you please confirm your availability for the mentioned date and time? Let me know in case of reschedule.
+
+I am available at +91-9871014257 for any further clarification.</textarea>
+                    <span class="char-count" id="charCount">750/1500</span>
+                </div>
+            </form>
+            <div class="interview-form-footer">
+                <button type="submit" form="interviewForm" class="btn-submit-interview">Schedule interview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESUME MODAL -->
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-viewer">
+            <div class="resume-header">
+                <h2 class="resume-title" id="resumeTitle">Resume - Student Name</h2>
+                <div class="resume-actions">
+                    <button class="download-btn" onclick="downloadResume()">📥 Download</button>
+                    <button class="close-resume-btn" onclick="closeResumeViewer()">✕</button>
+                </div>
+            </div>
+            <div class="resume-content">
+                <iframe id="resumeIframe" class="resume-iframe"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentResumeUrl = '';
+        let shortlistedCandidates = [];
+        let scheduledInterviews = [];
+        let recordsPerPage = 10;
+        let checkboxesVisible = false;
+        let selectedDuration = 30;
+        let selectedTime = '';
+        let currentCandidateForInterview = {};
+        let currentInterviewForNotes = null;
+        let interviewNotes = {};
+        let expandedRows = new Set();
+
+        function toggleAccordion(header) {
+            const section = header.parentElement;
+            document.querySelectorAll('.accordion-section').forEach(sec => {
+                if (sec !== section) sec.classList.remove('active');
+            });
+            section.classList.toggle('active');
+        }
+
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const page = this.getAttribute('data-page');
+                if (page) {
+                    document.querySelectorAll('.nav-item').forEach(navItem => navItem.classList.remove('active'));
+                    this.classList.add('active');
+                    document.querySelectorAll('.page').forEach(pageElement => pageElement.classList.remove('active-page'));
+                    document.getElementById(page).classList.add('active-page');
+                }
+            });
+        });
+
+        function toggleUserDropdown() {
+            document.getElementById('userDropdown').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            const userProfile = document.querySelector('.user-profile');
+            const dropdown = document.getElementById('userDropdown');
+            if (userProfile && !userProfile.contains(e.target)) dropdown.classList.remove('active');
+            
+            const threeDotMenu = document.querySelector('.three-dot-menu');
+            const threeDotDropdown = document.getElementById('threeDotDropdown');
+            if (threeDotMenu && !threeDotMenu.contains(e.target)) threeDotDropdown.classList.remove('active');
+            
+            const timeSlotWrapper = document.querySelector('.time-slot-wrapper');
+            if (timeSlotWrapper && !timeSlotWrapper.contains(e.target)) {
+                document.getElementById('timeSlotsDropdown').classList.remove('active');
+            }
+
+            if (!e.target.closest('.decision-dropdown-wrapper')) {
+                document.querySelectorAll('.decision-dropdown').forEach(dd => dd.classList.remove('active'));
+            }
+
+            if (!e.target.closest('.next-steps-wrapper')) {
+                document.querySelectorAll('.next-steps-dropdown').forEach(dd => dd.classList.remove('active'));
+            }
+        });
+
+        function goToProfile() { console.log('Go to profile'); }
+        function goToSettings() { console.log('Go to settings'); }
+        function goToHelp() { console.log('Go to help'); }
+        function logout() { console.log('Logout'); }
+
+        function toggleImportDropdown() {
+            event.stopPropagation();
+            document.getElementById('importDropdown').classList.toggle('active');
+        }
+
+        document.addEventListener('click', function(e) {
+            const importBtn = document.querySelector('.import-btn');
+            const dropdown = document.getElementById('importDropdown');
+            if (importBtn && !importBtn.contains(e.target)) dropdown.classList.remove('active');
+        });
+
+        function uploadMassData() { console.log('Upload mass data'); }
+        function uploadCSV() { console.log('Upload CSV'); }
+
+        function searchApplications() {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.application-card');
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                const email = card.getAttribute('data-email').toLowerCase();
+                const location = card.getAttribute('data-location').toLowerCase();
+                if (name.includes(searchInput) || email.includes(searchInput) || location.includes(searchInput)) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            document.getElementById('showingText').textContent = `Showing ${visibleCount} results`;
+        }
+
+        function selectAllCards() {
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const cardCheckboxes = document.querySelectorAll('.application-card:not(.hidden) .card-checkbox');
+            cardCheckboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+                checkbox.closest('.application-card').classList.toggle('selected', selectAllCheckbox.checked);
+            });
+            updateSelectedCount();
+        }
+
+        function updateSelectedCount() {
+            const checkedBoxes = document.querySelectorAll('.application-card:not(.hidden) .card-checkbox:checked');
+            const countElement = document.getElementById('selectedCount');
+            countElement.textContent = checkedBoxes.length > 0 ? `(${checkedBoxes.length} selected)` : '';
+            document.querySelectorAll('.card-checkbox').forEach(checkbox => {
+                checkbox.closest('.application-card').classList.toggle('selected', checkbox.checked);
+            });
+            const totalVisible = document.querySelectorAll('.application-card:not(.hidden) .card-checkbox').length;
+            document.getElementById('selectAll').checked = checkedBoxes.length === totalVisible && checkedBoxes.length > 0;
+        }
+
+        function viewResume(name, resumeUrl) {
+            currentResumeUrl = resumeUrl;
+            document.getElementById('resumeTitle').textContent = `Resume - ${name}`;
+            document.getElementById('resumeIframe').src = resumeUrl;
+            document.getElementById('resumeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResumeViewer() {
+            document.getElementById('resumeModal').classList.remove('active');
+            document.getElementById('resumeIframe').src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        function downloadResume() {
+            if (currentResumeUrl) window.open(currentResumeUrl, '_blank');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeResumeViewer();
+                closeInterviewModal();
+                closeNotesModal();
+            }
+        });
+
+        document.getElementById('resumeModal').addEventListener('click', function(e) {
+            if (e.target === this) closeResumeViewer();
+        });
+
+        document.getElementById('interviewModal').addEventListener('click', function(e) {
+            if (e.target === this) closeInterviewModal();
+        });
+
+        document.getElementById('notesModal').addEventListener('click', function(e) {
+            if (e.target === this) closeNotesModal();
+        });
+
+        function rejectCandidate(name, button) {
+            console.log(`${name} rejected`);
+            button.closest('.application-card').remove();
+            updateSelectedCount();
+            searchApplications();
+        }
+
+        function shortlistCandidate(firstName, lastName, gender, city, email, phone, appliedDate, button) {
+            console.log(`${firstName} ${lastName} shortlisted`);
+            shortlistedCandidates.push({
+                firstName, lastName, gender, city, email, phone, appliedDate,
+                shortlistedDate: new Date().toLocaleDateString('en-GB')
+            });
+            button.closest('.application-card').remove();
+            updateSelectedCount();
+            searchApplications();
+            renderShortlisted();
+        }
+
+        function toggleThreeDotMenu() {
+            event.stopPropagation();
+            document.getElementById('threeDotDropdown').classList.toggle('active');
+        }
+
+        function markAll() {
+            checkboxesVisible = true;
+            renderShortlisted();
+            setTimeout(() => {
+                document.querySelectorAll('.shortlisted-checkbox').forEach(cb => cb.checked = true);
+                document.getElementById('headerCheckbox').checked = true;
+            }, 100);
+            document.getElementById('threeDotDropdown').classList.remove('active');
+        }
+
+        function deselectAll() {
+            document.querySelectorAll('.shortlisted-checkbox').forEach(cb => cb.checked = false);
+            document.getElementById('headerCheckbox').checked = false;
+            document.getElementById('threeDotDropdown').classList.remove('active');
+        }
+
+        function toggleAllShortlisted() {
+            const headerCheckbox = document.getElementById('headerCheckbox');
+            document.querySelectorAll('.shortlisted-checkbox').forEach(cb => cb.checked = headerCheckbox.checked);
+        }
+
+        function updateRecordsPerPage() {
+            recordsPerPage = parseInt(document.getElementById('recordsPerPage').value);
+            renderShortlisted();
+        }
+
+        function renderShortlisted() {
+            const container = document.getElementById('shortlistedContainer');
+            const tableContainer = document.getElementById('shortlistedTableContainer');
+            const emptyState = document.getElementById('shortlistedEmpty');
+            const countElement = document.getElementById('shortlistedCount');
+            const tableHeader = document.getElementById('tableHeader');
+            const headerCheckbox = document.getElementById('headerCheckbox');
+            
+            if (shortlistedCandidates.length === 0) {
+                emptyState.style.display = 'block';
+                tableContainer.style.display = 'none';
+                countElement.textContent = 'Showing 0 shortlisted candidates';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            tableContainer.style.display = 'block';
+            countElement.textContent = `Showing ${shortlistedCandidates.length} shortlisted candidates`;
+
+            if (checkboxesVisible) {
+                headerCheckbox.style.display = 'block';
+                tableHeader.classList.remove('hide-checkbox');
+            } else {
+                headerCheckbox.style.display = 'none';
+                tableHeader.classList.add('hide-checkbox');
+            }
+
+            const html = shortlistedCandidates.map((candidate, index) => `
+                <div class="shortlisted-card ${checkboxesVisible ? '' : 'hide-checkbox'}">
+                    <input type="checkbox" class="shortlisted-checkbox" style="display: ${checkboxesVisible ? 'block' : 'none'};">
+                    <div class="app-no">${index + 1}</div>
+                    <div class="candidate-first-name">${candidate.firstName}</div>
+                    <div class="candidate-last-name">${candidate.lastName}</div>
+                    <div class="candidate-gender">${candidate.gender}</div>
+                    <div class="candidate-city">${candidate.city}</div>
+                    <div class="candidate-email">${candidate.email}</div>
+                    <div class="candidate-phone">${candidate.phone}</div>
+                    <div class="shortlisted-actions">
+                        <button class="btn-schedule" onclick="scheduleInterview('${candidate.firstName} ${candidate.lastName}', '${candidate.email}', '${candidate.phone}')">📅 Schedule Interview</button>
+                        <div class="next-steps-wrapper">
+                            <button class="btn-next-steps" onclick="toggleNextSteps(event, ${index})">Next Steps ▼</button>
+                            <div class="next-steps-dropdown" id="nextSteps-${index}">
+                                <div class="next-steps-option" onclick="startChat('${candidate.firstName} ${candidate.lastName}')">💬 Start Chat</div>
+                                <div class="next-steps-option" onclick="sendInvite('${candidate.firstName} ${candidate.lastName}')">✉️ Send Invite</div>
+                                <div class="next-steps-option" onclick="sendAssessment('${candidate.firstName} ${candidate.lastName}')">📝 Send Assessment</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = html;
+        }
+
+        function toggleNextSteps(event, index) {
+            event.stopPropagation();
+            const dropdown = document.getElementById(`nextSteps-${index}`);
+            document.querySelectorAll('.next-steps-dropdown').forEach(dd => {
+                if (dd !== dropdown) dd.classList.remove('active');
+            });
+            dropdown.classList.toggle('active');
+        }
+
+        function scheduleInterview(name, email, phone) {
+            currentCandidateForInterview = { name, email, phone };
+            document.getElementById('candidateToDisplay').textContent = name;
+            document.getElementById('interviewTitle').value = '';
+            document.getElementById('interviewDate').value = '';
+            document.getElementById('selectedTimeSlot').value = '';
+            document.getElementById('selectedTimeText').textContent = 'Pick a slot';
+            document.getElementById('timeSlotDisplay').classList.remove('has-value');
+            document.getElementById('timeSlotDisplay').classList.add('placeholder');
+            document.getElementById('videoCallLink').value = '';
+            document.getElementById('interviewLocation').value = '';
+            document.getElementById('interviewDescription').value = `Hi ${name.split(' ')[0]},\n\nCan you please confirm your availability for the mentioned date and time? Let me know in case of reschedule.\n\nI am available at +91-9871014257 for any further clarification.`;
+            updateCharCount();
+            document.querySelectorAll('.duration-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.duration-btn[data-duration="30"]').classList.add('active');
+            document.getElementById('modeOnline').checked = true;
+            toggleInterviewMode();
+            document.querySelectorAll('.time-slot-option').forEach(opt => opt.classList.remove('selected'));
+            selectedDuration = 30;
+            selectedTime = '';
+            document.getElementById('interviewModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInterviewModal() {
+            document.getElementById('interviewModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function selectDuration(duration) {
+            selectedDuration = duration;
+            document.querySelectorAll('.duration-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.duration-btn[data-duration="${duration}"]`).classList.add('active');
+        }
+
+        function toggleInterviewMode() {
+            const isOnline = document.getElementById('modeOnline').checked;
+            const videoLinkGroup = document.getElementById('videoLinkGroup');
+            const locationGroup = document.getElementById('locationGroup');
+            if (isOnline) {
+                videoLinkGroup.classList.add('visible');
+                locationGroup.classList.remove('visible');
+            } else {
+                videoLinkGroup.classList.remove('visible');
+                locationGroup.classList.add('visible');
+            }
+        }
+
+        function toggleTimeSlots() {
+            event.stopPropagation();
+            document.getElementById('timeSlotsDropdown').classList.toggle('active');
+        }
+
+        function selectTimeSlot(time, displayText) {
+            selectedTime = time;
+            document.getElementById('selectedTimeSlot').value = time;
+            document.getElementById('selectedTimeText').textContent = displayText;
+            document.getElementById('timeSlotDisplay').classList.remove('placeholder');
+            document.getElementById('timeSlotDisplay').classList.add('has-value');
+            document.querySelectorAll('.time-slot-option').forEach(opt => opt.classList.remove('selected'));
+            event.target.classList.add('selected');
+            document.getElementById('timeSlotsDropdown').classList.remove('active');
+        }
+
+        function updateCharCount() {
+            const textarea = document.getElementById('interviewDescription');
+            const charCount = document.getElementById('charCount');
+            charCount.textContent = `${textarea.value.length}/1500`;
+        }
+
+        function submitInterview(event) {
+            event.preventDefault();
+            
+            const interview = {
+                candidateName: currentCandidateForInterview.name,
+                candidateEmail: currentCandidateForInterview.email,
+                candidatePhone: currentCandidateForInterview.phone,
+                title: document.getElementById('interviewTitle').value,
+                date: document.getElementById('interviewDate').value,
+                timeSlot: selectedTime,
+                timeDisplay: document.getElementById('selectedTimeText').textContent,
+                duration: selectedDuration,
+                mode: document.getElementById('modeOnline').checked ? 'Online' : 'In office',
+                videoLink: document.getElementById('videoCallLink').value || '',
+                location: document.getElementById('interviewLocation').value || '',
+                status: 'Awaiting confirmation',
+                timestamp: new Date().getTime()
+            };
+
+            scheduledInterviews.push(interview);
+            closeInterviewModal();
+            
+            setTimeout(() => {
+                renderInterviews();
+                document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+                document.querySelector('[data-page="interviews"]').classList.add('active');
+                document.querySelectorAll('.page').forEach(page => page.classList.remove('active-page'));
+                document.getElementById('interviews').classList.add('active-page');
+            }, 200);
+        }
+
+        function switchInterviewTab(tab) {
+            document.querySelectorAll('.interview-tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+            
+            if (tab === 'upcoming') {
+                document.getElementById('upcomingInterviews').style.display = 'block';
+                document.getElementById('pastInterviews').style.display = 'none';
+            } else {
+                document.getElementById('upcomingInterviews').style.display = 'none';
+                document.getElementById('pastInterviews').style.display = 'block';
+            }
+        }
+
+        function renderInterviews() {
+            const upcoming = scheduledInterviews.filter(i => i.status === 'Awaiting confirmation' || i.status === 'Confirmed');
+            const past = scheduledInterviews.filter(i => i.status === 'Completed' || i.status === 'Cancelled');
+
+            renderInterviewTable('upcoming', upcoming);
+            renderInterviewTable('past', past);
+        }
+
+        function renderInterviewTable(type, interviews) {
+            const wrapper = document.getElementById(`${type}TableWrapper`);
+            const tbody = document.getElementById(`${type}TableBody`);
+            const emptyState = document.getElementById(`${type}Empty`);
+
+            if (interviews.length === 0) {
+                emptyState.style.display = 'block';
+                wrapper.style.display = 'none';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            wrapper.style.display = 'block';
+
+            const html = interviews.map((interview, index) => {
+                const globalIndex = scheduledInterviews.indexOf(interview);
+                const isExpanded = expandedRows.has(globalIndex);
+                
+                return `
+                <tr onclick="toggleExpandRow(${globalIndex})">
+                    <td>
+                        <div class="applicant-cell">
+                            <span class="expand-icon ${isExpanded ? 'expanded' : ''}">▼</span>
+                            <span class="interview-applicant-name">${interview.candidateName}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="datetime-cell">
+                            <span class="interview-date">${interview.date}</span>
+                            <span class="interview-time">${interview.timeDisplay}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="status-badge status-awaiting">
+                            ${interview.status}
+                            <span class="status-info-icon" title="Interview details">ℹ️</span>
+                        </span>
+                    </td>
+                    <td>
+                        <div class="type-cell">
+                            <span class="type-icon">${interview.mode === 'Online' ? '💻' : '🏢'}</span>
+                            <span>${interview.mode}</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="btn-add-notes" onclick="event.stopPropagation(); openNotesModal(${globalIndex})">Add Notes</button>
+                            ${interview.status === 'Awaiting confirmation' || interview.status === 'Confirmed' ? `
+                                <div class="decision-dropdown-wrapper">
+                                    <button class="btn-make-decision" onclick="event.stopPropagation(); toggleDecisionDropdown(event, ${globalIndex})">Make Decision</button>
+                                    <div class="decision-dropdown" id="decision-${globalIndex}">
+                                        <div class="decision-option reschedule" onclick="event.stopPropagation(); rescheduleInterview(${globalIndex})">Reschedule</div>
+                                        <div class="decision-option hire" onclick="event.stopPropagation(); hireCandidate(${globalIndex})">Hire</div>
+                                        <div class="decision-option cancel" onclick="event.stopPropagation(); cancelInterview(${globalIndex})">Cancel</div>
+                                    </div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </td>
+                </tr>
+                <tr class="expanded-details ${isExpanded ? 'show' : ''}" id="details-${globalIndex}">
+                    <td colspan="5">
+                        <div class="details-content">
+                            <div class="detail-item">
+                                <span class="detail-label">Interview Title</span>
+                                <span class="detail-value">${interview.title}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Duration</span>
+                                <span class="detail-value">${interview.duration} minutes</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Email</span>
+                                <span class="detail-value">${interview.candidateEmail}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Phone</span>
+                                <span class="detail-value">${interview.candidatePhone}</span>
+                            </div>
+                            ${interview.mode === 'Online' && interview.videoLink ? `
+                            <div class="detail-item">
+                                <span class="detail-label">Video Link</span>
+                                <span class="detail-value"><a href="${interview.videoLink}" target="_blank" style="color: var(--internshala-blue);">Join Meeting</a></span>
+                            </div>
+                            ` : ''}
+                            ${interview.mode === 'In office' && interview.location ? `
+                            <div class="detail-item">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">${interview.location}</span>
+                            </div>
+                            ` : ''}
+                        </div>
+                    </td>
+                </tr>
+                `;
+            }).join('');
+
+            tbody.innerHTML = html;
+        }
+
+        function toggleExpandRow(index) {
+            if (expandedRows.has(index)) {
+                expandedRows.delete(index);
+            } else {
+                expandedRows.add(index);
+            }
+            renderInterviews();
+        }
+
+        function toggleDecisionDropdown(event, index) {
+            const dropdown = document.getElementById(`decision-${index}`);
+            document.querySelectorAll('.decision-dropdown').forEach(dd => {
+                if (dd !== dropdown) dd.classList.remove('active');
+            });
+            dropdown.classList.toggle('active');
+        }
+
+        function rescheduleInterview(index) {
+            const interview = scheduledInterviews[index];
+            scheduleInterview(interview.candidateName, interview.candidateEmail, interview.candidatePhone);
+        }
+
+        function hireCandidate(index) {
+            scheduledInterviews[index].status = 'Completed';
+            setTimeout(() => renderInterviews(), 100);
+        }
+
+        function cancelInterview(index) {
+            scheduledInterviews[index].status = 'Cancelled';
+            setTimeout(() => renderInterviews(), 100);
+        }
+
+        function openNotesModal(index) {
+            currentInterviewForNotes = index;
+            const notes = interviewNotes[index] || '';
+            document.getElementById('notesTextarea').value = notes;
+            updateNotesCharCount();
+            document.getElementById('notesModal').classList.add('active');
+        }
+
+        function closeNotesModal() {
+            document.getElementById('notesModal').classList.remove('active');
+        }
+
+        function updateNotesCharCount() {
+            const textarea = document.getElementById('notesTextarea');
+            document.getElementById('notesCharCount').textContent = `${textarea.value.length}/1000`;
+        }
+
+        function saveNotes() {
+            const notes = document.getElementById('notesTextarea').value;
+            if (currentInterviewForNotes !== null) {
+                interviewNotes[currentInterviewForNotes] = notes;
+                closeNotesModal();
+            }
+        }
+
+        function startChat(name) { console.log(`Start chat with ${name}`); }
+        function sendInvite(name) { console.log(`Send invite to ${name}`); }
+        function sendAssessment(name) { console.log(`Send assessment to ${name}`); }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('TrackerPro HR Platform loaded successfully!');
+            renderShortlisted();
+            renderInterviews();
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('interviewDate').setAttribute('min', today);
+            updateCharCount();
+        });
+    </script>
+</body>
+</html>
