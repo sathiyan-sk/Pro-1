@@ -608,8 +608,10 @@
                         window.location.href = '/admin';
                     } else if (response.userType === 'STUDENT') {
                         window.location.href = '/student';
-                    } else if (response.userType === 'FACULTY' || response.userType === 'HR') {
-                        window.location.href = '/admin'; // Faculty/HR use admin interface
+                    } else if (response.userType === 'HR') {
+                        window.location.href = '/hr'; // HR users go to HR dashboard
+                    } else if (response.userType === 'FACULTY') {
+                        window.location.href = '/admin'; // Faculty uses admin interface
                     } else {
                         // Fallback for any other user types
                         window.location.href = '/student';
