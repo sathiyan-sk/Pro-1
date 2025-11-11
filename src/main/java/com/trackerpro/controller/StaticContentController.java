@@ -48,6 +48,14 @@ public class StaticContentController {
     }
     
     /**
+     * HR dashboard - requires HR authentication
+     */
+    @GetMapping("/hr")
+    public String hr() {
+        return "hrPage.html";
+    }
+    
+    /**
      * Forgot password page
      */
     @GetMapping("/forgot")
