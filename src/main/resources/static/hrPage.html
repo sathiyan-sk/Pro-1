@@ -3239,6 +3239,22 @@ HR Team`
             }
         }
 
+        // Logout functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownItems = document.querySelectorAll('.dropdown-item');
+            dropdownItems.forEach(item => {
+                if (item.textContent.trim() === 'Logout') {
+                    item.addEventListener('click', function() {
+                        // Clear any session data if needed
+                        sessionStorage.clear();
+                        localStorage.removeItem('hrSession');
+                        // Redirect to login page
+                        window.location.href = '/login';
+                    });
+                }
+            });
+        });
+
     </script>
 
     <!-- ADD HIRED CANDIDATE MODAL -->
