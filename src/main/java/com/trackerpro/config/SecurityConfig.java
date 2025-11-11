@@ -63,7 +63,14 @@ public class SecurityConfig {
                                 "/registerPage.html",
                                 "/adminPage.html",
                                 "/studentApplication.html",
+                                "/hrPage.html",
                                 "/forget.html",
+                                "/login",
+                                "/register",
+                                "/admin",
+                                "/student",
+                                "/hr",
+                                "/forgot",
                                 "/static/**",
                                 "/css/**",
                                 "/js/**",
@@ -72,7 +79,8 @@ public class SecurityConfig {
                                 "/*.jpg",
                                 "/*.ico",
                                 "/*.css",
-                                "/*.js"
+                                "/*.js",
+                                "/*.svg"
                         ).permitAll()
 
                         // All other requests
