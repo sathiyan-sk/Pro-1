@@ -462,7 +462,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-## 🎉 Acknowledgments
+## 🎉 Acknowledgments lifosi9932@gusronk.com
+
+
 
 - **Spring Boot Community** for excellent framework
 - **H2 Database** for development convenience  
